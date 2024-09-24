@@ -5,9 +5,9 @@ Repositorio Proyecto Ingeniería del Software
 
 - **Daniel Fernández López** [@DaniFL](https://github.com/DaniFL)🚀| [LinkedIn](https://www.linkedin.com/in/danielfernandezlopezlink/)
 - **Javier Martínez Cristóbal** [@Jmartinezc-rgb](https://github.com/Jmartinezc-rgb)🌐| [LinkedIn](https://www.linkedin.com/in/javier-martinez-cristobal/)
-- **Inés del Río García** [@inesdelrio](https://github.com/tomasalvarezm)🔍| [LinkedIn](https://www.linkedin.com/in/in%C3%A9s-del-r%C3%ADo/)
-- **Lucia Sorní Scaletti** [@luciasorni](https://github.com/Luciamgs)🎨| [LinkedIn](https://www.linkedin.com/in/luc%C3%ADa-sorn%C3%AD-scaletti-24137a270/)
-- **Encarnación Teresa González** [@encargb](https://github.com/Luciamgs)👩🏼‍💻| [LinkedIn](https://www.linkedin.com/in/encarnaci%C3%B3n-teresa-gonz%C3%A1lez-buitrago-77020a18a/)
+- **Inés del Río García** [@inesdelrio](https://github.com/inesdelrio)🔍| [LinkedIn](https://www.linkedin.com/in/in%C3%A9s-del-r%C3%ADo/)
+- **Lucia Sorní Scaletti** [@luciasorni](https://github.com/luciasorni)🎨| [LinkedIn](https://www.linkedin.com/in/luc%C3%ADa-sorn%C3%AD-scaletti-24137a270/)
+- **Encarnación Teresa González** [@encargb](https://github.com/encargb)👩🏼‍💻| [LinkedIn](https://www.linkedin.com/in/encarnaci%C3%B3n-teresa-gonz%C3%A1lez-buitrago-77020a18a/)
 - **Marcos Martínez Baeza** [@??]()👾| [LinkedIn]()
 
 ## Planificación
