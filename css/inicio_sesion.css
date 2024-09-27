@@ -1,0 +1,87 @@
+/* Estilos globales */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #D3D3D3; /* Gris Claro */
+    color: #2F4F4F; /* Gris Oscuro */
+    text-align: center;
+}
+
+/* Contenedor del formulario */
+.form-container {
+    background-color: #FFFFFF; /* Blanco Puro */
+    padding: 40px; /* Aumentar el padding */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: inline-block; /* Para centrar el formulario */
+    margin-top: 25px; /* Espacio superior */
+    margin-bottom: 25px; /* Espacio inferior */
+}
+
+/* Imagen */
+img {
+    margin-bottom: 20px; /* Espacio debajo de la imagen */
+    width: 150px; /* Ajusta el tamaño de la imagen si es necesario */
+    height: auto;
+}
+
+/* Título del formulario */
+h2 {
+    font-size: 28px;
+    color: #000080; /* Azul Marino */
+    margin: 20px 0;
+}
+
+/* Estilo para el formulario */
+form {
+    display: flex;
+    flex-direction: column; /* Organizar los elementos en columna */
+    align-items: center; /* Centramos los elementos dentro del formulario */
+}
+
+/* Etiquetas del formulario */
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+/* Campos de entrada */
+input[type="text"],
+input[type="password"] {
+    width: 100%; /* Ancho completo */
+    padding: 10px;
+    border: 1px solid #2F4F4F; /* Gris Oscuro */
+    border-radius: 4px;
+    margin-bottom: 15px; /* Espacio entre campos */
+    font-size: 16px;
+}
+
+/* Estilo para el enlace */
+a {
+    color: #000080; /* Azul Marino */
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px 0;
+}
+
+a:hover {
+    text-decoration: underline; /* Subrayado al pasar el mouse */
+}
+
+/* Botón de envío */
+input[type="submit"] {
+    background-color: #000080; /* Azul Marino */
+    color: #FFFFFF; /* Blanco Puro */
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #2F4F4F; /* Gris Oscuro al hacer hover */
+}
