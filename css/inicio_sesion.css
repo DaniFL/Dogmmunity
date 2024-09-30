@@ -85,3 +85,23 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #2F4F4F; /* Gris Oscuro al hacer hover */
 }
+
+/* ---- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f2f2f2;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    padding: 10px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    background-color: #ddd;
+}
