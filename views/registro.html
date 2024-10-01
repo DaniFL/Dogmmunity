@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pantalla de Registro</title>
-    <link rel="stylesheet" href="../css/registro.css">
+    <title>Dogmmunity - Pantalla de Registro</title>
+    <link rel="stylesheet" href="../css/styless.css">
     <link rel="icon" type="img/jpeg" href="../img/logo_1.jpeg">
 </head>
 <body>
@@ -19,34 +19,34 @@
     </div>
 
     <!-- Contenedor del formulario -->
-    <div class="form-container">
+    <div class="registro_container">
         <!-- Formulario de Registro -->
-        <h2>Registrarse</h2>
-        <form action="/register" method="post">
-            <label for="first-name">Nombre:</label>
-            <input type="text" id="first-name" name="first-name" required><br><br>
+        <h2 class="registro_titulo">Registrarse</h2>
+        <form class="registro_form" action="/register" method="post">
+            <label class="registro_label" for="first-name">Nombre:</label>
+            <input class="registro_input" type="text" id="first-name" name="first-name" required><br><br>
 
-            <label for="last-name">Apellidos:</label>
-            <input type="text" id="last-name" name="last-name" required><br><br>
+            <label class="registro_label" for="last-name">Apellidos:</label>
+            <input class="registro_input" type="text" id="last-name" name="last-name" required><br><br>
 
-            <label for="new-username">Nombre de usuario:</label>
-            <input type="text" id="new-username" name="new-username" required><br><br>
+            <label class="registro_label" for="new-username">Nombre de usuario:</label>
+            <input class="registro_input" type="text" id="new-username" name="new-username" required><br><br>
 
             <!-- Aviso bajo el nombre de usuario -->
-            <small>* No podrás modificar tu nombre de usuario después del registro.</small><br><br>
+            <small class="registro_aviso">* No podrás modificar tu nombre de usuario después del registro.</small><br><br>
 
 
-            <label for="email">Correo electrónico:</label>
-            <input type="email" id="email" name="email" required><br><br>
+            <label class="registro_label" for="email">Correo electrónico:</label>
+            <input class="registro_input" type="email" id="email" name="email" required><br><br>
 
-            <label for="new-password">Contraseña:</label>
-            <input type="password" id="new-password" name="new-password" required><br><br>
+            <label class="registro_label" for="new-password">Contraseña:</label>
+            <input class="registro_input" type="password" id="new-password" name="new-password" required><br><br>
 
-            <label for="confirm-password">Confirmar contraseña:</label>
-            <input type="password" id="confirm-password" name="confirm-password" required><br><br>
+            <label class="registro_label" for="confirm-password">Confirmar contraseña:</label>
+            <input class="registro_input" type="password" id="confirm-password" name="confirm-password" required><br><br>
 
 
-            <input type="submit" value="Registrarse">
+            <input class="registro_input" type="submit" value="Registrarse">
         </form>
         <script src="C:\Users\danie\Escritorio\Dogmmunity\js\main.js"></script>
     </div>
