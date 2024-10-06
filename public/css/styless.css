@@ -83,7 +83,7 @@ nav a:hover {
 /* Título del formulario */
 .inicio_titulo {
     font-size: 28px;
-    color: #54382a; /* Azul Marino */
+    color: #54382a;
     margin: 20px 0;
 }
 
@@ -128,8 +128,8 @@ nav a:hover {
 
 /* Botón de envío */
 .inicio_input[type="submit"] {
-    background-color: #d0bca7; /* Azul Marino */
-    color: #000000; /* Blanco Puro */
+    background-color: #d0bca7; 
+    color: #000000; 
     border: none;
     padding: 10px 20px;
     font-size: 16px;
@@ -139,7 +139,7 @@ nav a:hover {
 }
 
 .inicio_input[type="submit"]:hover {
-    background-color: #54382a; /* Gris Oscuro al hacer hover */
+    background-color: #54382a; 
     color: #FFFFFF;
 }
 
@@ -168,7 +168,7 @@ nav a:hover {
 /* Título del formulario */
 .registro_titulo {
     font-size: 28px;
-    color: #54382a; /* Azul Marino */
+    color: #54382a; 
     margin: 20px 0;
 }
 
@@ -207,8 +207,8 @@ small {
 
 /* Botón de envío */
 .registro_input[type="submit"] {
-    background-color: #000080; /* Azul Marino */
-    color: #FFFFFF; /* Blanco Puro */
+    background-color: #d0bca7; 
+    color: black;
     border: none;
     padding: 10px 20px;
     font-size: 16px;
@@ -218,13 +218,38 @@ small {
 }
 
 .registro_input[type="submit"]:hover {
-    background-color: #2F4F4F; /* Gris Oscuro al hacer hover */
+    background-color: #54382a; 
+    color: white; 
 }
 
 /*Registro cierre*/
 
 /*Perfil*/
 
+.formularioPerfil {
+    background-color: #f8f9fa; 
+    padding: 20px; 
+    margin: 0 auto 20px auto;
+    width: 300px; 
+    border-radius: 10px; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+    border: 2px solid #cccccc; /* borde form*/
+}
 
+.botonesGuardarPerfil[type="submit"] {
+    background-color: #d0bca7; 
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.botonesGuardarPerfil[type="submit"]:hover {
+    background-color: #54382a; 
+    color: white; 
+}
 
 /*Fin perfil*/

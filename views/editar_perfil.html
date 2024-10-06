@@ -1,2 +1,92 @@
-<!-- ESTA PAGINA ES PARA OTRA SEMANA, NO HACE FALTA TOCARLA
- -INES -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dogmmunity - Editar perfil</title>
+    <link rel="stylesheet" href="../public/css/styless.css">
+    <link rel="icon" type="img/jpeg" href="../img/logo_1.jpeg">
+</head>
+<body>
+    <div class="navbar">
+        <!-- Opciones del lado izquierdo -->
+        <nav>
+            <a href="../views/index.html">Inicio</a>
+            <a href="../views/perfil.html">Perfil</a>
+        </nav>
+    </div>
+    <h1>Editar Perfil</h1> <!--si hacemos un solo form no nos deja cambiar solo una cosa del perfil, hay que hacer un formulario por cada uno de los campos-->
+    
+    <!-- cambiar el nombre-->
+    <form id="formularioNombre" class="formularioPerfil">
+        <h3>Cambiar nombre</h3>
+        <div class="form-group">
+            <label for="nuevoNombre">Nuevo nombre</label>
+            <br>
+            <input type="text" class="nuevoNombre" id="nuevoNombre" name="nuevoNombre">
+            <br><br>
+        </div>
+        <div class="form-group">
+            <label for="confirmarNombre">Confirmar nuevo nombre</label>
+            <br>
+            <input type="text" id="confirmarNombre" name="confirmarNombre">
+            <br><br>
+        </div>
+        <button class="botonesGuardarPerfil" type="submit">Guardar nombre</button>
+    </form>
+
+    <!--cambiar el apellido -->
+    <form id="formularioApellido" class="formularioPerfil">
+        <h3>Cambiar apellido</h3>
+        <div class="form-group">
+            <label for="nuevoApellido">Nuevo apellido</label>
+            <br>
+            <input type="text" id="nuevoApellido" name="nuevoApellido">
+            <br><br>
+        </div>
+        <div class="form-group">
+            <label for="confirmarApellido">Confirmar nuevo apellido</label>
+            <br>
+            <input type="text" id="confirmarApellido" name="confirmarApellido">
+            <br><br>
+        </div>
+        <button class="botonesGuardarPerfil" type="submit">Guardar apellido</button>
+    </form>
+
+    <!-- cambiar el correo -->
+    <form id="formularioCorreo" class="formularioPerfil">
+        <h3>Cambiar correo electrónico</h3>
+        <div class="form-group">
+            <label for="nuevoCorreo">Nuevo correo electrónico</label>
+            <br>
+            <input type="email" id="nuevoCorreo" name="nuevoCorreo">
+            <br><br>
+        </div>
+        <div class="form-group">
+            <label for="confirmarCorreo">Confirmar nuevo correo electrónico</label>
+            <br>
+            <input type="email" id="confirmarCorreo" name="confirmarCorreo">
+            <br><br>
+        </div>
+        <button class="botonesGuardarPerfil" type="submit">Guardar correo</button>
+    </form>
+
+    <!--cambiar la contraseña -->
+    <form id="formularioContraseña" class="formularioPerfil">
+        <h3>Cambiar contraseña</h3>
+        <div class="form-group">
+            <label for="nuevaContrasena">Nueva contraseña</label>
+            <br>
+            <input type="password" id="nuevaContrasena" name="nuevaContrasena">
+            <br><br>
+        </div>
+        <div class="form-group">
+            <label for="confirmarContrasena">Confirmar nueva contraseña</label>
+            <br>
+            <input type="password" id="confirmarContrasena" name="confirmarContrasena">
+            <br><br>
+        </div>
+        <button class="botonesGuardarPerfil" type="submit">Guardar contraseña</button>
+    </form>
+</body>
+</html>
