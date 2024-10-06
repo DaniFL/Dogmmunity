@@ -1,0 +1,21 @@
+{
+  "_id": "nicknamedeprueba",
+  "correo": "encarnacionteresa.gonzalezbuit@usp.ceu.es",
+  "password": "123456",
+  "nombre": "Encarnación Teresa",
+  "apellidos": "González Buitrago",
+  "avatar": { "idAvatar": 1 },
+  "sesiones": [
+    {
+      "idSesion": "0001",
+      "instanteInicio": "2024-10-06T12:00:00Z"
+    }
+  ],
+  "autenticaciones": [
+    {
+      "codAutenticacion": "ABC123",
+      "instanteAutent": "2024-10-06T12:00:00Z",
+      "autenticado": "TRUE"
+    }
+  ]
+}
