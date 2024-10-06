@@ -13,7 +13,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 20px;
     background-color: #d0bca7;
 }
 
@@ -42,7 +42,7 @@ nav a:hover {
 .bienvenida {
     margin-top: 20px;
     font-size: 48px;
-    color: #000080;
+    color: #54382a;
 }
 
 /*Subtitulos Inicio*/
@@ -59,6 +59,7 @@ nav a:hover {
 }
 /*Index cierre*/
 
+
 /* Inicio_Sesion inicio */
 
 /* Contenedor del formulario */
@@ -66,7 +67,7 @@ nav a:hover {
     background-color: #FFFFFF; /* Blanco Puro */
     padding: 40px; /* Aumentar el padding */
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0);
     display: inline-block; /* Para centrar el formulario */
     margin-top: 25px; /* Espacio superior */
     margin-bottom: 25px; /* Espacio inferior */
@@ -75,14 +76,14 @@ nav a:hover {
 /* Imagen */
 .ini_img {
     margin-bottom: 20px; /* Espacio debajo de la imagen */
-    width: 150px; /* Ajusta el tamaño de la imagen si es necesario */
+    width: 200px; /* Ajusta el tamaño de la imagen si es necesario */
     height: auto;
 }
 
 /* Título del formulario */
 .inicio_titulo {
     font-size: 28px;
-    color: #000080; /* Azul Marino */
+    color: #54382a; /* Azul Marino */
     margin: 20px 0;
 }
 
@@ -105,15 +106,16 @@ nav a:hover {
 .inicio_input[type="password"] {
     width: 100%; /* Ancho completo */
     padding: 10px;
-    border: 1px solid #2F4F4F; /* Gris Oscuro */
+    border: 1px solid #000000;
     border-radius: 4px;
     margin-bottom: 15px; /* Espacio entre campos */
     font-size: 16px;
+    font-weight: normal;
 }
 
 /* Estilo para el enlace */
 .olvido_password {
-    color: #000080; /* Azul Marino */
+    color: #000000; /* Negro  */
     text-decoration: none;
     display: inline-block;
     margin: 10px 0;
@@ -121,12 +123,13 @@ nav a:hover {
 
 .olvido_password:hover {
     text-decoration: underline; /* Subrayado al pasar */
+    color: #000080; /*cambia a azul*/
 }
 
 /* Botón de envío */
 .inicio_input[type="submit"] {
-    background-color: #000080; /* Azul Marino */
-    color: #FFFFFF; /* Blanco Puro */
+    background-color: #d0bca7; /* Azul Marino */
+    color: #000000; /* Blanco Puro */
     border: none;
     padding: 10px 20px;
     font-size: 16px;
@@ -136,7 +139,8 @@ nav a:hover {
 }
 
 .inicio_input[type="submit"]:hover {
-    background-color: #2F4F4F; /* Gris Oscuro al hacer hover */
+    background-color: #54382a; /* Gris Oscuro al hacer hover */
+    color: #FFFFFF;
 }
 
 .error{
@@ -164,7 +168,7 @@ nav a:hover {
 /* Título del formulario */
 .registro_titulo {
     font-size: 28px;
-    color: #000080; /* Azul Marino */
+    color: #54382a; /* Azul Marino */
     margin: 20px 0;
 }
 
@@ -188,10 +192,11 @@ nav a:hover {
 .registro_input[type="password"] {
     width: 100%; /* Ancho completo */
     padding: 10px;
-    border: 1px solid #2F4F4F; /* Gris Oscuro */
+    border: 1px solid #000000;
     border-radius: 4px;
     margin-bottom: 15px; /* Espacio uniforme entre campos */
     font-size: 16px;
+    font-weight: normal;
 }
 
 /* Estilo para el aviso */
@@ -217,3 +222,9 @@ small {
 }
 
 /*Registro cierre*/
+
+/*Perfil*/
+
+
+
+/*Fin perfil*/
