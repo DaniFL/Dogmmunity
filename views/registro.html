@@ -6,15 +6,16 @@
     <title>Dogmmunity - Pantalla de Registro</title>
     <link rel="stylesheet" href="../css/styless.css">
     <link rel="icon" type="img/jpeg" href="../img/logo_1.jpeg">
+    <script src="/public/js/register.js" defer></script>
 </head>
 <body>
 
     <div class="navbar">
         <!-- Opciones del lado izquierdo -->
         <nav>
-            <a href="../views/index.html">Inicio</a>
-            <a href="../views/registro.html">Registro</a>
-            <a href="../views/inicio_sesion.html">Iniciar Sesión</a>
+            <a href="/">Inicio</a>
+            <a href="/register">Registro</a>
+            <a href="/login">Iniciar Sesión</a>
         </nav>
     </div>
 
@@ -45,10 +46,10 @@
             <label class="registro_label" for="confirm-password">Confirmar contraseña:</label>
             <input class="registro_input" type="password" id="confirm-password" name="confirm-password" required><br><br>
 
-
-            <input class="registro_input" type="submit" value="Registrarse">
+            <button class="registro_input" type="submit">Registrarse</button>
+            <p class="error escondido">Error al registrarse</p>
         </form>
-        <script src="C:\Users\danie\Escritorio\Dogmmunity\js\main.js"></script>
+        <p>¿Ya te has registrado? - <a href="./login">Iniciar sesión</a></p>
     </div>
 
 </body>

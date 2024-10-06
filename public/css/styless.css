@@ -139,6 +139,14 @@ nav a:hover {
     background-color: #2F4F4F; /* Gris Oscuro al hacer hover */
 }
 
+.error{
+    color: red;
+}
+
+.escondido{
+    display: none;
+}
+
 /* Fin Inicio_Sesion */
 
 /*Registro inicio*/

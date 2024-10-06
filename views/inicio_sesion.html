@@ -6,15 +6,16 @@
     <title>Dogmmunity - Inicio de Sesión</title>
     <link rel="stylesheet" href="../css/styless.css">
     <link rel="icon" type="img/jpeg" href="../img/logo_1.jpeg">
+    <script src="/public/js/login.js" defer></script>
 </head>
 <body>
 
     <div class="navbar">
         <!-- Opciones del lado izquierdo -->
         <nav>
-            <a href="../views/index.html">Inicio</a>
-            <a href="../views/registro.html">Registro</a>
-            <a href="../views/inicio_sesion.html">Iniciar Sesión</a>
+            <a href="/">Inicio</a>
+            <a href="/register">Registro</a>
+            <a href="/login">Iniciar Sesión</a>
         </nav>
     
     </div>
@@ -34,10 +35,10 @@
             <input class="inicio_input" type="password" id="password" name="password" required><br><br>
             <!-- Enlace para "Olvidé mi contraseña" -->
             <a class="olvido_password" href="/forgot-password">¿Olvidaste tu contraseña?</a><br><br>
-
-            
-            <input class="inicio_input" type="submit" value="Iniciar Sesión">
+            <button class="inicio_input" type="submit">Iniciar sesión</button>
+            <p class="error escondido">Error al iniciar sesión</p>
         </form>
+        <p>¿Aún no te has registrado? - <a href="./register">Registrate</a></p>
     </div>
 
 </body>
