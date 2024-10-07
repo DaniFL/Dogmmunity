@@ -4,8 +4,6 @@ npm-debug.log
 yarn-error.log
 .env
 
-index.js
-
 # Optional npm cache directory
 .npm
 

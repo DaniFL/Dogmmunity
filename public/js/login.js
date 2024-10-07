@@ -1,4 +1,4 @@
-document.querySelector('.inicio_form').addEventListener('submit', async function (e) {
+/*document.querySelector('.inicio_form').addEventListener('submit', async function (e) {
     e.preventDefault(); 
 
     const username = document.getElementById('username').value;
@@ -30,3 +30,4 @@ document.querySelector('.inicio_form').addEventListener('submit', async function
         errorElement.classList.remove('escondido');
     }
 });
+*/

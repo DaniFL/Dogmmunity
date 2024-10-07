@@ -1,4 +1,4 @@
-const bcrypt = require('bcryptjs');
+/*const bcrypt = require('bcryptjs');
 const User = require('user');
 
 // Registro de usuario
@@ -49,3 +49,4 @@ exports.login = async (req, res) => {
         res.json({ success: false, message: 'Error al iniciar sesión.' });
     }
 };
+*/

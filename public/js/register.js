@@ -1,4 +1,4 @@
-document.querySelector('.registro_form').addEventListener('submit', async function (e) {
+/*document.querySelector('.registro_form').addEventListener('submit', async function (e) {
     e.preventDefault(); 
 
     const user = document.getElementById('user').value;
@@ -31,3 +31,4 @@ document.querySelector('.registro_form').addEventListener('submit', async functi
         errorElement.classList.remove('escondido');
     }
 });
+*/
