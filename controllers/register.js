@@ -15,7 +15,8 @@ document.querySelector('form').addEventListener('submit', async (e) => {
         const data = await res.text();
         
         if (res.ok) {
-            window.location.href = '/login'; // Redirige al login después de registrarse
+            // redireccione a perfil.html
+            window.location.href = "/admin";
         } else {
             document.querySelector('.error').classList.remove('escondido');
             document.querySelector('.error').textContent = data;

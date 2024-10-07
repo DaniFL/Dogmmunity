@@ -1,4 +1,4 @@
-const User = require("../models/user");
+/*const User = require("../models/user");
 const { getToken, getTokenData } = require("../config/jwt.config")
 const template = require('../config/email.template');
 const { getTemplate, sendEmail } = require("../config/mail.config");
@@ -45,4 +45,4 @@ const signUp = async (req, res) => {
         })
     }
 }
-
+*/

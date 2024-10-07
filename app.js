@@ -28,10 +28,7 @@ app.use(session({
 app.get("/", (req, res) => res.sendFile(__dirname + "/views/index.html"));
 app.get("/login", (req, res) => res.sendFile(__dirname + "/views/inicio_sesion.html"));
 app.get("/register", (req, res) => res.sendFile(__dirname + "/views/registro.html"));
-
+app.get("/perfil", (req, res) => res.sendFile(__dirname + "/views/perfil.html"));
 // Nuevas rutas POST para manejo de formularios
 app.post('/register', userController.registerUser);
 app.post('/login', userController.loginUser);
-
-
-

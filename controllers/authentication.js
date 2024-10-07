@@ -23,7 +23,8 @@ exports.registerUser = async (req, res) => {
         });
 
         await newUser.save();
-        res.status(201).send("Usuario registrado exitosamente");
+        req.session.user = newUser;
+        res.status(201).redirect('/perfil');
     } catch (error) {
         res.status(500).send("Error al registrar el usuario");
     }
@@ -48,7 +49,7 @@ exports.loginUser = async (req, res) => {
 
         // Iniciar sesión (aquí puedes usar sesiones o tokens)
         req.session.user = user; // Guardar la sesión del usuario
-        res.status(200).send("Inicio de sesión exitoso");
+        res.status(200).redirect('/perfil');
     } catch (error) {
         res.status(500).send("Error al iniciar sesión");
     }
