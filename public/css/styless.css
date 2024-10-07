@@ -26,6 +26,7 @@ nav a {
 
 nav a:hover {
     background-color: #f1ebda;
+    border-radius: 5px;
 }
 
 
@@ -226,6 +227,25 @@ small {
 
 /*Perfil*/
 
+/*Fin editar perfil*/
+.botonesPerfil{
+    background-color: #d0bca7; 
+    color: black; 
+    border: 1px solid black; 
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    width: 200px;
+    margin-bottom: 20px;
+}
+
+.botonesPerfil:hover{
+    color: #FFFFFF;
+    background-color: #54382a
+}
+/*Editar perfil*/
+
 .formularioPerfil {
     background-color: #f8f9fa; 
     padding: 20px; 
@@ -252,4 +272,4 @@ small {
     color: white; 
 }
 
-/*Fin perfil*/
+/*Fin editar perfil*/
