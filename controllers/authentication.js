@@ -54,3 +54,18 @@ exports.loginUser = async (req, res) => {
         res.status(500).send("Error al iniciar sesión");
     }
 };
+// Función para actualizar la contraseña del usuario
+exports.updateUserPassword = async (req, res) => {
+    const { nuevaContrasena } = req.body;
+    const userId = req.session.user._id;
+
+    try {
+        const hashedPassword = await bcrypt.hash(nuevaContrasena, 10);
+        await User.findByIdAndUpdate(userId, { password: hashedPassword });
+        res.status(200).redirect('/perfil');
+    } catch (error) {
+        res.status(500).send("Error al actualizar la contraseña");
+    }
+};
+
+

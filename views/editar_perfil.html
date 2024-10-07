@@ -6,18 +6,19 @@
     <title>Dogmmunity - Editar perfil</title>
     <link rel="stylesheet" href="../public/css/styless.css">
     <link rel="icon" type="img/jpeg" href="../img/logo_1.jpeg">
+    <script src="../controllers/editar_perfil.js" defer></script>
 </head>
 <body>
     <div class="navbar">
         <!-- Opciones del lado izquierdo -->
         <nav>
-            <a href="../views/index.html">Inicio</a>
-            <a href="../views/perfil.html">Perfil</a>
+            <a href="/">Inicio</a>
+            <a href="/perfil">Perfil</a>
         </nav>
     </div>
     <h1>Editar Perfil</h1> <!--si hacemos un solo form no nos deja cambiar solo una cosa del perfil, hay que hacer un formulario por cada uno de los campos-->
     
-    <!-- cambiar el nombre-->
+    <!-- cambiar el nombre
     <form id="formularioNombre" class="formularioPerfil">
         <h3>Cambiar nombre</h3>
         <div class="form-group">
@@ -33,9 +34,9 @@
             <br><br>
         </div>
         <button class="botonesGuardarPerfil" type="submit">Guardar nombre</button>
-    </form>
+    </form>-->
 
-    <!--cambiar el apellido -->
+    <!--cambiar el apellido 
     <form id="formularioApellido" class="formularioPerfil">
         <h3>Cambiar apellido</h3>
         <div class="form-group">
@@ -51,9 +52,9 @@
             <br><br>
         </div>
         <button class="botonesGuardarPerfil" type="submit">Guardar apellido</button>
-    </form>
+    </form>-->
 
-    <!-- cambiar el correo -->
+    <!-- cambiar el correo
     <form id="formularioCorreo" class="formularioPerfil">
         <h3>Cambiar correo electrónico</h3>
         <div class="form-group">
@@ -69,10 +70,10 @@
             <br><br>
         </div>
         <button class="botonesGuardarPerfil" type="submit">Guardar correo</button>
-    </form>
+    </form>-->
 
     <!--cambiar la contraseña -->
-    <form id="formularioContraseña" class="formularioPerfil">
+    <form id="formularioContraseña" class="formularioPerfil" method="POST">
         <h3>Cambiar contraseña</h3>
         <div class="form-group">
             <label for="nuevaContrasena">Nueva contraseña</label>
