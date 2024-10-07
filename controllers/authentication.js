@@ -1,52 +1,51 @@
-// Función de registro
-async function register(req, res) {
+const bcrypt = require('bcryptjs');
+const User = require('user');
+
+// Registro de usuario
+exports.register = async (req, res) => {
     const { user, email, password } = req.body;
+
     try {
-        let existingUser = await User.findOne({ email });
+        // Comprobar si el usuario ya existe
+        const existingUser = await User.findOne({ $or: [{ user }, { email }] });
         if (existingUser) {
-            return res.status(400).json({ msg: 'User already exists' });
+            return res.json({ success: false, message: 'El nombre de usuario o el correo ya existen.' });
         }
 
-        const newUser = new User({
-            user,
-            email,
-            password: await bcrypt.hash(password, 10)
-        });
+        // Hash de la contraseña
+        const hashedPassword = await bcrypt.hash(password, 10);
 
+        // Crear nuevo usuario
+        const newUser = new User({ user, email, password: hashedPassword });
         await newUser.save();
-        res.status(201).json({ msg: 'User registered successfully' });
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server error');
-    }
-}
 
-// Función de inicio de sesión
-async function login(req, res) {
-    const { email, password } = req.body;
+        res.json({ success: true });
+    } catch (error) {
+        console.error('Error al registrar el usuario:', error);
+        res.json({ success: false, message: 'Error al registrar el usuario.' });
+    }
+};
+
+// Inicio de sesión
+exports.login = async (req, res) => {
+    const { username, password } = req.body;
+
     try {
-        let user = await User.findOne({ email });
+        // Buscar al usuario por su nombre
+        const user = await User.findOne({ user: username });
         if (!user) {
-            return res.status(400).json({ msg: 'Invalid credentials' });
+            return res.json({ success: false, message: 'Usuario no encontrado.' });
         }
 
+        // Comprobar contraseña
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
-            return res.status(400).json({ msg: 'Invalid credentials' });
+            return res.json({ success: false, message: 'Contraseña incorrecta.' });
         }
 
-        const payload = {
-            user: {
-                id: user.id
-            }
-        };
-
-        jwt.sign(payload, 'secret', { expiresIn: '1h' }, (err, token) => {
-            if (err) throw err;
-            res.json({ token });
-        });
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server error');
+        res.json({ success: true });
+    } catch (error) {
+        console.error('Error al iniciar sesión:', error);
+        res.json({ success: false, message: 'Error al iniciar sesión.' });
     }
-}
+};
