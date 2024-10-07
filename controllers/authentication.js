@@ -1,52 +1,55 @@
-/*const bcrypt = require('bcryptjs');
-const User = require('user');
+const User = require('../models/user'); // Modelo de usuario
+const bcrypt = require('bcryptjs'); 
 
-// Registro de usuario
-exports.register = async (req, res) => {
+// Función para registrar un nuevo usuario
+exports.registerUser = async (req, res) => {
     const { user, email, password } = req.body;
 
     try {
-        // Comprobar si el usuario ya existe
-        const existingUser = await User.findOne({ $or: [{ user }, { email }] });
+        // Verificar si el usuario ya existe
+        const existingUser = await User.findOne({ user });
         if (existingUser) {
-            return res.json({ success: false, message: 'El nombre de usuario o el correo ya existen.' });
+            return res.status(400).send("El nombre de usuario ya está en uso");
         }
 
-        // Hash de la contraseña
+        // Encriptar la contraseña
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Crear nuevo usuario
-        const newUser = new User({ user, email, password: hashedPassword });
-        await newUser.save();
+        // Crear el nuevo usuario
+        const newUser = new User({
+            user,
+            email,
+            password: hashedPassword
+        });
 
-        res.json({ success: true });
+        await newUser.save();
+        res.status(201).send("Usuario registrado exitosamente");
     } catch (error) {
-        console.error('Error al registrar el usuario:', error);
-        res.json({ success: false, message: 'Error al registrar el usuario.' });
+        res.status(500).send("Error al registrar el usuario");
     }
 };
 
-// Inicio de sesión
-exports.login = async (req, res) => {
+// Función para iniciar sesión
+exports.loginUser = async (req, res) => {
     const { username, password } = req.body;
 
     try {
-        // Buscar al usuario por su nombre
+        // Buscar el usuario en la base de datos
         const user = await User.findOne({ user: username });
         if (!user) {
-            return res.json({ success: false, message: 'Usuario no encontrado.' });
+            return res.status(400).send("Usuario no encontrado");
         }
 
-        // Comprobar contraseña
+        // Verificar la contraseña
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
-            return res.json({ success: false, message: 'Contraseña incorrecta.' });
+            return res.status(400).send("Contraseña incorrecta");
         }
 
-        res.json({ success: true });
+        // Iniciar sesión (aquí puedes usar sesiones o tokens)
+        req.session.user = user; // Guardar la sesión del usuario
+        res.status(200).send("Inicio de sesión exitoso");
     } catch (error) {
-        console.error('Error al iniciar sesión:', error);
-        res.json({ success: false, message: 'Error al iniciar sesión.' });
+        res.status(500).send("Error al iniciar sesión");
     }
 };
-*/

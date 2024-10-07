@@ -1,4 +1,4 @@
-/*const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
     user: {
@@ -14,8 +14,12 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    status:{
+        type: String,
+        require:true,
+        default: 'UNVERIFIED'
     }
 });
 
-module.exports = mongoose.model('User', userSchema);
-*/
+module.exports = mongoose.model("User", userSchema);
