@@ -30,9 +30,22 @@ app.get("/login", (req, res) => res.sendFile(__dirname + "/views/inicio_sesion.h
 app.get("/register", (req, res) => res.sendFile(__dirname + "/views/registro.html"));
 app.get("/perfil", (req, res) => res.sendFile(__dirname + "/views/perfil.html"));
 app.get("/edit", (req, res) => res.sendFile(__dirname + "/views/editar_perfil.html"));
+app.get("/sesion_cerrada.html", (req, res) => res.sendFile(__dirname + "/views/sesion_cerrada.html"));
 
 app.post('/edit', userController.updateUserPassword);
 
 // Nuevas rutas POST para manejo de formularios
 app.post('/register', userController.registerUser);
 app.post('/login', userController.loginUser);
+
+// Ruta para cerrar sesión (adaptada a tu configuración)
+app.post('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.log("Error al destruir la sesión: ", err);
+            return res.status(500).send('Error al cerrar sesión');
+        }
+        res.clearCookie('connect.sid', { path: '/' }); // Limpia la cookie de la sesión
+        res.status(200).send('Sesión cerrada correctamente');
+    });
+});

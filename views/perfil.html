@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/styless.css">
     <link rel="icon" type="img/jpeg" href="../img/logo_1.jpeg">
     <script src="../controllers/sessionDisplay.js" defer></script>
+
 </head>
 
 <body>
@@ -35,10 +36,28 @@
         onclick="window.location.href='añadirPerro.html';"/>
         <br>
         <br>
-        <button class="botonesPerfil">Cerrar sesión</button>
+        <!--boton de cerrar sesión-->
+        <input class="botonesPerfil" type="button" id="logout-btn" name="logout" value="Cerrar sesión"
+        onclick="cerrarSesion();"/>
     </form>    
-    
 
+    <script>
+        // Función para cerrar sesión y redirigir a la página de confirmación de cierre de sesión
+        function cerrarSesion() {
+            fetch('/logout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    window.location.href = 'sesion_cerrada.html';  // Redirige a la página de sesión cerrada
+                } else {
+                    alert('Error al cerrar sesión');
+                }
+            }).catch(error => console.error('Error al cerrar sesión:', error));
+        }
+    </script>
 
 </body>
 </html>
