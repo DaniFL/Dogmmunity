@@ -38,7 +38,7 @@ app.post('/edit', userController.updateUserPassword);
 app.post('/register', userController.registerUser);
 app.post('/login', userController.loginUser);
 
-// Ruta para cerrar sesión (adaptada a tu configuración)
+// Ruta para cerrar sesión
 app.post('/logout', (req, res) => {
     req.session.destroy((err) => {
         if (err) {
