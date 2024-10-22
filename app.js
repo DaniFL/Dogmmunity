@@ -38,7 +38,10 @@ app.get("/register", (req, res) => res.render('registro'));
 // Ruta del perfil con EJS
 app.get("/perfil", (req, res) => {
     if (req.session.user) {
-        res.render('perfil', { username: req.session.user.user }); // Pasamos el nombre de usuario al EJS
+        res.render('perfil', { 
+            username: req.session.user.user,
+            email: req.session.user.email
+        }); // Pasamos el nombre de usuario al EJS
     } else {
         res.redirect('/login');
     }
