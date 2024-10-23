@@ -48,7 +48,11 @@ exports.loginUser = async (req, res) => {
         }
 
         // Iniciar sesión (aquí puedes usar sesiones o tokens)
-        req.session.user = user; // Guardar la sesión del usuario
+        req.session.user = {
+            id: user._id, 
+            user: user.user, 
+            photo: user.photo 
+        }; // Guardar la sesión del usuario
         res.status(200).redirect('/perfil');
     } catch (error) {
         res.status(500).send("Error al iniciar sesión");

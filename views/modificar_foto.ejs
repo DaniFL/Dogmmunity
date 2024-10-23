@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dogmmunity - Modificar foto de perfil</title>
+    <link rel="stylesheet" href="/css/styless.css">
+    <link rel="icon" type="img/jpeg" href="../img/logo_1.jpeg">
+</head>
+<body>
+    <div class="navbar">
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/perfil">Perfil</a>
+        </nav>
+    </div>
+    <h1>Modificar Foto de Perfil</h1>
+
+    <form id="formularioFoto" class="formularioPerfil" method="POST" action="/guardarFotoPerfil">
+        <h3>Selecciona una nueva foto de perfil</h3>
+        <div class="form-group">
+            <div class="opciones-fotos">
+                <label>
+                    <input type="radio" name="fotoPerfil" value="img_perfil1.jpg" required>
+                    <img src="/img/img_perfil1.jpg" alt="Foto 1" width="100" height="100">
+                </label>
+
+                <label>
+                    <input type="radio" name="fotoPerfil" value="img_perfil2.jpg">
+                    <img src="/img/img_perfil2.jpg" alt="Foto 2" width="100" height="100">
+                </label>
+
+                <label>
+                    <input type="radio" name="fotoPerfil" value="img_perfil3.jpg">
+                    <img src="/img/img_perfil3.jpg" alt="Foto 3" width="100" height="100">
+                </label>
+
+                <label>
+                    <input type="radio" name="fotoPerfil" value="img_perfil4.jpg">
+                    <img src="/img/img_perfil4.jpg" alt="Foto 4" width="100" height="100">
+                </label>
+            </div>
+            <br><br>
+        </div>
+        <button class="botonesGuardarPerfil" type="submit">Guardar foto</button>
+    </form>
+    <script src="/controllers/edit_profile_pic.js"></script> 
+</body>
+</html>

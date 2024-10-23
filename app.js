@@ -4,7 +4,7 @@ const dbConnect = require("./db/connect.js");
 const bcrypt = require('bcryptjs');
 const session = require('express-session'); // Para manejar sesiones
 const path = require('path'); // Para manejar rutas de vistas
-
+const User=require('./models/user');
 // Conexión a MongoDB
 dbConnect();
 
@@ -56,6 +56,42 @@ app.post('/edit', userController.updateUserPassword);
 app.post('/register', userController.registerUser);
 app.post('/login', userController.loginUser);
 
+// Ruta para modificar la foto de perfil
+app.get("/modificarFoto", (req, res) => {
+    if (req.session.user) {
+        res.render('modificar_foto'); // Renderiza el archivo modificar_foto.ejs
+    } else {
+        res.redirect('/login'); // Redirige a login si no hay sesión
+    }
+});
+
+// Ruta para guardar la foto de perfil
+app.post('/guardarFotoPerfil', (req, res) => {
+    const { fotoPerfil } = req.body; // Extrae la foto seleccionada del cuerpo de la solicitud
+
+    // Verifica que el usuario esté autenticado
+    if (!req.session.user || !req.session.user.id) {
+        return res.status(401).send('Usuario no autenticado');
+    }
+
+    // Actualiza el campo photo del usuario autenticado
+    User.findByIdAndUpdate(req.session.user.id, { photo: fotoPerfil }, { new: true }) // Usa new: true para devolver el documento actualizado
+        .then(updatedUser => {
+            if (updatedUser) {
+                console.log('Usuario actualizado:', updatedUser); // Imprime el usuario actualizado
+                res.status(200).send('Foto de perfil actualizada con éxito');
+            } else {
+                res.status(404).send('Usuario no actualizado');
+            }
+        })
+        .catch(err => {
+            console.error('Error al actualizar la foto de perfil:', err);
+            res.status(500).send('Error al actualizar la foto de perfil. Por favor, intenta nuevamente más tarde.');
+        });
+});
+
+
+
 // Ruta para cerrar sesión
 app.post('/logout', (req, res) => {
     req.session.destroy((err) => {
@@ -67,3 +103,4 @@ app.post('/logout', (req, res) => {
         res.status(200).send('Sesión cerrada correctamente');
     });
 });
+

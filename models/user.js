@@ -19,6 +19,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         require:true,
         default: 'UNVERIFIED'
+    },
+    photo: { // Nuevo campo para la foto de perfil
+        type: String,
+        default: 'perfil_con_perro.png'
     }
 });
 
