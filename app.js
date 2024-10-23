@@ -40,7 +40,8 @@ app.get("/perfil", (req, res) => {
     if (req.session.user) {
         res.render('perfil', { 
             username: req.session.user.user,
-            email: req.session.user.email
+            email: req.session.user.email,
+            photo: req.session.user.photo
         }); // Pasamos el nombre de usuario al EJS
     } else {
         res.redirect('/login');
@@ -80,6 +81,7 @@ app.post('/guardarFotoPerfil', (req, res) => {
             if (updatedUser) {
                 console.log('Usuario actualizado:', updatedUser); // Imprime el usuario actualizado
                 res.status(200).send('Foto de perfil actualizada con éxito');
+                
             } else {
                 res.status(404).send('Usuario no actualizado');
             }
