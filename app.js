@@ -48,6 +48,7 @@ app.get("/perfil", (req, res) => {
 });
 
 app.get("/edit", (req, res) => res.render('editar_perfil'));
+app.get("/perro", (req, res) => res.render('form_perro'));
 app.get("/sesion_cerrada", (req, res) => res.render('sesion_cerrada'));
 
 // Nuevas rutas POST para manejo de formularios
