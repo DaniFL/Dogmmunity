@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dogmmunity - Registro de tu perro</title>
+    <link rel="stylesheet" href="./css/styless.css">
+    <link rel="icon" type="img/jpeg" href="./img/logo_1.jpeg">
+    <!--<script src="../controllers/form_perro.js" defer></script> -->
+</head>
+<body>
+    <div class="navbar">
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/register">Registro</a>
+            <a href="/login">Iniciar Sesión</a>
+        </nav>
+    </div>
+    <h1>Añade a tu perro</h1>
+    <form id="formPerros" class="formPerros" method="post"></form>
+        <h3>¿Cómo se llama tu perro?</h3>
+        <div class="form-group">
+            <label for="nombrePerro">Nombre de tu perro</label>
+            <br>
+            <input type="text" id="nombrePerro" name="nombrePerro" placeholder="Indica el nombre de tu perro">
+            <br><br>
+        </div>
+
+        <h3>¿Cuántos años tiene tu perro?</h3>
+        <div class="form-group">
+            <label for="edadPerro">Edad de tu perro</label>
+            <br>
+            <input type="date" id="edadPerro" name="edadPerro" min="1994-01-01" placeholder="Ingresa la fecha de nacimiento de tu perro">
+            <script>
+                const today = new Date().toISOString().split('T')[0]; // Obtiene la fecha actual en formato YYYY-MM-DD
+                document.getElementById('nacimiento').setAttribute('max', today); // Establece la fecha máxima
+            </script>
+            <br><br>
+        </div>
+
+        <h3>¿Cuánto pesa tu perro?</h3>
+        <div class="form-group">
+            <label for="pesoPerro">Indica el peso de tu perro</label>
+            <br>
+            <input type="number" id="pesoPerro" name="pesoPerro" min="1" max="162" >
+            <br><br>
+        </div>
+
+        <h3>¿Qué raza de perro tienes?</h3>
+        <div class="form-group">
+            <label for="nuevaContrasena">Raza:</label>
+            <br>
+            <input list="razas" id="raza" name="raza" placeholder="Escribe o selecciona una raza">
+        <datalist id="razas">
+            <option value="Labrador Retriever">
+            <option value="Golden Retriever">
+            <option value="Bulldog">
+            <option value="Poodle">
+            <option value="Pastor Alemán">
+            <option value="Beagle">
+            <option value="Rottweiler">
+            <option value="Yorkshire Terrier">
+            <option value="Dachshund">
+            <option value="Boxer">
+            <option value="Husky Siberiano">
+            <option value="Chihuahua">
+            <option value="Doberman">
+            <option value="Shih Tzu">
+            <option value="Cocker Spaniel">
+            <option value="Pomerania">
+            <option value="Border Collie">
+            <option value="Dálmata">
+            <option value="Boston Terrier">
+            <option value="Gran Danés">
+            <option value="Akita">
+            <option value="Alaskan Malamute">
+            <option value="American Staffordshire Terrier">
+            <option value="Basset Hound">
+            <option value="Bloodhound">
+            <option value="Bichón Frisé">
+            <option value="Borzoi">
+            <option value="Bull Terrier">
+            <option value="Cane Corso">
+            <option value="Cavalier King Charles Spaniel">
+            <option value="Chow Chow">
+            <option value="Dogo Argentino">
+            <option value="Dogo de Burdeos">
+            <option value="Fox Terrier">
+            <option value="Galgo Español">
+            <option value="Jack Russell Terrier">
+            <option value="Mastín Español">
+            <option value="Mastín Napolitano">
+            <option value="Perro de Agua Español">
+            <option value="Samoyedo">
+            <option value="San Bernardo">
+            <option value="Shiba Inu">
+            <option value="Springer Spaniel">
+            <option value="Staffordshire Bull Terrier">
+            <option value="Terranova">
+            <option value="Whippet">
+            <option value="West Highland White Terrier">
+            
+        </datalist>
+        </div>
+        <button class="botonesGuardarPerro" type="submit">Guardar perro</button>
+    
+</body>
+</html>
+
