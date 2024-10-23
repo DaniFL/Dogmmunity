@@ -80,8 +80,9 @@ app.post('/guardarFotoPerfil', (req, res) => {
         .then(updatedUser => {
             if (updatedUser) {
                 console.log('Usuario actualizado:', updatedUser); // Imprime el usuario actualizado
-                res.status(200).send('Foto de perfil actualizada con éxito');
-                
+                // res.status(200).send('Foto de perfil actualizada con éxito');
+                req.session.user.photo = updatedUser.photo;
+                res.redirect('/perfil');
             } else {
                 res.status(404).send('Usuario no actualizado');
             }
