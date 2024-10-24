@@ -1,4 +1,4 @@
-const User = require('../models/user'); // Modelo de usuario
+const User = require('../models/user');
 const bcrypt = require('bcryptjs'); 
 
 // Función para registrar un nuevo usuario
@@ -72,5 +72,3 @@ exports.updateUserPassword = async (req, res) => {
         res.status(500).send("Error al actualizar la contraseña");
     }
 };
-
-

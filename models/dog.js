@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const User=require('./models/user');
 
 const PerroSchema = new mongoose.Schema({
     nombrePerro: { 
@@ -24,7 +23,7 @@ const PerroSchema = new mongoose.Schema({
     },
     userId: { 
         type: mongoose.Schema.Types.ObjectId, 
-        ref: User, 
+        ref: "User", 
         required: true 
     }
 });

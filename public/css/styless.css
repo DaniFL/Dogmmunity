@@ -104,8 +104,10 @@ nav a:hover {
 
 /* Campos de entrada */
 .inicio_input[type="text"],
+.inicio_input[type="number"],
+.inicio_input[type="date"],
 .inicio_input[type="password"] {
-    width: 100%; /* Ancho completo */
+    width: 10%; 
     padding: 10px;
     border: 1px solid #000000;
     border-radius: 4px;

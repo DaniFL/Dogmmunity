@@ -1,4 +1,4 @@
-document.querySelector('form').addEventListener('submit', async (e) => {
+/*document.querySelector('form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const user = document.getElementById('user').value;
     const email = document.getElementById('email').value;
@@ -25,3 +25,4 @@ document.querySelector('form').addEventListener('submit', async (e) => {
         console.error('Error en la solicitud:', error);
     }
 });
+*/

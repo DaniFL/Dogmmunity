@@ -4,7 +4,9 @@ const dbConnect = require("./db/connect.js");
 const bcrypt = require('bcryptjs');
 const session = require('express-session'); // Para manejar sesiones
 const path = require('path'); // Para manejar rutas de vistas
-const User=require('./models/user');
+const User = require('./models/user.js');
+const dogController = require('./controllers/dog_data.js');
+
 // Conexión a MongoDB
 dbConnect();
 
@@ -52,12 +54,13 @@ app.get("/edit", (req, res) => res.render('editar_perfil'));
 app.get("/perro", (req, res) => res.render('form_perro'));
 app.get("/sesion_cerrada", (req, res) => res.render('sesion_cerrada'));
 
-app.get("/perfil_perro", (req, res) => res.render('perfil_perro')); //solo quiero ver la pantalla esta mientras la edito --Inés 
+//app.get("/perfil_perro", (req, res) => res.render('perfil_perro')); //solo quiero ver la pantalla esta mientras la edito --Inés 
 
 // Nuevas rutas POST para manejo de formularios
 app.post('/edit', userController.updateUserPassword);
 app.post('/register', userController.registerUser);
 app.post('/login', userController.loginUser);
+app.post('/perro', dogController.registerDog);
 
 // Ruta para modificar la foto de perfil
 app.get("/modificarFoto", (req, res) => {
@@ -95,13 +98,6 @@ app.post('/guardarFotoPerfil', (req, res) => {
         });
 });
 
-// Ruta para añadir un perro
-app.get('/agregarPerro', (req, res) => {
-    res.render('form_perro', {
-        username: req.session.username, // Pasa la información del usuario si es necesario
-        email: req.session.email
-    });
-});
 
 app.post('/agregarPerro', async (req, res) => {
     try {
