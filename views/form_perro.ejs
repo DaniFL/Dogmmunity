@@ -17,39 +17,43 @@
         </nav>
     </div>
     <h1>Añade a tu perro</h1>
-    <form id="formPerros" class="formPerros" method="post"></form>
+    <form id="formNombrePerros" class="formNombrePerros" method="post">
         <h3>¿Cómo se llama tu perro?</h3>
         <div class="form-group">
             <label for="nombrePerro">Nombre de tu perro</label>
-            <br>
-            <input type="text" id="nombrePerro" name="nombrePerro" placeholder="Indica el nombre de tu perro">
             <br><br>
+            <input type="text" id="nombrePerro" name="nombrePerro" placeholder="Indica el nombre de tu perro">
+            <br>
         </div>
+    </form>
 
+    <form id="formEdadPerros" class="formEdadPerros" method="post">
         <h3>¿Cuántos años tiene tu perro?</h3>
         <div class="form-group">
             <label for="edadPerro">Edad de tu perro</label>
-            <br>
+            <br><br>
             <input type="date" id="edadPerro" name="edadPerro" min="1994-01-01" placeholder="Ingresa la fecha de nacimiento de tu perro">
             <script>
                 const today = new Date().toISOString().split('T')[0]; // Obtiene la fecha actual en formato YYYY-MM-DD
                 document.getElementById('nacimiento').setAttribute('max', today); // Establece la fecha máxima
             </script>
-            <br><br>
+            <br>
         </div>
-
+    </form>
+    <form id="formPesoPerros" class="formPesoPerros" method="post">
         <h3>¿Cuánto pesa tu perro?</h3>
         <div class="form-group">
             <label for="pesoPerro">Indica el peso de tu perro</label>
-            <br>
-            <input type="number" id="pesoPerro" name="pesoPerro" min="1" max="162" >
             <br><br>
+            <input type="number" id="pesoPerro" name="pesoPerro" min="1" max="162" >
+            <br>
         </div>
-
+    </form>
+    <form id="formRazaPerros" class="formRazaPerros" method="post">
         <h3>¿Qué raza de perro tienes?</h3>
         <div class="form-group">
             <label for="nuevaContrasena">Raza:</label>
-            <br>
+            <br><br>
             <input list="razas" id="raza" name="raza" placeholder="Escribe o selecciona una raza">
         <datalist id="razas">
             <option value="Labrador Retriever">
@@ -102,8 +106,9 @@
             
         </datalist>
         </div>
-        <button class="botonesGuardarPerro" type="submit">Guardar perro</button>
-    
+    </form>
+    <button class="botonesGuardarPerro" type="submit">Guardar perro</button>
+
 </body>
 </html>
 

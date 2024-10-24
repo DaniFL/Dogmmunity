@@ -273,3 +273,58 @@ small {
 }
 
 /*Fin editar perfil*/
+
+/*Formulario añadir perro*/
+
+
+.botonesGuardarPerro[type="submit"] {
+    background-color: #d0bca7; 
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.formNombrePerros {
+    background-color: #f8f9fa; 
+    padding: 20px; 
+    margin: 0 auto 20px auto;
+    width: 300px; 
+    border-radius: 10px; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+    border: 2px solid #cccccc; /* borde form*/
+}
+
+.formEdadPerros {
+    background-color: #f8f9fa; 
+    padding: 20px; 
+    margin: 0 auto 20px auto;
+    width: 300px; 
+    border-radius: 10px; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+    border: 2px solid #cccccc; /* borde form*/
+}
+
+.formPesoPerros {
+    background-color: #f8f9fa; 
+    padding: 20px; 
+    margin: 0 auto 20px auto;
+    width: 300px; 
+    border-radius: 10px; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+    border: 2px solid #cccccc; /* borde form*/
+}
+
+.formRazaPerros {
+    background-color: #f8f9fa; 
+    padding: 20px; 
+    margin: 0 auto 20px auto;
+    width: 300px; 
+    border-radius: 10px; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+    border: 2px solid #cccccc; /* borde form*/
+}
+
