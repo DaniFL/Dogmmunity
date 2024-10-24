@@ -53,7 +53,10 @@ exports.loginUser = async (req, res) => {
             user: user.user, 
             photo: user.photo,
             email: user.email
-        }; // Guardar la sesión del usuario
+        }; 
+
+        req.session.userId = user._id;
+
         res.status(200).redirect('/perfil');
     } catch (error) {
         res.status(500).send("Error al iniciar sesión");

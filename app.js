@@ -99,7 +99,7 @@ app.post('/guardarFotoPerfil', (req, res) => {
 });
 
 
-app.post('/agregarPerro', async (req, res) => {
+/*app.post('/agregarPerro', async (req, res) => {
     try {
         const { nombrePerro, edadPerro, pesoPerro, sexo, raza } = req.body;
 
@@ -120,6 +120,7 @@ app.post('/agregarPerro', async (req, res) => {
         res.status(500).send('Error al guardar el perro');
     }
 });
+*/
 
 // Ruta para cerrar sesión
 app.post('/logout', (req, res) => {

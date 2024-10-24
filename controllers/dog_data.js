@@ -1,27 +1,27 @@
 const Dog = require('../models/dog');
 
 exports.registerDog = async (req, res) => {
-    const { name, age, weight, sex, breed } = req.body;
+    const { nombrePerro, edadPerro, pesoPerro, sexo, raza } = req.body;
 
     try {
-        // Verificar si el perro ya existe
-        const existingDog = await Dog.findOne({ name });
+        const existingDog = await Dog.findOne({ nombrePerro });
         if (existingDog) {
             return res.status(400).send("El nombre del perro ya está en uso");
         }
 
-        // Crear el nuevo perro
         const newDog = new Dog({
-            name,
-            age, 
-            weight,
-            sex,
-            breed
+            nombrePerro,
+            edadPerro, 
+            pesoPerro,
+            sexo,
+            raza,
+            dueno: req.session.userId
         });
 
         await newDog.save();
         res.status(201).redirect('/perfil');
     } catch (error) {
+        console.error(error);
         res.status(500).send("Error al registrar el perro");
     }
 };
