@@ -51,7 +51,8 @@ exports.loginUser = async (req, res) => {
         req.session.user = {
             id: user._id, 
             user: user.user, 
-            photo: user.photo 
+            photo: user.photo,
+            email: user.email
         }; // Guardar la sesión del usuario
         res.status(200).redirect('/perfil');
     } catch (error) {
