@@ -22,8 +22,7 @@ const PerroSchema = new mongoose.Schema({
         required: true 
     },
     dueno: { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Usuario', 
+        type: String, 
         required: false 
     }
 });

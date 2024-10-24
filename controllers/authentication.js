@@ -56,6 +56,7 @@ exports.loginUser = async (req, res) => {
         }; 
 
         req.session.userId = user._id;
+        req.session.userName = user.user;
 
         res.status(200).redirect('/perfil');
     } catch (error) {

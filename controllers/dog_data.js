@@ -15,7 +15,7 @@ exports.registerDog = async (req, res) => {
             pesoPerro,
             sexo,
             raza,
-            dueno: req.session.userId
+            dueno: req.session.user.user
         });
 
         await newDog.save();
