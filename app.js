@@ -93,7 +93,13 @@ app.post('/guardarFotoPerfil', (req, res) => {
         });
 });
 
-
+// Ruta para añadir un perro
+app.get('/agregarPerro', (req, res) => {
+    res.render('form_perro', {
+        username: req.session.username, // Pasa la información del usuario si es necesario
+        email: req.session.email
+    });
+});
 
 // Ruta para cerrar sesión
 app.post('/logout', (req, res) => {
