@@ -101,6 +101,28 @@ app.get('/agregarPerro', (req, res) => {
     });
 });
 
+app.post('/agregarPerro', async (req, res) => {
+    try {
+        const { nombrePerro, edadPerro, pesoPerro, sexo, raza } = req.body;
+
+        // Crear un nuevo perro
+        const nuevoPerro = new Perro({
+            nombrePerro,
+            edadPerro,
+            pesoPerro,
+            sexo,
+            raza,
+            userId: req.session.userId
+        });
+
+        await nuevoPerro.save();
+        res.redirect('/perfil'); 
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error al guardar el perro');
+    }
+});
+
 // Ruta para cerrar sesión
 app.post('/logout', (req, res) => {
     req.session.destroy((err) => {
