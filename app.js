@@ -1,11 +1,12 @@
 const express = require('express');
-const userController = require('./controllers/authentication.js'); // Controlador de autenticación
+const userController = require('./controllers/authentication.js'); 
 const dbConnect = require("./db/connect.js");
 const bcrypt = require('bcryptjs');
-const session = require('express-session'); // Para manejar sesiones
-const path = require('path'); // Para manejar rutas de vistas
+const session = require('express-session'); 
+const path = require('path'); 
 const User = require('./models/user.js');
 const dogController = require('./controllers/dog_data.js');
+const Perro = require('./models/dog'); 
 
 // Conexión a MongoDB
 dbConnect();
@@ -37,6 +38,23 @@ app.get("/", (req, res) => res.render('index'));
 app.get("/login", (req, res) => res.render('inicio_sesion'));
 app.get("/register", (req, res) => res.render('registro'));
 
+app.get("/perfil_perro", async (req, res) => {
+    if (req.session.user) {
+        try {
+            const perro = await Perro.findOne({ dueno: req.session.user.user });
+            if (!perro) {
+                return res.status(404).send("No se encontró el perro");
+            }
+            res.render('perfil_perro', { perro });
+        } catch (error) {
+            console.error("Error al cargar datos del perro:", error);
+            res.status(500).send("Error al cargar datos del perro");
+        }
+    } else {
+        res.redirect('/login');
+    }
+});
+
 // Ruta del perfil con EJS
 app.get("/perfil", (req, res) => {
     if (req.session.user) {
@@ -53,8 +71,6 @@ app.get("/perfil", (req, res) => {
 app.get("/edit", (req, res) => res.render('editar_perfil'));
 app.get("/perro", (req, res) => res.render('form_perro'));
 app.get("/sesion_cerrada", (req, res) => res.render('sesion_cerrada'));
-
-//app.get("/perfil_perro", (req, res) => res.render('perfil_perro')); //solo quiero ver la pantalla esta mientras la edito --Inés 
 
 // Nuevas rutas POST para manejo de formularios
 app.post('/edit', userController.updateUserPassword);
@@ -97,30 +113,6 @@ app.post('/guardarFotoPerfil', (req, res) => {
             res.status(500).send('Error al actualizar la foto de perfil. Por favor, intenta nuevamente más tarde.');
         });
 });
-
-
-/*app.post('/agregarPerro', async (req, res) => {
-    try {
-        const { nombrePerro, edadPerro, pesoPerro, sexo, raza } = req.body;
-
-        // Crear un nuevo perro
-        const nuevoPerro = new Perro({
-            nombrePerro,
-            edadPerro,
-            pesoPerro,
-            sexo,
-            raza,
-            userId: req.session.userId
-        });
-
-        await nuevoPerro.save();
-        res.redirect('/perfil'); 
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Error al guardar el perro');
-    }
-});
-*/
 
 // Ruta para cerrar sesión
 app.post('/logout', (req, res) => {

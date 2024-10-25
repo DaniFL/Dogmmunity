@@ -6,7 +6,6 @@
     <title>Dogmmunity - Tu perro</title>
     <link rel="stylesheet" href="../css/styless.css">
     <link rel="icon" type="img/jpeg" href="../img/logo_1.jpeg">
-    <!--<script src="../controllers/editar_perfil.js" defer></script>-->
 </head>
 <body>
     <div class="navbar">
@@ -24,11 +23,24 @@
     </div>
 
     <div class="infoPerro" id="infoPperro">
-        <p>Nombre de tu perro: </p>
-        <p>Es (macho//hembra)</p>
-        <p>FLUFY nació el: </p>
-        <p>FLUFY pesa: </p>
-        <p>Y es de la raza: </p>
+        <p><strong>Nombre:</strong>
+            <%= perro.nombrePerro %>
+        </p>
+        <p><strong>Edad:</strong>
+            <%= perro.edadPerro %>
+        </p>
+        <p><strong>Peso:</strong>
+            <%= perro.pesoPerro %> kg
+        </p>
+        <p><strong>Sexo:</strong>
+            <%= perro.sexo %>
+        </p>
+        <p><strong>Raza:</strong>
+            <%= perro.raza %>
+        </p>
+        <p><strong>Dueño:</strong>
+            <%= perro.dueno %>
+        </p>
     </div>
 
     <div><p>¿Deseas realizar algún cambio en los datos de tu perro?</p></div>

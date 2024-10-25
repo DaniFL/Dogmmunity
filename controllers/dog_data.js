@@ -17,7 +17,6 @@ exports.registerDog = async (req, res) => {
             raza,
             dueno: req.session.user.user
         });
-
         await newDog.save();
         res.status(201).redirect('/perfil');
     } catch (error) {
