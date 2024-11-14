@@ -1,5 +1,6 @@
 // Librerías requeridas
 const path = require("path");
+const logger = require("morgan");
 const bcrypt = require("bcryptjs");
 const express = require('express');
 const session = require("express-session");
@@ -8,6 +9,8 @@ const cookieParser = require("cookie-parser");
 
 // Módulos propios de la aplicación
 const dbConnect = require("./db/connect.js");
+
+// Esto habrá que cargarselo
 const userController = require('./controllers/authentication.js'); 
 const User = require('./models/user.js');
 const dogController = require('./controllers/dog_data.js');
@@ -16,7 +19,10 @@ const Perro = require('./models/dog');
 
 let indexRouter = require("./routes/index");
 let loginRouter = require("./routes/login");
-let restrictedRouter = require("./routes/restricted.js/index.js");
+let registerRouter = require("./routes/register");
+let restrictedRouter = require("./routes/restricted");
+let profileRouter = require("./routes/profile");
+let dogRouter = require("./routes/dog");
 
 // Conexión a MongoDB
 dbConnect();
@@ -50,8 +56,8 @@ app.use(
 app.use("/", indexRouter);
 app.use("/login", loginRouter);
 app.use("/register", registerRouter);
-app.use("/perfil", perfilRouter);
-app.use("/perro", perroRouter);
+app.use("/profile", profileRouter);
+app.use("/dog", dogRouter);
 app.use("/restricted", restrictedRouter);
 app.use("/logout", (req, res) => {
   req.session.destroy();
@@ -89,6 +95,8 @@ module.exports = app;
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Rutas con EJS
+
+/*
 app.get("/", (req, res) => res.render('index'));
 app.get("/login", (req, res) => res.render('inicio_sesion'));
 app.get("/register", (req, res) => res.render('registro'));
@@ -181,3 +189,4 @@ app.post('/logout', (req, res) => {
     });
 });
 
+*/

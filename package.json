@@ -19,7 +19,6 @@
     "name": "Daniel Fernández López",
     "email": "danielfernandezlopez75@gmail.com"
   },
-
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/DaniFL/Dogmmunity/issues"
@@ -39,6 +38,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.9.0",
     "mongoose": "^8.7.0",
+    "morgan": "^1.10.0",
     "nodemailer": "^6.9.15"
   }
 }
