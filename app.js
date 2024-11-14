@@ -10,13 +10,6 @@ const cookieParser = require("cookie-parser");
 // Módulos propios de la aplicación
 const dbConnect = require("./db/connect.js");
 
-// Esto habrá que cargarselo
-const userController = require('./controllers/authentication.js'); 
-const User = require('./models/user.js');
-const dogController = require('./controllers/dog_data.js');
-const Perro = require('./models/dog'); 
-
-
 let indexRouter = require("./routes/index");
 let loginRouter = require("./routes/login");
 let registerRouter = require("./routes/register");
