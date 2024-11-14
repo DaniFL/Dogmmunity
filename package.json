@@ -2,20 +2,24 @@
   "name": "dogmmunity",
   "version": "1.0.0",
   "description": "Repositorio Proyecto Ingeniería del Software",
-  "main": "index.js",
+  "main": "./bin/www",
   "private": false,
   "directories": {
     "doc": "doc",
     "lib": "lib"
   },
   "scripts": {
-    "dev": "nodemon app.js"
+    "dev": "nodemon ./bin/www"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/DaniFL/Dogmmunity.git"
   },
-  "author": "Daniel Fernández <danielfernandezlopez75@gmail.com>",
+  "author": {
+    "name": "Daniel Fernández López",
+    "email": "danielfernandezlopez75@gmail.com"
+  },
+
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/DaniFL/Dogmmunity/issues"

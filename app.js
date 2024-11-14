@@ -1,22 +1,33 @@
+// Librerías requeridas
+const path = require("path");
+const bcrypt = require("bcryptjs");
 const express = require('express');
-const userController = require('./controllers/authentication.js'); 
+const session = require("express-session");
+const createError = require("http-errors");
+const cookieParser = require("cookie-parser");
+
+// Módulos propios de la aplicación
 const dbConnect = require("./db/connect.js");
-const bcrypt = require('bcryptjs');
-const session = require('express-session'); 
-const path = require('path'); 
+const userController = require('./controllers/authentication.js'); 
 const User = require('./models/user.js');
 const dogController = require('./controllers/dog_data.js');
 const Perro = require('./models/dog'); 
+
+
+let indexRouter = require("./routes/index");
+let loginRouter = require("./routes/login");
+let restrictedRouter = require("./routes/restricted");
 
 // Conexión a MongoDB
 dbConnect();
 
 
+
 // Server Settings
-const app = express();
-app.set("port", 3000); 
-app.listen(app.get("port"));
-console.log("Servidor corriendo en el puerto", app.get("port"));
+let app = express();
+//app.set("port", 3000); 
+// app.listen(app.get("port"));
+//console.log("Servidor corriendo en el puerto", app.get("port"));
 
 // Configurar EJS como motor de plantillas
 app.set('view engine', 'ejs');
@@ -126,3 +137,4 @@ app.post('/logout', (req, res) => {
     });
 });
 
+module.exports = app;
