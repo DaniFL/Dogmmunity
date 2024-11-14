@@ -16,12 +16,10 @@ const Perro = require('./models/dog');
 
 let indexRouter = require("./routes/index");
 let loginRouter = require("./routes/login");
-let restrictedRouter = require("./routes/restricted");
+let restrictedRouter = require("./routes/restricted.js/index.js");
 
 // Conexión a MongoDB
 dbConnect();
-
-
 
 // Server Settings
 let app = express();
@@ -29,20 +27,66 @@ let app = express();
 // app.listen(app.get("port"));
 //console.log("Servidor corriendo en el puerto", app.get("port"));
 
-// Configurar EJS como motor de plantillas
+// View engine setup (EJS)
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views')); // Directorio donde estarán tus vistas EJS
+app.set('views', path.join(__dirname, 'views'));
 
 // Middleware
-app.use(express.static(__dirname + "/public"));
+app.use(logger("dev"));
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
-app.use(session({
-    secret: 'dogmmunity-secret',
+app.use(express.static(__dirname + '/public'));
+app.use(
+  session({
+    secret: "dogmmunity-session",
     resave: false,
-    saveUninitialized: false,
-    cookie: { secure: false } // Cambia a true si usas HTTPS
-}));
+    saveUninitialized: true,
+    cookie: { secure: false }, // Indica si la cookie debe ser enviada solo a través de conexiones HTTPS.
+  })
+);
+
+
+app.use("/", indexRouter);
+app.use("/login", loginRouter);
+app.use("/register", registerRouter);
+app.use("/perfil", perfilRouter);
+app.use("/perro", perroRouter);
+app.use("/restricted", restrictedRouter);
+app.use("/logout", (req, res) => {
+  req.session.destroy();
+  res.redirect("/");
+});
+
+
+//Comprobar si el usuario ha iniciado sesión
+function checkLogin(req, res, next){
+  if(req.session.user){
+    next();
+  } else {
+    res.redirect('login');
+  }
+}
+
+// 404 error
+app.use(function(req, res, next) {
+  next(createError(404));
+});
+
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
+
+module.exports = app;
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Rutas con EJS
 app.get("/", (req, res) => res.render('index'));
@@ -137,4 +181,3 @@ app.post('/logout', (req, res) => {
     });
 });
 
-module.exports = app;
