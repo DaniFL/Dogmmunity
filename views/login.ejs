@@ -1,24 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dogmmunity - Inicio de Sesión</title>
-    <link rel="stylesheet" href="../css/styless.css">
-    <link rel="icon" type="img/jpeg" href="../img/logo_1.jpeg">
-    <script src="../controllers/login.js" defer></script>
-</head>
-<body>
-
-    <div class="navbar">
-        <!-- Opciones del lado izquierdo -->
-        <nav>
-            <a href="/">Inicio</a>
-            <a href="/register">Registro</a>
-            <a href="/login">Iniciar Sesión</a>
-        </nav>
-    
-    </div>
+<%- include("header", {}) %>
 
     <!-- Contenedor del formulario -->
     <div class="sesion_container">
@@ -41,5 +21,4 @@
         <p>¿Aún no te has registrado? - <a href="./register">Registrate</a></p>
     </div>
 
-</body>
-</html>
+<%- include("footer", {}) %>

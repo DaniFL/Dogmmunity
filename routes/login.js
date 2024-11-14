@@ -3,7 +3,15 @@ var router = express.Router();
 
 /* GET login page. */
 router.get('/', function(req, res, next) {
-    res.render("login", { title: "Login", user: req.session.user });
+    res.render("login", {
+      navbar_addr1: "/",
+      navbar_addr2: "/login",
+      navbar_addr3: "/register",
+      navbar_item1: "Home",
+      navbar_item2: "Login",
+      navbar_item3: "Register",
+      user: req.session.user,
+    });
 });
     
 /* POST login page. */
