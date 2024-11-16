@@ -36,6 +36,14 @@ async function createTable() {
             )
         `;
 
+    /*CREATE TABLE Usuarios (
+    id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(), 
+    username VARCHAR(50) NOT NULL,                 
+    email VARCHAR(255) NOT NULL UNIQUE,             
+    password VARCHAR(255) NOT NULL                 
+    );
+    */
+
         await sql.query(query);
         console.log('Tabla Usuarios creada exitosamente');
         
