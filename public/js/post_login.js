@@ -1,4 +1,4 @@
-document.querySelector('inicio_form').addEventListener('submit', async (e) => {
+/*document.querySelector('#inicio_form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
@@ -11,16 +11,17 @@ document.querySelector('inicio_form').addEventListener('submit', async (e) => {
             },
             body: JSON.stringify({ username, password })
         });
-        const data = await res.text();
+        const data = await res.json(); // Cambiado a res.json() para manejar la respuesta JSON
         
         if (res.ok) {
-            //res.redirect("/login/admin");
-           window.location.href = '/profile';
+            window.location.href = '/profile';
         } else {
             document.querySelector('.error').classList.remove('escondido');
-            document.querySelector('.error').textContent = data;
+            document.querySelector('.error').textContent = data.message || 'Error en el inicio de sesión';
         }
     } catch (error) {
         console.error('Error en la solicitud:', error);
+        document.querySelector('.error').classList.remove('escondido');
+        document.querySelector('.error').textContent = 'Error en la solicitud. Por favor, inténtalo nuevamente.';
     }
-});
+});*/

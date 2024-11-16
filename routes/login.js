@@ -1,8 +1,8 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const User = require("../models/user");
+const User = require("../db/tables/users");
 const router = express.Router();
+//const jwt = require("jsonwebtoken");
 
 /* GET login page. */
 router.get("/", function (req, res, next) {
@@ -18,45 +18,30 @@ router.get("/", function (req, res, next) {
   });
 });
 
-/* Método POST login. */
+/* POST login page. */
 router.post("/", async function (req, res, next) {
-  console.log(req.body);
-  const user = req.body.user;
-  const password = req.body.password;
-  if (!user || !password) {
-    return res
-      .status(400)
-      .send({ status: "Error", message: "Los campos están incompletos" });
-  }
-  const usuarioVerificar = usuarios.find((usuario) => usuario.user === user);
-  if (!usuarioVerificar) {
-    return res
-      .status(400)
-      .send({ status: "Error", message: "Error durante login" });
-  }
-  const loginCorrecto = await bcryptjs.compare(
-    password,
-    usuarioVerificar.password
-  );
-  if (!loginCorrecto) {
-    return res
-      .status(400)
-      .send({ status: "Error", message: "Error durante login" });
-  }
-  //const token = jsonwebtoken.sign(
-  //  { user: usuarioVerificar.user },
-  //  process.env.JWT_SECRET,
-  //  { expiresIn: process.env.JWT_EXPIRATION }
-  //);
+  const { username, password } = req.body;
 
-  //const cookieOption = {
-  //  expires: new Date(
-  //    Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
-  //  ),
-  //  path: "/",
-  //};
-  //res.cookie("jwt", token, cookieOption);
-  //res.send({ status: "ok", message: "Usuario loggeado", redirect: "/admin" });
+  try {
+    const user = await User.getUserByUsername(username);
+    if (!user) {
+      return res.status(401).json({ message: 'Usuario no encontrado' });
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(401).json({ message: 'Contraseña incorrecta' });
+    }
+
+    // En caso exitoso redirige a la página de perfil
+    req.session.user = user;
+    //res.status(200).json({ message: 'Inicio de sesión exitoso' });
+    res.redirect("/profile");
+    
+  } catch (error) {
+    console.error('Error en el inicio de sesión:', error);
+    res.status(500).json({ message: 'Error en el servidor' });
+  }
 });
 
 module.exports = router;
