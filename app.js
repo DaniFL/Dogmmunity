@@ -8,7 +8,7 @@ const createError = require("http-errors");
 const cookieParser = require("cookie-parser");
 
 // Módulos propios de la aplicación
-const dbConnect = require("./db/connect.js");
+const dbConnect = require("./db/sqlServer_connection.js");
 
 let indexRouter = require("./routes/index");
 let loginRouter = require("./routes/login");
