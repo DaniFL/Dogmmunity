@@ -15,7 +15,7 @@ document.querySelector('inicio_form').addEventListener('submit', async (e) => {
         
         if (res.ok) {
             //res.redirect("/login/admin");
-           window.location.href = '/perfil';
+           window.location.href = '/profile';
         } else {
             document.querySelector('.error').classList.remove('escondido');
             document.querySelector('.error').textContent = data;
