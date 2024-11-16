@@ -1,70 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dogmmunity - Perfil</title>
-    <link rel="stylesheet" href="../css/styless.css">
-    <link rel="icon" type="img/jpeg" href="../img/logo_1.jpeg">
-    <script src="../controllers/sessionDisplay.js" defer></script>
+<%- include("header", {}) %>
 
-</head>
+<img class="perfil_img" src="<%= profile_photo %>" alt="Imagen de perfil" width="255" height="263">
 
-<body>
-    <div class="navbar">
-        <!-- Opciones del lado izquierdo -->
-        <nav>
-            <a href="/">Inicio</a>
-            <a href="/perfil">Perfil</a>
-            <a href="/perfil_perro">Mascota</a>
-        </nav>
-    </div>
     <header>
-        <h1 id="welcome-message">¡Bienvenido, <%= username %>!</h1>
+        <h1 id="welcome-message">¡Bienvenido, !</h1>
         <h3>¿Qué quieres hacer?</h3>
     </header>
 
-    <img class="perfil_img" src="../img/<%= photo %>" alt="Imagen de perfil" width="255" height="263">
-
-    <p>Correo electrónico: <%= email %></p>
+    <p>Correo electrónico: </p>
     <form>
         <!--boton de editar perfil-->
         <input class="botonesPerfil" type="button" id="editarPerfil" name="editarPerfil" value="Editar perfil"
-        onclick="window.location.href='/edit';"/>
+        onclick="window.location.href='/edit_user_profile';"/>
         <br>
         <br>
         <!-- Botón para modificar foto de perfil -->
         <input class="botonesPerfil" type="button" id="modificarFoto" name="modificarFoto" value="Modificar foto de perfil"
-        onclick="window.location.href='/modificarFoto';"/>
+        onclick="window.location.href='/edit_user_photo';"/>
         <br>
         <br>
         <!--boton de añadir perro-->
         <input class="botonesPerfil" type="button" id="añadirPerro" name="añadirPerro" value="Añadir perro"
-        onclick="window.location.href='/perro';"/>
+        onclick="window.location.href='/dog';"/>
         <br>
         <br>
         <!--boton de cerrar sesión-->
         <input class="botonesPerfil" type="button" id="logout-btn" name="logout" value="Cerrar sesión"
-        onclick="cerrarSesion();"/>
+        onclick="window.location.href='/logout';"/>
     </form>    
-
-    <script>
-        // Función para cerrar sesión y redirigir a la página de confirmación de cierre de sesión
-        function cerrarSesion() {
-            fetch('/logout', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(response => {
-                if (response.ok) {
-                    window.location.href = 'sesion_cerrada';
-                } else {
-                    alert('Error al cerrar sesión');
-                }
-            }).catch(error => console.error('Error al cerrar sesión:', error));
-        }
-    </script>
-
 </body>
 </html>

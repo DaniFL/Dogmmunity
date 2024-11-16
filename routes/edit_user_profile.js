@@ -1,9 +1,9 @@
 var express = require("express");
 var router = express.Router();
 
-/* GET index page. */
+/* GET edit_user_profile page. */
 router.get("/", function(req, res, next) {
-  res.render("index", { 
+  res.render("edit_user_profile", {
     navbar_addr1: "/",
     navbar_addr2: "/login",
     navbar_addr3: "/register",

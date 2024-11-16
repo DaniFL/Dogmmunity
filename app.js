@@ -15,6 +15,8 @@ let loginRouter = require("./routes/login");
 let registerRouter = require("./routes/register");
 let restrictedRouter = require("./routes/restricted");
 let profileRouter = require("./routes/profile");
+let userprofileRouter = require("./routes/edit_user_profile.js");
+let userphotoRouter = require("./routes/edit_user_photo.js");
 let dogRouter = require("./routes/dog");
 
 // Conexión a MongoDB
@@ -50,6 +52,8 @@ app.use("/", indexRouter);
 app.use("/login", loginRouter);
 app.use("/register", registerRouter);
 app.use("/profile", profileRouter);
+app.use("/edit_user_profile", userprofileRouter);
+app.use("/edit_user_photo", userphotoRouter);
 app.use("/dog", dogRouter);
 app.use("/restricted", restrictedRouter);
 app.use("/logout", (req, res) => {
@@ -59,13 +63,13 @@ app.use("/logout", (req, res) => {
 
 
 //Comprobar si el usuario ha iniciado sesión
-function checkLogin(req, res, next){
-  if(req.session.user){
-    next();
-  } else {
-    res.redirect('login');
-  }
-}
+//function checkLogin(req, res, next){
+//  if(req.session.user){
+//    next();
+//  } else {
+//    res.redirect('login');
+//  }
+//}
 
 // 404 error
 app.use(function(req, res, next) {

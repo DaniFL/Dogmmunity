@@ -10,6 +10,7 @@ router.get('/', function(req, res, next) {
       navbar_item1: "Home",
       navbar_item2: "Login",
       navbar_item3: "Register",
+      script: "",
       user: req.session.user,
     });
 });
