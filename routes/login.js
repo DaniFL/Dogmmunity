@@ -7,6 +7,7 @@ const router = express.Router();
 /* GET login page. */
 router.get("/", function (req, res, next) {
   res.render("login", {
+    title: "Login",
     navbar_addr1: "/",
     navbar_addr2: "/login",
     navbar_addr3: "/register",

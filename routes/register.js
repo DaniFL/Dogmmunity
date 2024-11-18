@@ -6,6 +6,7 @@ var router = express.Router();
 /* GET register page. */
 router.get('/', function(req, res, next) {
     res.render("register", {
+      title: "Register",
       navbar_addr1: "/",
       navbar_addr2: "/login",
       navbar_addr3: "/register",

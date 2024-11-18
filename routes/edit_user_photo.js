@@ -5,6 +5,7 @@ var router = express.Router();
 /* GET edit_user_photo page. */
 router.get("/", function(req, res, next) {
   res.render("edit_user_photo", {
+    title: "Edit User Photo",
     navbar_addr1: "/",
     navbar_addr2: "/login",
     navbar_addr3: "/register",

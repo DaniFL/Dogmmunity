@@ -3,7 +3,8 @@ var router = express.Router();
 
 /* GET index page. */
 router.get("/", function(req, res, next) {
-  res.render("index", { 
+  res.render("index", {
+    title: "Home",
     navbar_addr1: "/",
     navbar_addr2: "/login",
     navbar_addr3: "/register",
