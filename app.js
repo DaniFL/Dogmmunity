@@ -18,6 +18,7 @@ let profileRouter = require("./routes/profile");
 let userprofileRouter = require("./routes/edit_user_profile.js");
 let userphotoRouter = require("./routes/edit_user_photo.js");
 let dogRouter = require("./routes/dog");
+let dogprofileRouter = require("./routes/edit_dog_profile.js");
 
 // Conexión a MongoDB
 dbConnect();
@@ -55,6 +56,7 @@ app.use("/profile", profileRouter);
 app.use("/edit_user_profile", userprofileRouter);
 app.use("/edit_user_photo", userphotoRouter);
 app.use("/dog", dogRouter);
+app.use("/edit_dog_profile", dogprofileRouter);
 app.use("/restricted", restrictedRouter);
 app.use("/logout", (req, res) => {
   req.session.destroy();
