@@ -20,7 +20,7 @@ let userphotoRouter = require("./routes/edit_user_photo.js");
 let dogRouter = require("./routes/dog");
 let dogprofileRouter = require("./routes/edit_dog_profile.js");
 
-// Conexión a MongoDB
+// Conexión a SQL
 dbConnect();
 
 // Server Settings
