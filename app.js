@@ -48,6 +48,17 @@ app.use(
   })
 );
 
+app.use((req,res,next) => {
+  const message = req.session.message;
+  const error = req.session.error;
+  delete req.session.message;
+  delete req.session.error;
+  res.locals.message = "";
+  res.locals.error = "";
+  if(message){res.locals.message = "<p>${message}</p>"};
+  if(error){res.locals.error = "<p>${error}</p>"};
+  next();
+});
 
 app.use("/", indexRouter);
 app.use("/login", loginRouter);
@@ -63,15 +74,6 @@ app.use("/logout", (req, res) => {
   res.redirect("/");
 });
 
-
-//Comprobar si el usuario ha iniciado sesión
-//function checkLogin(req, res, next){
-//  if(req.session.user){
-//    next();
-//  } else {
-//    res.redirect('login');
-//  }
-//}
 
 // 404 error
 app.use(function(req, res, next) {
