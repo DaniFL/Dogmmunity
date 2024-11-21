@@ -26,32 +26,32 @@ router.post('/', async function(req, res, next) {
     // Verificar si el usuario ya existe
     const existingUser = await getUserByUsername(user);
     if (existingUser) {
-      return res.status(400).render("register", {
-        error: "El nombre de usuario ya está en uso.",
+      return res.render("register", {
+        title: "Register",
         navbar_addr1: "/",
         navbar_addr2: "/login",
         navbar_addr3: "/register",
         navbar_item1: "Home",
         navbar_item2: "Login",
         navbar_item3: "Register",
-        script: "/js/post_register.js",
+        script: "",
         user: req.session.user,
+        error: "El usuario ya existe. Por favor, elija otro nombre de usuario.",
       });
     }
 
     // Encriptar la contraseña
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Crear el nuevo usuario
+    // Crear el usuario en la base de datos
     await createUser(user, email, hashedPassword);
 
-    // Redirigir al usuario a la página de inicio de sesión
-    res.redirect('/login');
-  } catch (error) {
-    console.error('Error al registrar el usuario:', error);
+    // Redirigir al login después del registro exitoso
+    res.redirect("/profile");
+  } catch (err) {
+    console.error("Error durante el registro:", err);
     res.status(500).render("register", {
-      error:
-        "Ocurrió un error al registrar el usuario. Por favor, intenta nuevamente.",
+      title: "Register",
       navbar_addr1: "/",
       navbar_addr2: "/login",
       navbar_addr3: "/register",
@@ -59,23 +59,8 @@ router.post('/', async function(req, res, next) {
       navbar_item2: "Login",
       navbar_item3: "Register",
       script: "/js/post_register.js",
-      user: req.session.user,
+      error: "Hubo un problema al registrar al usuario. Intente de nuevo.",
     });
-  }
-});
-
-/* GET validate username */
-router.get('/validate/username', async function(req, res, next) {
-  const { username } = req.query;
-  try {
-    const existingUser = await getUserByUsername(username);
-    if (existingUser) {
-      return res.json({ error: 'El nombre de usuario ya está en uso.' });
-    }
-    res.json({ message: 'El nombre de usuario es válido.' });
-  } catch (error) {
-    console.error('Error al validar el nombre de usuario:', error);
-    res.status(500).json({ error: 'Error al validar el nombre de usuario.' });
   }
 });
 
