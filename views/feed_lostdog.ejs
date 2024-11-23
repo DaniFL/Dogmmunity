@@ -1,36 +1,22 @@
-<!DOCTYPE html>
-<html lang="es">
+<%- include("header", {}) %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feed de Perros Perdidos</title>
-    <link rel="stylesheet" href="/css/styless.css">
-</head>
-
-<body>
-    <%- include('header') %> 
-
-    <main>
-        <h1>Feed de Perros Perdidos</h1>
-        <% if (perros.length > 0) { %>
+    <div>
+        <h1>Feed de dogss Perdidos</h1>
+        <% if (dogss.length > 0) { %>
             <ul>
-                <% perros.forEach(perro => { %>
+                <% dogss.forEach(dogs => { %>
                     <li>
-                        <h2><%= perro.nombrePerro %> (<%= perro.raza %>)</h2>
-                        <p><strong>Edad:</strong> <%= perro.edadPerro %></p>
-                        <p><strong>Peso:</strong> <%= perro.pesoPerro %> kg</p>
-                        <p><strong>Sexo:</strong> <%= perro.sexo %></p>
-                        <p><strong>Dueño:</strong> <%= perro.dueno || 'No registrado' %></p>
+                        <h2><%= dogs.nombredogs %> (<%= dogs.raza %>)</h2>
+                        <p><strong>Edad:</strong> <%= dogs.edaddogs %></p>
+                        <p><strong>Peso:</strong> <%= dogs.pesodogs %> kg</p>
+                        <p><strong>Sexo:</strong> <%= dogs.sexo %></p>
+                        <p><strong>Dueño:</strong> <%= dogs.dueno || 'No registrado' %></p>
                     </li>
                 <% }); %>
             </ul>
         <% } else { %>
-            <p>No hay perros perdidos registrados en este momento.</p>
+            <p>No hay dogss perdidos registrados en este momento.</p>
         <% } %>
-    </main>
+    </div>
 
-    <%- include('footer') %>
-</body>
-
-</html>
+<%- include("footer", {}) %>
