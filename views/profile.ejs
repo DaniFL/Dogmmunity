@@ -1,32 +1,32 @@
 <%- include("header", {}) %>
 
-<img class="perfil_img" src="<%= profile_photo %>" alt="Imagen de perfil" width="255" height="263">
+<div class="container mt-5 text-center">
+    <img class="img-fluid rounded-circle mb-4" src="<%= profile_photo %>" alt="Imagen de perfil" width="255"
+        height="263">
 
     <header>
-        <h1 id="welcome-message">¡Bienvenido, !</h1>
-        <h3>¿Qué quieres hacer?</h3>
+        <h1 id="welcome-message" class="mb-3">¡Bienvenido, !</h1>
+        <h3 class="mb-4">¿Qué quieres hacer?</h3>
     </header>
 
-    <p>Correo electrónico: </p>
+    <p class="mb-4">Correo electrónico: </p>
     <form>
-        <!--boton de editar perfil-->
-        <input class="botonesPerfil" type="button" id="cambiarContraseña" name="cambiarContraseña" value="Cambiar contraseña"
-        onclick="window.location.href='/edit_user_profile';"/>
-        <br>
-        <br>
+        <!-- Botón de editar perfil -->
+        <button type="button" class="btn btn-primary mb-3 w-100" id="cambiarContraseña" name="cambiarContraseña"
+            onclick="window.location.href='/edit_user_profile';">Cambiar contraseña</button>
+
         <!-- Botón para modificar foto de perfil -->
-        <input class="botonesPerfil" type="button" id="modificarFoto" name="modificarFoto" value="Modificar foto de perfil"
-        onclick="window.location.href='/edit_user_photo';"/>
-        <br>
-        <br>
-        <!--boton de añadir perro-->
-        <input class="botonesPerfil" type="button" id="añadirPerro" name="añadirPerro" value="Añadir perro"
-        onclick="window.location.href='/dog';"/>
-        <br>
-        <br>
-        <!--boton de cerrar sesión-->
-        <input class="botonesPerfil" type="button" id="logout-btn" name="logout" value="Cerrar sesión"
-        onclick="window.location.href='/logout';"/>
-    </form>    
+        <button type="button" class="btn btn-secondary mb-3 w-100" id="modificarFoto" name="modificarFoto"
+            onclick="window.location.href='/edit_user_photo';">Modificar foto de perfil</button>
+
+        <!-- Botón de añadir perro -->
+        <button type="button" class="btn btn-success mb-3 w-100" id="añadirPerro" name="añadirPerro"
+            onclick="window.location.href='/dog';">Añadir perro</button>
+
+        <!-- Botón de cerrar sesión -->
+        <button type="button" class="btn btn-danger w-100" id="logout-btn" name="logout"
+            onclick="window.location.href='/logout';">Cerrar sesión</button>
+    </form>
+</div>
 </body>
 </html>

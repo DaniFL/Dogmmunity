@@ -10,7 +10,7 @@ router.get("/", function(req, res, next) {
     navbar_addr3: "/login",
     navbar_addr4: "/register",
     navbar_addr5: "",
-    navbar_addr6: "",
+    navbar_addr6: "/contact_us",
 
     navbar_item1: "Home",
     navbar_item2: "About Us",
