@@ -5,11 +5,11 @@
         height="263">
 
     <header>
-        <h1 id="welcome-message" class="mb-3">¡Bienvenido, !</h1>
+        <h1 id="welcome-message" class="mb-3">¡Bienvenido, <%= user.username %>!</h1>
         <h3 class="mb-4">¿Qué quieres hacer?</h3>
     </header>
 
-    <p class="mb-4">Correo electrónico: </p>
+    <p class="mb-4">Correo electrónico: <%= user.email %></p>
     <form>
         <!-- Botón de editar perfil -->
         <button type="button" class="btn btn-primary mb-3 w-100" id="cambiarContraseña" name="cambiarContraseña"
