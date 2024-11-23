@@ -16,7 +16,7 @@ router.get("/", function(req, res, next) {
     navbar_item2: "About Us",
     navbar_item3: "Login",
     navbar_item4: "Register",
-    navbar_item5: "",
+    navbar_item5: "Blog",
     navbar_item6: "Contact",
     script: "",
     user: req.session.user });
