@@ -21,6 +21,8 @@ let dogRouter = require("./routes/dog");
 let dogprofileRouter = require("./routes/edit_dog_profile.js");
 let about_usRouter = require("./routes/about_us");
 let contact_usRouter = require("./routes/contact_us");
+let dog_food_adviceRouter = require("./routes/dog_food_advice");
+
 
 // Conexión a SQL
 dbConnect();
@@ -67,6 +69,7 @@ app.use("/login", loginRouter);
 app.use("/register", registerRouter);
 app.use("/about_us", about_usRouter);
 app.use("/contact_us", contact_usRouter);
+app.use("/dog_food_advice", dog_food_adviceRouter);
 app.use("/profile", profileRouter);
 app.use("/edit_user_profile", userprofileRouter);
 app.use("/edit_user_photo", userphotoRouter);
