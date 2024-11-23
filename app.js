@@ -19,6 +19,7 @@ let userprofileRouter = require("./routes/edit_user_profile.js");
 let userphotoRouter = require("./routes/edit_user_photo.js");
 let dogRouter = require("./routes/dog");
 let dogprofileRouter = require("./routes/edit_dog_profile.js");
+let about_usRouter = require("./routes/about_us");
 
 // Conexión a SQL
 dbConnect();
@@ -63,6 +64,7 @@ app.use((req,res,next) => {
 app.use("/", indexRouter);
 app.use("/login", loginRouter);
 app.use("/register", registerRouter);
+app.use("/about_us", about_usRouter);
 app.use("/profile", profileRouter);
 app.use("/edit_user_profile", userprofileRouter);
 app.use("/edit_user_photo", userphotoRouter);
