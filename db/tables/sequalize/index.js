@@ -1,9 +1,9 @@
 /* Esta clase se encarga de definir las relaciones entre las tablas y sincronizar los modelos con la base de datos*/
 
-const sequelize = require('../sqlServer_connection');
+const sequelize = require('../../sqlServer_connection');
 const Dog = require('./dogs');
 const Comment = require('./comments');
-const User = require('./users');
+const User = require('../users');
 
 // Definir relaciones
 Dog.hasMany(Comment, { foreignKey: 'perroRelacionado', as: 'comentarios' });

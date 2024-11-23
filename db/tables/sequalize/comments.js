@@ -9,9 +9,9 @@
  */
 
 const { DataTypes } = require('sequelize');
-const sequelize = require('../sqlServer_connection');
-const User = require('./users');
-const Dog = require('./dogs');
+const sequelize = require('../../sqlServer_connection');
+const User = require('../users');
+const Dog = require('../dogs');
 
 /**
  * Define el modelo `Comment` para la tabla `Comments`.
