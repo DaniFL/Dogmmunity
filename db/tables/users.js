@@ -30,7 +30,7 @@ async function createTable() {
         const query = `
             CREATE TABLE Usuarios (
                 id INT PRIMARY KEY IDENTITY(1,1),
-                username NVARCHAR(50) NOT NULL,
+                username NVARCHAR(50) NOT NULL UNIQUE,
                 email NVARCHAR(50) NOT NULL,
                 password NVARCHAR(255) NOT NULL
             )
