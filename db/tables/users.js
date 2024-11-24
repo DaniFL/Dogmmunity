@@ -98,7 +98,7 @@ async function getUserById(id) {
         await connectToDb();
         const query = 'SELECT * FROM Usuarios WHERE id = @Id';
         const request = new sql.Request();
-        request.input('Id', sql.Int, id);
+        request.input('Id', sql.UniqueIdentifier, id);
         const result = await request.query(query);
         return result.recordset[0];
     } catch (error) {
@@ -131,7 +131,7 @@ async function updateUser(id, updates) {
         const fields = Object.keys(updates).map(key => `${key} = @${key}`).join(', ');
         const query = `UPDATE Usuarios SET ${fields} WHERE id = @Id`;
         const request = new sql.Request();
-        request.input('Id', sql.Int, id);
+        request.input('Id', sql.UniqueIdentifier, id);
         Object.keys(updates).forEach(key => {
             request.input(key, sql.NVarChar, updates[key]);
         });

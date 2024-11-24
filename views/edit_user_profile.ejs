@@ -57,17 +57,18 @@
     </form>-->
 
     <!--cambiar la contraseña -->
-    <form id="formularioContraseña" class="formularioPerfil" method="POST">
+    <form id="formularioContraseña" class="formularioPerfil" action="/edit_user_profile" method="post">
         <div class="form-group">
             <label for="nuevaContrasena">Nueva contraseña</label>
             <br>
-            <input type="password" id="nuevaContrasena" name="nuevaContrasena">
+            <input type="password" id="nuevaContrasena" name="nuevaContrasena" required>
+            <input type="hidden" name="userId" value="<%= user.id %>">
             <br><br>
         </div>
         <div class="form-group">
             <label for="confirmarContrasena">Confirmar nueva contraseña</label>
             <br>
-            <input type="password" id="confirmarContrasena" name="confirmarContrasena">
+            <input type="password" id="confirmarContrasena" name="confirmarContrasena" required>
             <br><br>
         </div>
         <button class="botonesGuardarPerfil" type="submit">Guardar contraseña</button>
