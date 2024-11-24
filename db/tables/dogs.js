@@ -1,9 +1,29 @@
 const sql = require('mssql');
-const dbConnect = require('./sqlserver_connection');
+
+const dbConfig = {
+    user: 'admin_dog', 
+    password: '%iso1234', 
+    server: 'dogmunity-server.database.windows.net', 
+    database: 'Dogmunity', 
+    options: {
+        encrypt: true, 
+        trustServerCertificate: false
+    }
+};
+
+// Conectar a la base de datos
+async function connectToDb() {
+    try {
+        await sql.connect(dbConfig);
+        console.log('Conexión a SQL Server exitosa');
+    } catch (error) {
+        console.error('Error al conectar a la base de datos', error);
+    }
+}
 
 async function createDog(dog) {
     try {
-        await dbConnect();
+        await sql.connect(dbConfig);
         const query = `
             INSERT INTO Dogs (id, name, breed, age, weight, colour, sex, owner_id, photo_dog_perdido)
             VALUES (NEWID(), @name, @breed, @age, @weight, @colour, @sex, @owner_id, @photo_dog_perdido)
