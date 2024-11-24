@@ -20,6 +20,8 @@
                                     <h5 class="card-title"><%= dog.name %></h5>
                                     <p class="card-text"><strong>Raza:</strong> <%= dog.breed %></p>
                                     <p class="card-text"><strong>Edad:</strong> <%= dog.age %> años</p>
+                                    <p class="card-text"><strong>Peso:</strong> <%= dog.weight %> kg</p>
+                                    <p class="card-text"><strong>Sexo:</strong> <%= dog.sex %></p>
                                     <p class="card-text"><strong>Última vez visto:</strong> <%= dog.last_seen || 'Lugar desconocido' %></p>
                                     <button type="button" class="btn btn-success w-100 mt-2" data-bs-toggle="modal" data-bs-target="#reportModal" data-perro-id="<%= dog.id %>">
                                         Creo que he encontrado a tu perro
