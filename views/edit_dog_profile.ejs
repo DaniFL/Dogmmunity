@@ -27,6 +27,12 @@
             <option value="Hembra">
         </datalist>
 
+        <!-- Foto del perro -->
+        <div class="form-group">
+            <label class="inicio_label" for="fotoPerro">Adjunta una foto del perro</label>
+            <input type="file" id="fotoPerro" name="fotoPerro" accept="image/*" required>
+        </div>
+
         <!-- Raza del perro -->
         <label class="inicio_label" for="razaPerro">¿Qué raza de perro tienes?</label>
         <input class="inicio_input" type= "text" list="razas" id="razaPerro" name="raza" placeholder="Escribe o selecciona una raza">
@@ -81,6 +87,6 @@
         </datalist>
         <button class="inicio_input" type="submit">Guardar perro</button>
     </form>
-</body>
-</html>
+<%- include("footer", {}) %>
+
 
