@@ -72,17 +72,19 @@ async function deleteTable() {
 }
 
 // Crear un nuevo usuario
-async function createUser(user, email, password) {
+async function createUser(user, email, password, verificationToken) {
     try {
         await connectToDb();
         const query = `
-            INSERT INTO Usuarios (username, email, password)
-            VALUES (@user, @Email, @Password)
+            INSERT INTO Usuarios (username, email, password,is_verified, verification_token)
+            VALUES (@user, @Email, @Password, @IsVerified, @VerificationToken)
         `;
         const request = new sql.Request();
         request.input('user', sql.NVarChar, user);
         request.input('Email', sql.NVarChar, email);
         request.input('Password', sql.NVarChar, password);
+        request.input('IsVerified',sql.Bit, 0);
+        request.input('VerificationToken',sql.NVarChar,verificationToken);
         await request.query(query);
         console.log('Usuario creado exitosamente');
     } catch (error) {
@@ -123,6 +125,22 @@ async function getUserByUsername(username) {
         await sql.close();
     }
 }
+// Obtener un usuario por su token de verificación
+async function getUserByToken(token) {
+    try {
+        await connectToDb(); 
+        const query = 'SELECT * FROM Usuarios WHERE verification_token = @Token';
+        const request = new sql.Request();
+        request.input('Token', sql.NVarChar, token); 
+        const result = await request.query(query);
+        return result.recordset[0];
+    } catch (error) {
+        console.error('Error al obtener el usuario por token', error);
+    } finally {
+        await sql.close();
+    }
+}
+
 
 // Actualizar un usuario
 async function updateUser(id, updates) {
@@ -160,6 +178,21 @@ async function deleteUser(id) {
     }
 }
 
+// Marcar usuario como verificado
+async function verifyUser(userId) {
+    try {
+        await connectToDb();
+        const query = 'UPDATE Usuarios SET is_verified = 1 WHERE id = @Id';
+        const request = new sql.Request();
+        request.input('Id', sql.UniqueIdentifier, userId);
+        await request.query(query);
+    } catch (error) {
+        console.error('Error al verificar el usuario', error);
+    } finally {
+        await sql.close();
+    }
+}
+
 module.exports = {
     connectToDb,
     createTable,
@@ -168,5 +201,7 @@ module.exports = {
     getUserById,
     getUserByUsername,
     updateUser,
-    deleteUser
+    deleteUser,
+    getUserByToken,
+    verifyUser
 };
