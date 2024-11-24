@@ -23,7 +23,7 @@ let about_usRouter = require("./routes/about_us");
 let contact_usRouter = require("./routes/contact_us");
 let dog_food_adviceRouter = require("./routes/dog_food_advice");
 let feed_lostdogRouter = require("./routes/feed_lostdog");
-
+let verifyRouter = require("./routes/verify");
 
 
 // Conexión a SQL
@@ -83,7 +83,7 @@ app.use("/logout", (req, res) => {
   req.session.destroy();
   res.redirect("/");
 });
-
+app.use("/verify", verifyRouter);
 
 // 404 error
 app.use(function(req, res, next) {

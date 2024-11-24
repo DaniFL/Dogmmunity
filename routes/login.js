@@ -45,6 +45,13 @@ router.post("/", async function (req, res, next) {
       return res.redirect("/login");
     }
 
+    // Verificar si la cuenta está validada
+    if (!userinput.is_verified) {
+      req.session.error = "Tu cuenta no está verificada. Revisa tu correo para verificarla.";
+      console.log("Cuenta no verificada");
+      return res.redirect("/login");
+    }
+
     // Crear sesión de usuario
     req.session.user = {
       id: userinput.id,

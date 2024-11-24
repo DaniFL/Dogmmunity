@@ -1,6 +1,8 @@
 var express = require("express");
 const router = express.Router();
 const bcrypt = require('bcryptjs');
+const crypto = require("crypto");
+const nodemailer = require("nodemailer");
 const { createUser, getUserByUsername } = require("../db/tables/users");
 
 /* GET register page. */
@@ -36,12 +38,34 @@ router.post('/', async (req, res, next) => {
       req.session.error = "El nombre de usuario ya está en uso.";
       return res.redirect('/register');
     }
-
+    
     // Crear y guardar el nuevo usuario
     const hashedPassword = await bcrypt.hash(password, 10);
-    await createUser(user, email, hashedPassword);
-    req.session.message = "¡Registro exitoso!";
-    res.redirect('/profile');
+    const verificationToken = crypto.randomBytes(32).toString("hex");
+    await createUser(user, email, hashedPassword,verificationToken);
+
+    //Configuracion Nodemailer para envio de correos
+    const transporter = nodemailer.createTransport({
+      service: "Gmail",
+      auth:{
+        user:"dogmmunityapp@gmail.com",
+        pass:"getk mqrs nwfz jecv",
+      },
+    });
+    const verificationLink = `http://localhost:3000/verify/${verificationToken}`;
+    const mailOptions = {
+      from: '"Dogmmunity" <dogmmunityapp@gmail.com>',
+      to: email,
+      subject: "Verifica tu cuenta",
+      text: "Este es el texto de prueba",
+      html: `<p>Haz clic en el siguiente enlace para verificar tu cuenta:</p>
+             <a href="${verificationLink}">Verificar</a>`,
+    };
+    
+    transporter.sendMail(mailOptions);
+
+    req.session.message = "¡Revisa tu correo para varficicar tu cuenta.!";
+    res.redirect('/login');
   } catch (error) {
     req.session.error = "Hubo un error durante el registro. Inténtalo de nuevo.";
     res.redirect('/register');

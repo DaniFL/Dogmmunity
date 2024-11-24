@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verificación de Cuenta</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f9;
+    }
+    .container {
+      text-align: center;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .success {
+      color: green;
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+    .error {
+      color: red;
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+    a {
+      color: white;
+      background-color: #007bff;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+    a:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <% if (success) { %>
+      <div class="success">¡Cuenta verificada con éxito!</div>
+      <p>Tu cuenta ha sido activada correctamente. Ahora puedes iniciar sesión.</p>
+      <a href="/login">Ir al inicio de sesión</a>
+    <% } else { %>
+      <div class="error">Enlace inválido o expirado</div>
+      <p>El enlace de verificación no es válido o ya ha sido utilizado.</p>
+      <a href="/register">Regístrate nuevamente</a>
+    <% } %>
+  </div>
+</body>
+</html>
