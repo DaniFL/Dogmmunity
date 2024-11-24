@@ -11,95 +11,30 @@
         <!-- Feed de perros perdidos -->
         <div class="col-lg-8">
             <div class="row g-4">
-                <!-- Primera fila -->
-                <div class="col-md-6">
-                    <div class="card">
-                        <img src="../img/ej_perro_perdido.jpg" class="card-img-top img-fluid" alt="Imagen del perro perdido">
-                        <div class="card-body">
-                            <h5 class="card-title">Nombre del perro 1</h5>
-                            <p class="card-text"><strong>Raza:</strong> Labrador</p>
-                            <p class="card-text"><strong>Edad:</strong> 3 años</p>
-                            <p class="card-text"><strong>Última vez visto:</strong> Parque Central</p>
-                            <button type="button" class="btn btn-success w-100 mt-2" data-bs-toggle="modal" data-bs-target="#reportModal" data-perro-id="4">
-                                Creo que he encontrado a tu perro
-                            </button>
+                <% if (lost_dogs && lost_dogs.length > 0) { %>
+                    <% lost_dogs.forEach(dog => { %>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <img src="<%= dog.photo_dog_perdido || '/img/ej_perro_perdido.jpg' %>" class="card-img-top img-fluid" alt="Imagen del perro perdido">
+                                <div class="card-body">
+                                    <h5 class="card-title"><%= dog.name %></h5>
+                                    <p class="card-text"><strong>Raza:</strong> <%= dog.breed %></p>
+                                    <p class="card-text"><strong>Edad:</strong> <%= dog.age %> años</p>
+                                    <p class="card-text"><strong>Última vez visto:</strong> <%= dog.last_seen || 'Lugar desconocido' %></p>
+                                    <button type="button" class="btn btn-success w-100 mt-2" data-bs-toggle="modal" data-bs-target="#reportModal" data-perro-id="<%= dog.id %>">
+                                        Creo que he encontrado a tu perro
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    <% }); %>
+                <% } else { %>
+                    <div class="col-12">
+                        <div class="alert alert-warning text-center" role="alert">
+                            No hay perros perdidos registrados actualmente. ¡Sé el primero en ayudar!
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <img src="../img/ej_perro_perdido.jpg" class="card-img-top img-fluid" alt="Imagen del perro perdido">
-                        <div class="card-body">
-                            <h5 class="card-title">Nombre del perro 2</h5>
-                            <p class="card-text"><strong>Raza:</strong> Golden Retriever</p>
-                            <p class="card-text"><strong>Edad:</strong> 2 años</p>
-                            <p class="card-text"><strong>Última vez visto:</strong> Calle Mayor</p>
-                            <button type="button" class="btn btn-success w-100 mt-2" data-bs-toggle="modal" data-bs-target="#reportModal" data-perro-id="2">
-                                Creo que he encontrado a tu perro
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Segunda fila -->
-                <div class="col-md-6">
-                    <div class="card">
-                        <img src="../img/ej_perro_perdido.jpg" class="card-img-top img-fluid" alt="Imagen del perro perdido">
-                        <div class="card-body">
-                            <h5 class="card-title">Nombre del perro 3</h5>
-                            <p class="card-text"><strong>Raza:</strong> Chihuahua</p>
-                            <p class="card-text"><strong>Edad:</strong> 1 año</p>
-                            <p class="card-text"><strong>Última vez visto:</strong> Plaza del Sol</p>
-                            <button type="button" class="btn btn-success w-100 mt-2" data-bs-toggle="modal" data-bs-target="#reportModal" data-perro-id="3">
-                                Creo que he encontrado a tu perro
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <img src="../img/ej_perro_perdido.jpg" class="card-img-top img-fluid" alt="Imagen del perro perdido">
-                        <div class="card-body">
-                            <h5 class="card-title">Nombre del perro 4</h5>
-                            <p class="card-text"><strong>Raza:</strong> Pastor Alemán</p>
-                            <p class="card-text"><strong>Edad:</strong> 4 años</p>
-                            <p class="card-text"><strong>Última vez visto:</strong> Parque del Norte</p>
-                            <button type="button" class="btn btn-success w-100 mt-2" data-bs-toggle="modal" data-bs-target="#reportModal" data-perro-id="4">
-                                Creo que he encontrado a tu perro
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tercera fila -->
-                <div class="col-md-6">
-                    <div class="card">
-                        <img src="../img/ej_perro_perdido.jpg" class="card-img-top img-fluid" alt="Imagen del perro perdido">
-                        <div class="card-body">
-                            <h5 class="card-title">Nombre del perro 5</h5>
-                            <p class="card-text"><strong>Raza:</strong> Poodle</p>
-                            <p class="card-text"><strong>Edad:</strong> 3 años</p>
-                            <p class="card-text"><strong>Última vez visto:</strong> Barrio Centro</p>
-                            <button type="button" class="btn btn-success w-100 mt-2" data-bs-toggle="modal" data-bs-target="#reportModal" data-perro-id="5">
-                                Creo que he encontrado a tu perro
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <img src="../img/ej_perro_perdido.jpg" class="card-img-top img-fluid" alt="Imagen del perro perdido">
-                        <div class="card-body">
-                            <h5 class="card-title">Nombre del perro 6</h5>
-                            <p class="card-text"><strong>Raza:</strong> Bulldog</p>
-                            <p class="card-text"><strong>Edad:</strong> 5 años</p>
-                            <p class="card-text"><strong>Última vez visto:</strong> Calle Luna</p>
-                            <button type="button" class="btn btn-success w-100 mt-2" data-bs-toggle="modal" data-bs-target="#reportModal" data-perro-id="6">
-                                Creo que he encontrado a tu perro
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                <% } %>
             </div>
         </div>
 

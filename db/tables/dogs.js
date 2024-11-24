@@ -80,8 +80,25 @@ async function deleteDog(id) {
     }
 }
 
+
+// Obtener todos los perros perdidos
+async function getLostDogs() {
+    try {
+        await connectToDb();
+        const query = 'SELECT * FROM Dogs WHERE is_lost = 1';
+        const request = new sql.Request();
+        const result = await request.query(query);
+        return result.recordset;
+    } catch (error) {
+        console.error('Error al obtener los perros perdidos', error);
+    } finally {
+        await sql.close();
+    }
+}
+
 module.exports = {
     createDog,
     updateDog,
-    deleteDog
+    deleteDog,
+    getLostDogs
 };
