@@ -1,32 +1,37 @@
 <%- include("header", {}) %>
-    <div>
-        <header>
-            <h2>¡Aquí te mostramos todos los datos de tu perro!</h2>
-        </header>
+    <div class="container mt-4">
+        <div class="text-center mb-4">
+            <header>
+                <h2>¡Aquí te mostramos todos los datos de tu perro!</h2>
+            </header>
+        </div>
+
+        <div class="card p-4 mb-4">
+            <div class="infoPerro" id="infoPperro">
+                <p><strong>Nombre:</strong>
+                    <%= nombrePerro %>
+                </p>
+                <p><strong>Edad:</strong>
+                    <%= edadPerro %>
+                </p>
+                <p><strong>Peso:</strong>
+                    <%= pesoPerro %> kg
+                </p>
+                <p><strong>Sexo:</strong>
+                    <%= sexoPerro %>
+                </p>
+                <p><strong>Raza:</strong>
+                    <%= razaPerro %>
+                </p>
+                <p><strong>Dueño:</strong>
+                    <%= dueñoPerro %>
+                </p>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <p>¿Deseas realizar algún cambio en los datos de tu perro?</p>
+            <button class="btn btn-primary" type="submit">Editar perro</button>
+        </div>
     </div>
-
-    <div class="infoPerro" id="infoPperro">
-        <p><strong>Nombre:</strong>
-            <%= nombrePerro %>
-        </p>
-        <p><strong>Edad:</strong>
-            <%= edadPerro %>
-        </p>
-        <p><strong>Peso:</strong>
-            <%= pesoPerro %> kg
-        </p>
-        <p><strong>Sexo:</strong>
-            <%= sexoPerro %>
-        </p>
-        <p><strong>Raza:</strong>
-            <%= razaPerro %>
-        </p>
-        <p><strong>Dueño:</strong>
-            <%= dueñoPerro %>
-        </p>
-    </div>
-
-    <div><p>¿Deseas realizar algún cambio en los datos de tu perro?</p></div>
-    <button class="botonesGuardarPerfil" type="submit">Editar perro</button>
-
-<%- include("footer", {}) %>
+    <%- include("footer", {}) %>

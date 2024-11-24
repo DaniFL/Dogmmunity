@@ -1,110 +1,110 @@
 <%- include("header", {}) %>
 
-    <h2 class="registro_titulo">Añade a tu perro</h1>
-    <form class="inicio_form" action="/edit_dog_profile" method="post">
-        
-        <label class="inicio_label" for="nombrePerro">¿Cómo se llama tu perro?</label> 
-        <br>
-        <input class="inicio_input" type="text" id="nombrePerro" name="nombrePerro" placeholder="Indica el nombre de tu perro">
-        <br>
-        <br>
+    <div class="container mt-4">
+        <h2 class="text-center mb-4">Añade a tu perro</h2>
+        <form class="needs-validation" action="/edit_dog_profile" method="post" novalidate>
 
-        <label class="inicio_label" for="edadPerro">Edad de tu perro</label>
-        <br>
-        <input class="inicio_input" type="date" id="edadPerro" name="edadPerro" min="1994-01-01"
-            placeholder="Ingresa la fecha de nacimiento de tu perro">
-        <script>
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('edadPerro').setAttribute('max', today); 
-        </script>
-        <br>
-        <br>
+            <div class="mb-3">
+                <label class="form-label" for="nombrePerro">¿Cómo se llama tu perro?</label>
+                <input class="form-control" type="text" id="nombrePerro" name="nombrePerro"
+                    placeholder="Indica el nombre de tu perro" required>
+                <div class="invalid-feedback">Por favor, indica el nombre de tu perro.</div>
+            </div>
 
-        <!-- Peso del perro -->
-        <label class="inicio_label" for="pesoPerro">¿Cuánto pesa tu perro?</label>
-        <br>
-        <input class="inicio_input" type="number" id="pesoPerro" name="pesoPerro" min="1" max="162" placeholder="Ingresa el peso en kg">
-        <br>
-        <br>
+            <div class="mb-3">
+                <label class="form-label" for="edadPerro">Edad de tu perro</label>
+                <input class="form-control" type="date" id="edadPerro" name="edadPerro" min="1994-01-01"
+                    placeholder="Ingresa la fecha de nacimiento de tu perro" required>
+                <div class="invalid-feedback">Por favor, ingresa la fecha de nacimiento de tu perro.</div>
+                <script>
+                    const today = new Date().toISOString().split('T')[0];
+                    document.getElementById('edadPerro').setAttribute('max', today); 
+                </script>
+            </div>
 
-        <!-- Sexo del perro -->
-        <label class="inicio_label" for="sexoPerro">¿De qué sexo es tu perro?</label>
-        <br>
-        <input class="inicio_input" type= "text" list="sexo" id="sexoPerro" name="sexo" placeholder="Escribe o selecciona el sexo">
-        <datalist id="sexo">
-            <option value="Macho">
-            <option value="Hembra">
-        </datalist>
-        <br>
-        <br>
+            <div class="mb-3">
+                <label class="form-label" for="pesoPerro">¿Cuánto pesa tu perro?</label>
+                <input class="form-control" type="number" id="pesoPerro" name="pesoPerro" min="1" max="162"
+                    placeholder="Ingresa el peso en kg" required>
+                <div class="invalid-feedback">Por favor, ingresa el peso de tu perro.</div>
+            </div>
 
-        <!-- Raza del perro -->
-        <label class="inicio_label" for="razaPerro">¿Qué raza de perro tienes?</label>
-        <br>
-        <input class="inicio_input" type= "text" list="razas" id="razaPerro" name="raza" placeholder="Escribe o selecciona una raza">
-        <datalist id="razas">
-            <option value="Labrador Retriever">
-            <option value="Golden Retriever">
-            <option value="Bulldog">
-            <option value="Poodle">
-            <option value="Pastor Alemán">
-            <option value="Beagle">
-            <option value="Rottweiler">
-            <option value="Yorkshire Terrier">
-            <option value="Dachshund">
-            <option value="Boxer">
-            <option value="Husky Siberiano">
-            <option value="Chihuahua">
-            <option value="Doberman">
-            <option value="Shih Tzu">
-            <option value="Cocker Spaniel">
-            <option value="Pomerania">
-            <option value="Border Collie">
-            <option value="Dálmata">
-            <option value="Boston Terrier">
-            <option value="Gran Danés">
-            <option value="Akita">
-            <option value="Alaskan Malamute">
-            <option value="American Staffordshire Terrier">
-            <option value="Basset Hound">
-            <option value="Bloodhound">
-            <option value="Bichón Frisé">
-            <option value="Borzoi">
-            <option value="Bull Terrier">
-            <option value="Cane Corso">
-            <option value="Cavalier King Charles Spaniel">
-            <option value="Chow Chow">
-            <option value="Dogo Argentino">
-            <option value="Dogo de Burdeos">
-            <option value="Fox Terrier">
-            <option value="Galgo Español">
-            <option value="Jack Russell Terrier">
-            <option value="Mastín Español">
-            <option value="Mastín Napolitano">
-            <option value="Perro de Agua Español">
-            <option value="Samoyedo">
-            <option value="San Bernardo">
-            <option value="Shiba Inu">
-            <option value="Springer Spaniel">
-            <option value="Staffordshire Bull Terrier">
-            <option value="Terranova">
-            <option value="Whippet">
-            <option value="West Highland White Terrier">
-        </datalist>
-        <br>
-        <br>
+            <div class="mb-3">
+                <label class="form-label" for="sexoPerro">¿De qué sexo es tu perro?</label>
+                <input class="form-control" type="text" list="sexo" id="sexoPerro" name="sexo"
+                    placeholder="Escribe o selecciona el sexo" required>
+                <datalist id="sexo">
+                    <option value="Macho">
+                    <option value="Hembra">
+                </datalist>
+                <div class="invalid-feedback">Por favor, selecciona el sexo de tu perro.</div>
+            </div>
 
-        <!-- Foto del perro -->
-        <div class="form-group">
-            <label class="inicio_label" for="fotoPerro">Adjunta una foto de tu perro</label>
-            <br>
-            <input type="file" id="fotoPerro" name="fotoPerro" accept="image/*" required>
-        </div>
+            <div class="mb-3">
+                <label class="form-label" for="razaPerro">¿Qué raza de perro tienes?</label>
+                <input class="form-control" type="text" list="razas" id="razaPerro" name="raza"
+                    placeholder="Escribe o selecciona una raza" required>
+                <datalist id="razas">
+                    <option value="Labrador Retriever">
+                    <option value="Golden Retriever">
+                    <option value="Bulldog">
+                    <option value="Poodle">
+                    <option value="Pastor Alemán">
+                    <option value="Beagle">
+                    <option value="Rottweiler">
+                    <option value="Yorkshire Terrier">
+                    <option value="Dachshund">
+                    <option value="Boxer">
+                    <option value="Husky Siberiano">
+                    <option value="Chihuahua">
+                    <option value="Doberman">
+                    <option value="Shih Tzu">
+                    <option value="Cocker Spaniel">
+                    <option value="Pomerania">
+                    <option value="Border Collie">
+                    <option value="Dálmata">
+                    <option value="Boston Terrier">
+                    <option value="Gran Danés">
+                    <option value="Akita">
+                    <option value="Alaskan Malamute">
+                    <option value="American Staffordshire Terrier">
+                    <option value="Basset Hound">
+                    <option value="Bloodhound">
+                    <option value="Bichón Frisé">
+                    <option value="Borzoi">
+                    <option value="Bull Terrier">
+                    <option value="Cane Corso">
+                    <option value="Cavalier King Charles Spaniel">
+                    <option value="Chow Chow">
+                    <option value="Dogo Argentino">
+                    <option value="Dogo de Burdeos">
+                    <option value="Fox Terrier">
+                    <option value="Galgo Español">
+                    <option value="Jack Russell Terrier">
+                    <option value="Mastín Español">
+                    <option value="Mastín Napolitano">
+                    <option value="Perro de Agua Español">
+                    <option value="Samoyedo">
+                    <option value="San Bernardo">
+                    <option value="Shiba Inu">
+                    <option value="Springer Spaniel">
+                    <option value="Staffordshire Bull Terrier">
+                    <option value="Terranova">
+                    <option value="Whippet">
+                    <option value="West Highland White Terrier">
+                </datalist>
+                <div class="invalid-feedback">Por favor, selecciona la raza de tu perro.</div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="fotoPerro">Adjunta una foto de tu perro</label>
+                <input class="form-control" type="file" id="fotoPerro" name="fotoPerro" accept="image/*" required>
+                <div class="invalid-feedback">Por favor, adjunta una foto de tu perro.</div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Guardar perro</button>
+        </form>
         <br>
-        <br>
+    </div>
 
-        <button class="inicio_input" type="submit">Guardar perro</button>
-    </form>
-<%- include("footer", {}) %>
-
-
+    <%- include("footer", {}) %>
