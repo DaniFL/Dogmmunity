@@ -4,37 +4,43 @@
     <form class="inicio_form" action="/edit_dog_profile" method="post">
         
         <label class="inicio_label" for="nombrePerro">¿Cómo se llama tu perro?</label> 
+        <br>
         <input class="inicio_input" type="text" id="nombrePerro" name="nombrePerro" placeholder="Indica el nombre de tu perro">
+        <br>
+        <br>
 
-        
         <label class="inicio_label" for="edadPerro">Edad de tu perro</label>
+        <br>
         <input class="inicio_input" type="date" id="edadPerro" name="edadPerro" min="1994-01-01"
             placeholder="Ingresa la fecha de nacimiento de tu perro">
         <script>
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('edadPerro').setAttribute('max', today); 
         </script>
+        <br>
+        <br>
 
         <!-- Peso del perro -->
         <label class="inicio_label" for="pesoPerro">¿Cuánto pesa tu perro?</label>
+        <br>
         <input class="inicio_input" type="number" id="pesoPerro" name="pesoPerro" min="1" max="162" placeholder="Ingresa el peso en kg">
+        <br>
+        <br>
 
         <!-- Sexo del perro -->
-        <label class="inicio_label" for="sexoPerro">¿Qué sexo es tu perro?</label>
+        <label class="inicio_label" for="sexoPerro">¿De qué sexo es tu perro?</label>
+        <br>
         <input class="inicio_input" type= "text" list="sexo" id="sexoPerro" name="sexo" placeholder="Escribe o selecciona el sexo">
         <datalist id="sexo">
             <option value="Macho">
             <option value="Hembra">
         </datalist>
-
-        <!-- Foto del perro -->
-        <div class="form-group">
-            <label class="inicio_label" for="fotoPerro">Adjunta una foto del perro</label>
-            <input type="file" id="fotoPerro" name="fotoPerro" accept="image/*" required>
-        </div>
+        <br>
+        <br>
 
         <!-- Raza del perro -->
         <label class="inicio_label" for="razaPerro">¿Qué raza de perro tienes?</label>
+        <br>
         <input class="inicio_input" type= "text" list="razas" id="razaPerro" name="raza" placeholder="Escribe o selecciona una raza">
         <datalist id="razas">
             <option value="Labrador Retriever">
@@ -85,6 +91,18 @@
             <option value="Whippet">
             <option value="West Highland White Terrier">
         </datalist>
+        <br>
+        <br>
+
+        <!-- Foto del perro -->
+        <div class="form-group">
+            <label class="inicio_label" for="fotoPerro">Adjunta una foto de tu perro</label>
+            <br>
+            <input type="file" id="fotoPerro" name="fotoPerro" accept="image/*" required>
+        </div>
+        <br>
+        <br>
+
         <button class="inicio_input" type="submit">Guardar perro</button>
     </form>
 <%- include("footer", {}) %>
