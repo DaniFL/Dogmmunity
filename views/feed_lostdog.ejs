@@ -20,7 +20,7 @@
                             <p class="card-text"><strong>Raza:</strong> Labrador</p>
                             <p class="card-text"><strong>Edad:</strong> 3 años</p>
                             <p class="card-text"><strong>Última vez visto:</strong> Parque Central</p>
-                            <button type="button" class="btn btn-success w-100 mt-2" data-bs-toggle="modal" data-bs-target="#reportModal" data-perro-id="1">
+                            <button type="button" class="btn btn-success w-100 mt-2" data-bs-toggle="modal" data-bs-target="#reportModal" data-perro-id="4">
                                 Creo que he encontrado a tu perro
                             </button>
                         </div>
@@ -104,53 +104,53 @@
         </div>
 
         <!-- Formulario para declarar perro perdido -->
-        <div class="col-lg-4">
-            <div class="card p-4 shadow-sm">
-                <h4 class="card-title">Declara a tu perro como perdido</h4>
-                <form action="/submit-perro-perdido" method="POST">
-                    <div class="mb-3">
-                        <label for="nombrePerro" class="form-label">Nombre del perro</label>
-                        <input type="text" class="form-control" id="nombrePerro" name="nombrePerro" placeholder="Ejemplo: Max" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="raza" class="form-label">Raza</label>
-                        <input type="text" class="form-control" id="raza" name="raza" placeholder="Ejemplo: Labrador" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="edad" class="form-label">Edad</label>
-                        <input type="number" class="form-control" id="edad" name="edad" placeholder="Ejemplo: 3 años" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="lugar" class="form-label">Lugar donde fue visto por última vez</label>
-                        <input type="text" class="form-control" id="lugar" name="lugar" placeholder="Ejemplo: Parque central" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="descripcion" class="form-label">Descripción adicional</label>
-                        <textarea class="form-control" id="descripcion" name="descripcion" rows="3" placeholder="Ejemplo: Collar rojo, orejas grandes..." required></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="foto" class="form-label">Foto del perro</label>
-                        <input type="file" class="form-control" id="foto" name="foto" required>
-                    </div>
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-primary">Registrar perro perdido</button>
-                    </div>
-                </form>
+    <div class="col-lg-4">
+    <div class="card p-4 shadow-sm">
+        <h4 class="card-title">Declara a tu perro como perdido</h4>
+        <% if (user && user.isLoggedIn) { %>
+            <!-- Mostrar formulario si el usuario ha iniciado sesión -->
+            <form action="/submit-perro-perdido" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="nombrePerro" class="form-label">Nombre del perro</label>
+                    <input type="text" class="form-control" id="nombrePerro" name="nombrePerro" placeholder="Ejemplo: Max" required>
+                </div>
+                <div class="mb-3">
+                    <label for="raza" class="form-label">Raza</label>
+                    <input type="text" class="form-control" id="raza" name="raza" placeholder="Ejemplo: Labrador" required>
+                </div>
+                <div class="mb-3">
+                    <label for="edad" class="form-label">Edad</label>
+                    <input type="number" class="form-control" id="edad" name="edad" placeholder="Ejemplo: 3 años" required>
+                </div>
+                <div class="mb-3">
+                    <label for="lugar" class="form-label">Lugar donde fue visto por última vez</label>
+                    <input type="text" class="form-control" id="lugar" name="lugar" placeholder="Ejemplo: Parque central" required>
+                </div>
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Descripción adicional</label>
+                    <textarea class="form-control" id="descripcion" name="descripcion" rows="3" placeholder="Ejemplo: Collar rojo, orejas grandes..." required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="foto" class="form-label">Foto del perro</label>
+                    <input type="file" class="form-control" id="foto" name="foto" required>
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Registrar perro perdido</button>
+                </div>
+            </form>
+        <% } else { %>
+            <!-- Mostrar mensaje amigable para que el usuario inicie sesión -->
+            <div class="alert alert-info" role="alert">
+                ¡Hola! Para declarar a tu perro como perdido, primero necesitas <a href="/login" class="alert-link">iniciar sesión</a> o <a href="/register" class="alert-link">crear una cuenta</a>. Es rápido y fácil, y nos ayudará a conectar mejor contigo.
             </div>
-        </div>
+        <% } %>
     </div>
 </div>
 
-<!-- Modal para notificar que se encontró un perro -->
-<div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="reportModalLabel">Notificar que encontraste un perro</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="/report-encontrado" method="POST">
-                    <input type="hidden" id="perroId" name="perroId" value="">
-                    <div class="mb-3">
-                        <label for="nombre" class="form-label">Tu Nombre</label>
+
+    </div>
+</div>
+
+
+
+<%- include("footer", {}) %>
