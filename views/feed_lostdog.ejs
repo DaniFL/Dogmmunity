@@ -125,7 +125,12 @@
                     <button type="submit" class="btn btn-primary">Añadir perro perdido</button>
                 </form>
             <% } else { %>
-                <h5><p>Debes <strong><a href="/login">iniciar sesión</a></strong> para añadir un perro perdido.</p></h5>
+                <!-- Mostrar mensaje amigable para que el usuario inicie sesión -->
+                <div class="alert alert-info" role="alert">
+                    ¡Hola! Para declarar a tu perro como perdido, primero necesitas <a href="/login" class="alert-link">iniciar
+                        sesión</a> o <a href="/register" class="alert-link">crear una cuenta</a>. Es rápido y fácil, y nos ayudará a
+                    conectar mejor contigo.
+                </div>
             <% } %>
         </div>
     </div>
