@@ -6,14 +6,14 @@ router.get("/", function(req, res, next) {
   res.render("profile", {
     title: "Profile",
     navbar_addr1: "/profile",
-    navbar_addr2: "",
+    navbar_addr2: "/feed_lostdog", 
     navbar_addr3: "/profile",
     navbar_addr4: "/logout",
     navbar_addr5: "/profile",
     navbar_addr6: "/contact_us",
 
     navbar_item1: "Profile",
-    navbar_item2: "",
+    navbar_item2: "Perros perdidos",
     navbar_item3: "Settings",
     navbar_item4: "Logout",
     navbar_item5: "Pets",

@@ -23,71 +23,112 @@
                                     <p class="card-text"><strong>Peso:</strong> <%= dog.weight %> kg</p>
                                     <p class="card-text"><strong>Sexo:</strong> <%= dog.sex %></p>
                                     <p class="card-text"><strong>Última vez visto:</strong> <%= dog.last_seen || 'Lugar desconocido' %></p>
-                                    <button type="button" class="btn btn-success w-100 mt-2" data-bs-toggle="modal" data-bs-target="#reportModal" data-perro-id="<%= dog.id %>">
-                                        Creo que he encontrado a tu perro
-                                    </button>
+                                    <button type="button" class="btn btn-success w-100 mt-2" data-bs-toggle="modal" data-bs-target="#reportModal" data-perro-id="<%= dog.id %>">Reportar</button>
                                 </div>
                             </div>
                         </div>
-                    <% }); %>
+                    <% }) %>
                 <% } else { %>
-                    <div class="col-12">
-                        <div class="alert alert-warning text-center" role="alert">
-                            No hay perros perdidos registrados actualmente. ¡Sé el primero en ayudar!
-                        </div>
-                    </div>
+                    <p>No hay perros perdidos en este momento.</p>
                 <% } %>
             </div>
         </div>
 
-        <!-- Formulario para declarar perro perdido -->
-    <div class="col-lg-4">
-    <div class="card p-4 shadow-sm">
-        <h4 class="card-title">Declara a tu perro como perdido</h4>
-        <% if (user && user.isLoggedIn) { %>
-            <!-- Mostrar formulario si el usuario ha iniciado sesión -->
-            <form action="/submit-perro-perdido" method="POST" enctype="multipart/form-data">
-                <div class="mb-3">
-                    <label for="nombrePerro" class="form-label">Nombre del perro</label>
-                    <input type="text" class="form-control" id="nombrePerro" name="nombrePerro" placeholder="Ejemplo: Max" required>
-                </div>
-                <div class="mb-3">
-                    <label for="raza" class="form-label">Raza</label>
-                    <input type="text" class="form-control" id="raza" name="raza" placeholder="Ejemplo: Labrador" required>
-                </div>
-                <div class="mb-3">
-                    <label for="edad" class="form-label">Edad</label>
-                    <input type="number" class="form-control" id="edad" name="edad" placeholder="Ejemplo: 3 años" required>
-                </div>
-                <div class="mb-3">
-                    <label for="lugar" class="form-label">Lugar donde fue visto por última vez</label>
-                    <input type="text" class="form-control" id="lugar" name="lugar" placeholder="Ejemplo: Parque central" required>
-                </div>
-                <div class="mb-3">
-                    <label for="descripcion" class="form-label">Descripción adicional</label>
-                    <textarea class="form-control" id="descripcion" name="descripcion" rows="3" placeholder="Ejemplo: Collar rojo, orejas grandes..." required></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="foto" class="form-label">Foto del perro</label>
-                    <input type="file" class="form-control" id="foto" name="foto" required>
-                </div>
-                <div class="d-grid">
-                    <button type="submit" class="btn btn-primary">Registrar perro perdido</button>
-                </div>
-            </form>
-        <% } else { %>
-            <!-- Mostrar mensaje amigable para que el usuario inicie sesión -->
-            <div class="alert alert-info" role="alert">
-                ¡Hola! Para declarar a tu perro como perdido, primero necesitas <a href="/login" class="alert-link">iniciar sesión</a> o <a href="/register" class="alert-link">crear una cuenta</a>. Es rápido y fácil, y nos ayudará a conectar mejor contigo.
-            </div>
-        <% } %>
+        <!-- Formulario para añadir perros perdidos -->
+        <div class="col-lg-4">
+            <% if (user) { %>
+                <h3>Añadir un perro perdido</h3>
+                <form action="/add-lost-dog" method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nombre del perro</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="breed" class="form-label">Raza</label>
+                        <!--<input type="text" class="form-control" id="breed" name="breed" required>-->
+                        <select class="form-control" id="breed" name="breed" required>
+                            <option value="" disabled selected>Selecciona una raza</option>
+                            <option value="Labrador Retriever">Labrador Retriever</option>
+                            <option value="Golden Retriever">Golden Retriever</option>
+                            <option value="Bulldog">Bulldog</option>
+                            <option value="Poodle">Poodle</option>
+                            <option value="Pastor Alemán">Pastor Alemán</option>
+                            <option value="Beagle">Beagle</option>
+                            <option value="Rottweiler">Rottweiler</option>
+                            <option value="Yorkshire Terrier">Yorkshire Terrier</option>
+                            <option value="Dachshund">Dachshund</option>
+                            <option value="Boxer">Boxer</option>
+                            <option value="Husky Siberiano">Husky Siberiano</option>
+                            <option value="Chihuahua">Chihuahua</option>
+                            <option value="Doberman">Doberman</option>
+                            <option value="Shih Tzu">Shih Tzu</option>
+                            <option value="Cocker Spaniel">Cocker Spaniel</option>
+                            <option value="Pomerania">Pomerania</option>
+                            <option value="Border Collie">Border Collie</option>
+                            <option value="Dálmata">Dálmata</option>
+                            <option value="Boston Terrier">Boston Terrier</option>
+                            <option value="Gran Danés">Gran Danés</option>
+                            <option value="Akita">Akita</option>
+                            <option value="Alaskan Malamute">Alaskan Malamute</option>
+                            <option value="American Staffordshire Terrier">American Staffordshire Terrier</option>
+                            <option value="Basset Hound">Basset Hound</option>
+                            <option value="Bloodhound">Bloodhound</option>
+                            <option value="Bichón Frisé">Bichón Frisé</option>
+                            <option value="Borzoi">Borzoi</option>
+                            <option value="Bull Terrier">Bull Terrier</option>
+                            <option value="Cane Corso">Cane Corso</option>
+                            <option value="Cavalier King Charles Spaniel">Cavalier King Charles Spaniel</option>
+                            <option value="Chow Chow">Chow Chow</option>
+                            <option value="Dogo Argentino">Dogo Argentino</option>
+                            <option value="Dogo de Burdeos">Dogo de Burdeos</option>
+                            <option value="Fox Terrier">Fox Terrier</option>
+                            <option value="Galgo Español">Galgo Español</option>
+                            <option value="Jack Russell Terrier">Jack Russell Terrier</option>
+                            <option value="Mastín Español">Mastín Español</option>
+                            <option value="Mastín Napolitano">Mastín Napolitano</option>
+                            <option value="Perro de Agua Español">Perro de Agua Español</option>
+                            <option value="Samoyedo">Samoyedo</option>
+                            <option value="San Bernardo">San Bernardo</option>
+                            <option value="Shiba Inu">Shiba Inu</option>
+                            <option value="Springer Spaniel">Springer Spaniel</option>
+                            <option value="Staffordshire Bull Terrier">Staffordshire Bull Terrier</option>
+                            <option value="Terranova">Terranova</option>
+                            <option value="Whippet">Whippet</option>
+                            <option value="West Highland White Terrier">West Highland White Terrier</option>
+                            <option value="Otro">Otro</option>
+        
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="age" class="form-label">Edad</label>
+                        <input type="number" class="form-control" id="age" name="age" required min="1" max="162">
+                    </div>
+                    <div class="mb-3">
+                        <label for="weight" class="form-label">Peso</label>
+                        <input type="number" class="form-control" id="weight" name="weight" required min="1" max="162">
+                    </div>
+                    <div class="mb-3">
+                        <label for="sex" class="form-label">Sexo</label>
+                        <select class="form-control" id="sex" name="sex" required>
+                            <option value="Macho">Macho</option>
+                            <option value="Hembra">Hembra</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="last_seen" class="form-label">Última vez visto</label>
+                        <input type="text" class="form-control" id="last_seen" name="last_seen" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="photo" class="form-label">Foto del perro</label>
+                        <input type="file" class="form-control" id="photo" name="photo">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Añadir perro perdido</button>
+                </form>
+            <% } else { %>
+                <h5><p>Debes <strong><a href="/login">iniciar sesión</a></strong> para añadir un perro perdido.</p></h5>
+            <% } %>
+        </div>
     </div>
 </div>
-
-
-    </div>
-</div>
-
-
 
 <%- include("footer", {}) %>
