@@ -1,7 +1,4 @@
 <%- include("header", {}) %>
-
-    <h1>Cambiar contraseña</h1> <!--si hacemos un solo form no nos deja cambiar solo una cosa del perfil, hay que hacer un formulario por cada uno de los campos-->
-    
     <!-- cambiar el nombre
     <form id="formularioNombre" class="formularioPerfil">
         <h3>Cambiar nombre</h3>
@@ -57,20 +54,24 @@
     </form>-->
 
     <!--cambiar la contraseña -->
-    <form id="formularioContraseña" class="formularioPerfil" action="/edit_user_profile" method="post">
-        <div class="form-group">
-            <label for="nuevaContrasena">Nueva contraseña</label>
-            <br>
-            <input type="password" id="nuevaContrasena" name="nuevaContrasena" required>
-            <input type="hidden" name="userId" value="<%= user.id %>">
-            <br><br>
-        </div>
-        <div class="form-group">
-            <label for="confirmarContrasena">Confirmar nueva contraseña</label>
-            <br>
-            <input type="password" id="confirmarContrasena" name="confirmarContrasena" required>
-            <br><br>
-        </div>
-        <button class="botonesGuardarPerfil" type="submit">Guardar contraseña</button>
-    </form>
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Cambiar contraseña</h1>
+    
+        <form id="formularioContraseña" class="needs-validation" action="/edit_user_profile" method="post" novalidate>
+            <div class="mb-3">
+                <label class="form-label" for="nuevaContrasena">Nueva contraseña</label>
+                <input class="form-control" type="password" id="nuevaContrasena" name="nuevaContrasena" required>
+                <input type="hidden" name="userId" value="<%= user.id %>">
+                <div class="invalid-feedback">Por favor, ingresa la nueva contraseña.</div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="confirmarContrasena">Confirmar nueva contraseña</label>
+                <input class="form-control" type="password" id="confirmarContrasena" name="confirmarContrasena" required>
+                <div class="invalid-feedback">Por favor, confirma la nueva contraseña.</div>
+            </div>
+            <button class="btn btn-primary" type="submit">Guardar contraseña</button>
+        </form>
+        <br><br><br><br>
+        <br><br><br>
+    </div>
 <%- include("footer", {}) %>

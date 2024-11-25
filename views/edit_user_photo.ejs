@@ -1,38 +1,43 @@
 <%- include("header", {}) %>
 
-    <h1>Modificar Foto de Perfil</h1>
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Modificar Foto de Perfil</h1>
 
-    <form id="formularioFoto" class="formularioPerfil" method="POST" action="/edit_user_photo">
-        <h3>Selecciona una nueva foto de perfil</h3>
-        <div class="form-group">
-            <div class="opciones-fotos">
-                <label>
-                    <img src="/img/img_perfil1.jpg" alt="Foto 1" width="100" height="100">
-                    <input type="radio" name="fotoPerfil" value="img_perfil1.jpg" required>
-                    <br>
-                </label>
-                <label>
-                    <img src="/img/img_perfil2.jpg" alt="Foto 2" width="100" height="100">
-                    <input type="radio" name="fotoPerfil" value="img_perfil2.jpg">
-                </label>
-                <label>
-                    <img src="/img/img_perfil3.jpg" alt="Foto 3" width="100" height="100">
-                    <input type="radio" name="fotoPerfil" value="img_perfil3.jpg">
-                    <br>
-                </label>
-                <label>
-                    <img src="/img/img_perfil4.jpg" alt="Foto 4" width="100" height="100">
-                    <input type="radio" name="fotoPerfil" value="img_perfil4.jpg">
-                </label>
-                <label>
-                    <img src="/img/img_perfil5.jpg" alt="Foto 1" width="100" height="100">
-                    <input type="radio" name="fotoPerfil" value="perfil_con_perro.png" required>
-                </label>
+        <form id="formularioFoto" class="needs-validation" method="POST" action="/edit_user_photo" novalidate>
+            <h3 class="text-center mb-4">Selecciona una nueva foto de perfil</h3>
+            <div class="mb-3">
+                <div class="d-flex justify-content-center flex-wrap">
+                    <label class="me-3 mb-3">
+                        <img src="/img/img_perfil1.jpg" alt="Foto 1" class="img-thumbnail" width="100" height="100">
+                        <input type="radio" name="fotoPerfil" value="img_perfil1.jpg" required>
+                    </label>
+                    <label class="me-3 mb-3">
+                        <img src="/img/img_perfil2.jpg" alt="Foto 2" class="img-thumbnail" width="100" height="100">
+                        <input type="radio" name="fotoPerfil" value="img_perfil2.jpg">
+                    </label>
+                    <label class="me-3 mb-3">
+                        <img src="/img/img_perfil3.jpg" alt="Foto 3" class="img-thumbnail" width="100" height="100">
+                        <input type="radio" name="fotoPerfil" value="img_perfil3.jpg">
+                    </label>
+                    <label class="me-3 mb-3">
+                        <img src="/img/img_perfil4.jpg" alt="Foto 4" class="img-thumbnail" width="100" height="100">
+                        <input type="radio" name="fotoPerfil" value="img_perfil4.jpg">
+                    </label>
+                    <label class="me-3 mb-3">
+                        <img src="/img/img_perfil5.jpg" alt="Foto 5" class="img-thumbnail" width="100" height="100">
+                        <input type="radio" name="fotoPerfil" value="perfil_con_perro.png" required>
+                    </label>
+                </div>
+                <div class="invalid-feedback text-center">Por favor, selecciona una foto de perfil.</div>
             </div>
-            <br><br>
-        </div>
-        <button class="botonesGuardarPerfil" type="submit">Guardar foto</button>
-    </form>
-    <script src="/public/js/edit_profile_pic.js"></script> 
+            <div class="text-center">
+                <button class="btn btn-primary" type="submit">Guardar foto</button>
+            </div>
+        </form>
+        <br><br><br>
+        <br><br><br>
+    </div>
 
-<%- include("footer", {}) %>
+    <script src="/public/js/edit_profile_pic.js"></script>
+
+    <%- include("footer", {}) %>
