@@ -44,7 +44,7 @@ router.get('/', isAuthenticated, function(req, res, next) {
 
 /* POST edit_dog_profile page. */
 router.post('/', isAuthenticated, async function(req, res, next) {
-    const { nombrePerro, edadPerro, pesoPerro, sexo, raza } = req.body;
+    const { nombrePerro, edadPerro, pesoPerro, sexo, raza, is_lost } = req.body;
     const dog = {
         name: nombrePerro,
         breed: raza,
@@ -53,7 +53,8 @@ router.post('/', isAuthenticated, async function(req, res, next) {
         colour: "", // Assuming colour is not provided in the form
         sex: sexo,
         owner_id: req.session.user.id, // Assuming user ID is stored in session
-        photo_dog_perdido: "" // Assuming photo is not provided in the form
+        photo_dog_perdido: "", // Assuming photo is not provided in the form
+        is_lost: is_lost // Assuming is_lost is provided
     };
 
     try {

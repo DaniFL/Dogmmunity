@@ -98,6 +98,17 @@
             </div>
 
             <div class="mb-3">
+                <label class="form-label" for="is_lost">¿Se ha perdido tu perro?</label>
+                <input class="form-control" type="text" list="is_lost" id="is_lost" name="is_lost"
+                    placeholder="1 es perdido" required>
+                <datalist id="is_lost">
+                    <option value="0">
+                    <option value="1">
+                </datalist>
+                <div class="invalid-feedback">Por favor, selecciona el estado de tu perro.</div>
+            </div>
+
+            <div class="mb-3">
                 <label class="form-label" for="fotoPerro">Adjunta una foto de tu perro</label>
                 <input class="form-control" type="file" id="fotoPerro" name="fotoPerro" accept="image/*" required>
                 <div class="invalid-feedback">Por favor, adjunta una foto de tu perro.</div>

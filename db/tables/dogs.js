@@ -25,8 +25,8 @@ async function createDog(dog) {
     try {
         await sql.connect(dbConfig);
         const query = `
-            INSERT INTO Dogs (id, name, breed, age, weight, colour, sex, owner_id, photo_dog_perdido)
-            VALUES (NEWID(), @name, @breed, @age, @weight, @colour, @sex, @owner_id, @photo_dog_perdido)
+            INSERT INTO Dogs (id, name, breed, age, weight, colour, sex, owner_id, photo_dog_perdido, is_lost)
+            VALUES (NEWID(), @name, @breed, @age, @weight, @colour, @sex, @owner_id, @photo_dog_perdido, @is_lost)
         `;
         const request = new sql.Request();
         request.input('name', sql.VarChar, dog.name);
@@ -37,6 +37,7 @@ async function createDog(dog) {
         request.input('sex', sql.VarChar, dog.sex);
         request.input('owner_id', sql.UniqueIdentifier, dog.owner_id);
         request.input('photo_dog_perdido', sql.VarChar, dog.photo_dog_perdido);
+        request.input('is_lost', sql.TinyInt, dog.is_lost);
         await request.query(query);
         console.log('Perro creado exitosamente');
     } catch (error) {
