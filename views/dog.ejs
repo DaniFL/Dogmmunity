@@ -1,38 +1,38 @@
 <%- include("header", {}) %>
-    <div class="container mt-4">
-        <div class="text-center mb-4">
-            <header>
-                <h2>¡Aquí te mostramos todos los datos de tu perro!</h2>
-            </header>
-        </div>
-
-        <div class="card p-4 mb-4">
-            <div class="infoPerro" id="infoPperro">
-                <p><strong>Nombre:</strong>
-                    <%= nombrePerro %>
-                </p>
-                <p><strong>Edad:</strong>
-                    <%= edadPerro %>
-                </p>
-                <p><strong>Peso:</strong>
-                    <%= pesoPerro %> kg
-                </p>
-                <p><strong>Sexo:</strong>
-                    <%= sexoPerro %>
-                </p>
-                <p><strong>Raza:</strong>
-                    <%= razaPerro %>
-                </p>
-                <p><strong>Dueño:</strong>
-                    <%= dueñoPerro %>
-                </p>
-            </div>
-        </div>
-
-        <div class="text-center">
-            <p>¿Deseas realizar algún cambio en los datos de tu perro?</p>
-            <button class="btn btn-primary" type="submit">Editar perro</button>
-        </div>
-        <br>
+<div class="container mt-4">
+    <div class="text-center mb-4">
+        <header>
+            <h2>¡Aquí te mostramos todos los datos de tus perros!</h2>
+        </header>
     </div>
-    <%- include("footer", {}) %>
+
+    <% if (dogs && dogs.length > 0) { %>
+        <% dogs.forEach(dog => { %>
+            <div class="card p-4 mb-4">
+                <div class="infoPerro">
+                    <p><strong>Nombre:</strong> <%= dog.name %></p>
+                    <p><strong>Edad:</strong> <%= dog.age %> años</p>
+                    <p><strong>Peso:</strong> <%= dog.weight %> kg</p>
+                    <p><strong>Sexo:</strong> <%= dog.sex %></p>
+                    <p><strong>Raza:</strong> <%= dog.breed %></p>
+                    <!-- <p><strong>Dueño ID:</strong> <%= dog.owner_id %></p> -->
+                    <% if (dog.photo_dog_perdido) { %>
+                        <div class="text-center">
+                            <img src="<%= dog.photo_dog_perdido %>" alt="Foto de <%= dog.name %>" class="img-fluid rounded" style="max-width: 300px;">
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        <% }); %>
+    <% } else { %>
+        <div class="text-center">
+            <p>No se encontraron perros registrados para este usuario.</p>
+        </div>
+    <% } %>
+
+    <div class="text-center mt-4">
+        <p>¿Deseas añadir o editar la información de tus perros?</p>
+        <a href="/edit_dog_profile" class="btn btn-primary">Añadir o Editar Perro</a>
+    </div>
+</div>
+<%- include("footer", {}) %>

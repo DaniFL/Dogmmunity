@@ -89,8 +89,43 @@ async function getLostDogs() {
         const request = new sql.Request();
         const result = await request.query(query);
         return result.recordset;
+        console.log('Perros perdidos obtenidos exitosamente');
     } catch (error) {
         console.error('Error al obtener los perros perdidos', error);
+    } finally {
+        await sql.close();
+    }
+}
+
+//Obtener los perros que tiene un user
+async function getDogsIdByUserId(id) {
+    try {
+        await connectToDb();
+        const query = 'SELECT id FROM Dogs WHERE owner_id = @id';
+        const request = new sql.Request();
+        request.input('id', sql.UniqueIdentifier, id);
+        const result = await request.query(query);
+        return result.recordset;
+        console.log('Perros que tiene un usuario por su id obtenidos exitosamente');
+    } catch (error) {
+        console.error('Error al obtener los perros del usuario', error);
+    } finally {
+        await sql.close();
+    }
+}
+
+//Obtener un perro por su id
+async function getDogById(id) {
+    try {
+        await connectToDb();
+        const query = 'SELECT * FROM Dogs WHERE id = @id';
+        const request = new sql.Request();
+        request.input('id', sql.UniqueIdentifier, id);
+        const result = await request.query(query);
+        return result.recordset[0];
+        console.log('Perro obtenido exitosamente');
+    } catch (error) {
+        console.error('Error al obtener el perro', error);
     } finally {
         await sql.close();
     }
@@ -100,5 +135,7 @@ module.exports = {
     createDog,
     updateDog,
     deleteDog,
-    getLostDogs
+    getLostDogs,
+    getDogsIdByUserId,
+    getDogById
 };
