@@ -3,8 +3,8 @@ var router = express.Router();
 
 /* GET index page. */
 router.get("/", function(req, res, next) {
-  res.render("about_us", {
-    title: "About Us",
+  res.render("dog_vision", {
+    title: "Simulador de visión perruna",
     navbar_addr1: "/",
     navbar_addr2: "/",
     navbar_addr3: "/login",
@@ -25,7 +25,7 @@ router.get("/", function(req, res, next) {
     sub_navbar_item1: "Perros perdidos",
     sub_navbar_item2: "Alimentación y Nutrición",
     sub_navbar_item3: "Simulador de visión perruna",
-    
+
     script: "",
     user: req.session.user });
 });
