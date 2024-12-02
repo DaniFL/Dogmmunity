@@ -1,8 +1,63 @@
 <%- include("header", { title: title }) %>
 
 <main id="main" class="main">
-  <section class="dog-vision-section">
-    <div class="container text-center py-5">
+  <section class="dog-vision-info py-5 bg-light">
+    <div class="container text-center">
+      <h2 class="section-title">¿Cómo ven los perros?</h2>
+      <p class="section-description">
+        Los perros tienen una visión distinta a la de los humanos. Aquí hay algunos datos interesantes sobre cómo perciben el mundo:
+      </p>
+      <div class="row text-start mt-4 align-items-center">
+        <div class="col-md-6 mb-4">
+          <div class="d-flex align-items-start">
+            <i class="bi bi-palette fs-2 me-3"></i>
+            <div>
+              <h4>1. Visión dicromática</h4>
+              <p>
+                Los perros ven en una gama limitada de colores, principalmente en tonos azul y amarillo. No perciben los tonos rojos y verdes como nosotros, y estos aparecen como tonos grisáceos o marrones para ellos.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="d-flex align-items-start">
+            <i class="bi bi-cloudy fs-2 me-3"></i>
+            <div>
+              <h4>2. Menor nitidez</h4>
+              <p>
+                Tienen una menor agudeza visual en comparación con los humanos, lo que significa que ven el mundo un poco más borroso. Esto no afecta su capacidad para detectar movimientos.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="d-flex align-items-start">
+            <i class="bi bi-moon-stars fs-2 me-3"></i>
+            <div>
+              <h4>3. Excelente visión nocturna</h4>
+              <p>
+                Los perros tienen una mayor cantidad de células en sus ojos llamadas bastones, lo que les da una visión superior en condiciones de poca luz.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="d-flex align-items-start">
+            <i class="bi bi-aspect-ratio fs-2 me-3"></i>
+            <div>
+              <h4>4. Campo de visión amplio</h4>
+              <p>
+                Debido a la posición de sus ojos, los perros tienen un campo de visión más amplio que los humanos, aunque esto reduce ligeramente su percepción de profundidad.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dog-vision-simulator py-5">
+    <div class="container text-center">
       <h2 class="section-title">Simulador de Visión Perruna</h2>
       <p class="section-description">Sube una imagen para ver el antes y después desde la perspectiva de un perro.</p>
 
@@ -12,7 +67,6 @@
 
       <!-- Contenedor del antes y después -->
       <div id="previewContainer" class="mt-4" style="display: none;">
-        <!-- <h4>Antes y Después:</h4> -->
         <div class="row">
           <div class="col-md-6">
             <h5>POV: eres humano</h5>
