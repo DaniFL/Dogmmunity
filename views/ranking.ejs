@@ -14,6 +14,28 @@
     </div>
   </div><!-- End Page Title -->
 
+  <!-- Filtro de Género y Raza -->
+  <div class="filters mt-4 text-center">
+    <form method="GET" action="/ranking">
+      <label for="gender">Género:</label>
+      <select id="gender" name="gender">
+        <option value="">Todos</option>
+        <option value="macho" <%= gender === 'macho' ? 'selected' : '' %>>Macho</option>
+        <option value="hembra" <%= gender === 'hembra' ? 'selected' : '' %>>Hembra</option>
+      </select>
+
+      <label for="breed">Raza:</label>
+      <select id="breed" name="breed">
+        <option value="">Todas</option>
+        <% breeds.forEach((breed) => { %>
+          <option value="<%= breed %>" <%= breed === selectedBreed ? 'selected' : '' %>><%= breed %></option>
+        <% }) %>
+      </select>
+
+      <button type="submit">Filtrar</button>
+    </form>
+  </div>
+
   <!-- Rankings Section -->
   <section id="rankings" class="section">
     <div class="container">

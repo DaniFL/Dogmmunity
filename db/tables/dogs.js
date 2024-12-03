@@ -131,22 +131,56 @@ async function getDogById(id) {
         await sql.close();
     }
 }
-// Obtener el ranking de nombres de perros
-async function getDogNameRanking() {
+// Modificación de la función getDogNameRanking
+async function getDogNameRanking(gender, breed) {
     try {
         await connectToDb();
-        const query = ' SELECT name, COUNT(*) AS popularity FROM Dogs GROUP BY name ORDER BY popularity DESC OFFSET 0 ROWS FETCH NEXT 10 ROWS ONLY';
+        let query = 'SELECT name, COUNT(*) AS popularity FROM Dogs WHERE 1=1';
+
+        // Agregar condiciones al filtro según los parámetros
+        if (gender) {
+            query += ` AND sex = @gender`;
+        }
+        if (breed) {
+            query += ` AND breed = @breed`;
+        }
+
+        query += ' GROUP BY name ORDER BY popularity DESC OFFSET 0 ROWS FETCH NEXT 10 ROWS ONLY';
+
         const request = new sql.Request();
+        if (gender) {
+            request.input('gender', sql.VarChar, gender);
+        }
+        if (breed) {
+            request.input('breed', sql.VarChar, breed);
+        }
+
         const result = await request.query(query);
-        console.log("Resultados de ranking:", result.recordset);
-        return result.recordset; // Devuelve el ranking como un array de objetos
+        return result.recordset; // Retorna el ranking de perros
     } catch (error) {
         console.error('Error al obtener el ranking de nombres de perros', error);
-        throw error; // Propagar el error para que sea manejado por el controlador
+        throw error;
     } finally {
         await sql.close();
     }
 }
+
+// Obtener las razas disponibles de la base de datos
+async function getBreeds() {
+    try {
+        await connectToDb();
+        const query = 'SELECT DISTINCT breed FROM Dogs'; // Consulta para obtener razas únicas
+        const request = new sql.Request();
+        const result = await request.query(query);
+        return result.recordset.map(row => row.breed); // Retornar solo las razas
+    } catch (error) {
+        console.error('Error al obtener las razas de perros', error);
+        throw error;
+    } finally {
+        await sql.close();
+    }
+}
+
 
 module.exports = {
     createDog,
@@ -155,5 +189,6 @@ module.exports = {
     getLostDogs,
     getDogsIdByUserId,
     getDogById,
-    getDogNameRanking
+    getDogNameRanking,
+    getBreeds
 };
