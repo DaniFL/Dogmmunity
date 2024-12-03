@@ -1,0 +1,50 @@
+<%- include("header") %>
+
+<main class="main">
+  <!-- Page Title -->
+  <div class="page-title">
+    <div class="container d-lg-flex justify-content-between align-items-center">
+      <h1 class="mb-2 mb-lg-0">Ranking de Nombres de Perros</h1>
+      <nav class="breadcrumbs">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li class="current">Ranking</li>
+        </ol>
+      </nav>
+    </div>
+  </div><!-- End Page Title -->
+
+  <!-- Rankings Section -->
+  <section id="rankings" class="section">
+    <div class="container">
+      <div class="section-title-container text-center" data-aos="fade-up">
+        <h2>¡Descubre los nombres más populares!</h2>
+        <p>Consulta los nombres más usados por los miembros de Dogmmunity.</p>
+      </div>
+
+      <div class="table-responsive mt-4" data-aos="fade-up" data-aos-delay="100">
+        <table class="table table-striped table-hover text-center">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Popularidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% nombres.forEach((nombre, index) => { %>
+              <tr>
+                <th scope="row"><%= index + 1 %></th>
+                <td><%= nombre.nombre %></td>
+                <td><%= nombre.popularidad %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section><!-- /Rankings Section -->
+
+</main>
+
+<%- include("footer") %>

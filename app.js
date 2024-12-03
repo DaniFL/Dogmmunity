@@ -25,6 +25,7 @@ let dog_food_adviceRouter = require("./routes/dog_food_advice");
 let feed_lostdogRouter = require("./routes/feed_lostdog");
 let dog_visionRouter = require("./routes/dog_vision"); // Ruta para el simulador de visión perruna
 let verifyRouter = require("./routes/verify");
+let rankingRouter = require("./routes/ranking");
 
 
 // Conexión a SQL
@@ -75,6 +76,7 @@ app.use("/contact_us", contact_usRouter);
 app.use("/dog_food_advice", dog_food_adviceRouter);
 app.use("/feed_lostdog", feed_lostdogRouter);
 app.use("/dog_vision", dog_visionRouter); // Ruta para el simulador de visión perruna
+app.use("/ranking", rankingRouter);
 app.use("/profile", profileRouter);
 app.use("/edit_user_profile", userprofileRouter);
 app.use("/edit_user_photo", userphotoRouter);

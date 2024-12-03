@@ -1,10 +1,10 @@
 var express = require("express");
 var router = express.Router();
 
-/* GET index page. */
-router.get("/", function(req, res, next) {
-  res.render("index", {
-    title: "Home",
+/* GET ranking page. */
+router.get("/", function (req, res, next) {
+  res.render("ranking", {
+    title: "Rankings",
     navbar_addr1: "/",
     navbar_addr2: "/",
     navbar_addr3: "/login",
@@ -22,15 +22,20 @@ router.get("/", function(req, res, next) {
     sub_navbar_add1: "/feed_lostdog",
     sub_navbar_add2: "/dog_food_advice",
     sub_navbar_add3: "/dog_vision",
-    sub_navbar_add4: "/ranking",
+    sub_navbar_add4: "/ranking", // Dirección del enlace "Rankings"
+
     sub_navbar_item1: "Perros perdidos",
     sub_navbar_item2: "Alimentación y Nutrición",
     sub_navbar_item3: "Simulador de visión perruna",
-    sub_navbar_item4: "Rankings",
-    
+    sub_navbar_item4: "Rankings", // Nuevo elemento
 
-    script: "",
-    user: req.session.user });
-});
-
-module.exports = router;
+    nombres: [
+        { nombre: "Max", popularidad: 100 },
+        { nombre: "Luna", popularidad: 90 },
+        { nombre: "Bella", popularidad: 85 },
+      ], // Ejemplo de datos para la tabla
+      user: req.session.user,
+    });
+  });
+  
+  module.exports = router;
