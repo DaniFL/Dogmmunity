@@ -10,6 +10,7 @@
     </header>
 
     <p class="mb-4">Correo electrónico: <%= user.email %></p>
+
     <form>
         <!-- Botón de editar perfil -->
         <button type="button" class="btn btn-primary mb-3 w-50" id="cambiarContraseña" name="cambiarContraseña"
@@ -18,6 +19,14 @@
         <!-- Botón para modificar foto de perfil -->
         <button type="button" class="btn btn-secondary mb-3 w-50" id="modificarFoto" name="modificarFoto"
             onclick="window.location.href='/edit_user_photo';">Modificar foto de perfil</button>
+        
+         <!-- Botón de eliminar cuenta -->
+         <form action="/profile/delete_account" method="POST">
+            <button type="submit" class="btn btn-danger mb-3 w-50">Eliminar cuenta</button>
+        </form>
+        <!-- <form action="/profile/delete_account" method="POST">
+       <button type="submit" class="btn btn-danger mb-3 w-50">Eliminar cuenta</button>
+        </form> -->
 
         <!-- Botón de añadir perro 
         <button type="button" class="btn btn-success mb-3 w-100" id="añadirPerro" name="añadirPerro"

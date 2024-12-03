@@ -168,7 +168,7 @@ async function deleteUser(id) {
         await connectToDb();
         const query = 'DELETE FROM Usuarios WHERE id = @Id';
         const request = new sql.Request();
-        request.input('Id', sql.Int, id);
+        request.input('Id', sql.UniqueIdentifier, id);
         await request.query(query);
         console.log('Usuario eliminado exitosamente');
     } catch (error) {
