@@ -1,19 +1,20 @@
 var express = require("express");
 var router = express.Router();
-const { getDogNameRanking, getBreeds, getBreedRanking } = require("../db/tables/dogs");
+const { getDogNameRanking, getBreeds } = require("../db/tables/dogs");
 
 /* GET ranking page. */
 router.get("/", async function (req, res, next) {
     // Obtener los filtros de la URL (por ejemplo, ?gender=macho&breed=lab)
     const gender = req.query.gender || '';  // Género seleccionado
     const breed = req.query.breed || '';    // Raza seleccionada
+
     try {
         // Obtener las razas disponibles para pasarlas al EJS
         const breeds = await getBreeds();
 
         // Obtener datos dinámicos del ranking desde la base de datos con los filtros
         const nombres = await getDogNameRanking(gender, breed);
-        const razas = await getBreedRanking(gender);
+
         // Renderizar la página de ranking con los datos filtrados
         res.render("ranking", {
             title: "Rankings",
@@ -43,7 +44,6 @@ router.get("/", async function (req, res, next) {
 
             nombres, // Enviar el ranking dinámico a la vista
             breeds, // Enviar las razas disponibles
-            razas,
             user: req.session.user,
             gender, // Pasar el filtro de género al template
             selectedBreed: breed, // Pasar el filtro de raza al template
