@@ -1,0 +1,71 @@
+<%- include("header") %>
+
+<main class="main">
+  <!-- Page Title -->
+  <div class="page-title">
+    <div class="container d-lg-flex justify-content-between align-items-center">
+      <h1 class="mb-2 mb-lg-0"><%= title %></h1>
+      <nav class="breadcrumbs">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li class="current">Ranking de Razas</li>
+        </ol>
+      </nav>
+    </div>
+  </div><!-- End Page Title -->
+
+  <!-- Filtro de Género -->
+  <div class="filters mt-4 text-center">
+    <form method="GET" action="/ranking_razas">
+      <label for="gender">Género:</label>
+      <select id="gender" name="gender">
+        <option value="" <%= !gender ? 'selected' : '' %>>Todos</option>
+        <option value="Macho" <%= gender === 'Macho' ? 'selected' : '' %>>Macho</option>
+        <option value="Hembra" <%= gender === 'Hembra' ? 'selected' : '' %>>Hembra</option>
+      </select>
+
+      <button type="submit">Filtrar</button>
+    </form>
+  </div><!-- End Filtro de Género -->
+
+  <div class="text-center mt-4">
+    <a href="/ranking" class="btn btn-secondary">Ver Ranking de Nombres de Perros</a>
+  </div>
+
+  <!-- Rankings Section -->
+  <section id="rankings" class="section">
+    <div class="container">
+      <div class="section-title-container text-center" data-aos="fade-up">
+        <h2>¡Descubre las razas más populares!</h2>
+        <p>Consulta las razas más populares de Dogmmunity.</p>
+      </div>
+
+      <div class="table-responsive mt-4" data-aos="fade-up" data-aos-delay="100">
+        <% if (breedRanking && breedRanking.length > 0) { %>
+          <table class="table table-striped table-hover text-center">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Raza</th>
+                <th scope="col">Popularidad</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% breedRanking.forEach((breed, index) => { %>
+                <tr>
+                  <td><%= breed.breed %></td>
+                  <td><%= breed.popularity %></td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        <% } else { %>
+          <div class="alert alert-warning" role="alert">
+            No se encontraron razas para el filtro seleccionado.
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </section><!-- /Rankings Section -->
+</main>
+
+<%- include("footer") %>
