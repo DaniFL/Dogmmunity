@@ -180,7 +180,32 @@ async function getBreeds() {
         await sql.close();
     }
 }
+async function getBreedRanking(gender) {
+    try {
+        await connectToDb();
+        let query = 'SELECT breed, COUNT(*) AS popularity FROM Dogs WHERE 1=1';
 
+        // Agregar filtro de género si se proporciona
+        if (gender) {
+            query += ` AND sex = @gender`;
+        }
+
+        query += ' GROUP BY breed ORDER BY popularity DESC OFFSET 0 ROWS FETCH NEXT 10 ROWS ONLY';
+
+        const request = new sql.Request();
+        if (gender) {
+            request.input('gender', sql.VarChar, gender);
+        }
+
+        const result = await request.query(query);
+        return result.recordset; // Retorna el ranking de razas
+    } catch (error) {
+        console.error('Error al obtener el ranking de razas de perros', error);
+        throw error;
+    } finally {
+        await sql.close();
+    }
+}
 
 module.exports = {
     createDog,
@@ -190,5 +215,6 @@ module.exports = {
     getDogsIdByUserId,
     getDogById,
     getDogNameRanking,
-    getBreeds
+    getBreeds,
+    getBreedRanking
 };
