@@ -88,6 +88,7 @@ app.use("/logout", (req, res) => {
   res.redirect("/");
 });
 app.use("/verify", verifyRouter);
+app.use("/ranking", rankingRouter);
 
 // 404 error
 app.use(function(req, res, next) {

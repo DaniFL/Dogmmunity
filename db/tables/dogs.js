@@ -131,6 +131,22 @@ async function getDogById(id) {
         await sql.close();
     }
 }
+// Obtener el ranking de nombres de perros
+async function getDogNameRanking() {
+    try {
+        await connectToDb();
+        const query = ' SELECT name, COUNT(*) AS popularity FROM Dogs GROUP BY name ORDER BY popularity DESC OFFSET 0 ROWS FETCH NEXT 10 ROWS ONLY';
+        const request = new sql.Request();
+        const result = await request.query(query);
+        console.log("Resultados de ranking:", result.recordset);
+        return result.recordset; // Devuelve el ranking como un array de objetos
+    } catch (error) {
+        console.error('Error al obtener el ranking de nombres de perros', error);
+        throw error; // Propagar el error para que sea manejado por el controlador
+    } finally {
+        await sql.close();
+    }
+}
 
 module.exports = {
     createDog,
@@ -138,5 +154,6 @@ module.exports = {
     deleteDog,
     getLostDogs,
     getDogsIdByUserId,
-    getDogById
+    getDogById,
+    getDogNameRanking
 };
