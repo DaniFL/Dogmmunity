@@ -211,6 +211,23 @@ async function getDogBreedRanking(gender) {
 }
 
 
+// Borrar todos los perros ded un dueño dado el id del dueño
+async function deleteDogsByOwnerId(ownerId) {
+    try {
+        await connectToDb();
+        const query = 'DELETE FROM Dogs WHERE owner_id = @ownerId';
+        const request = new sql.Request();
+        request.input('ownerId', sql.UniqueIdentifier, ownerId);
+        await request.query(query);
+        console.log('Perros eliminados exitosamente');
+    } catch (error) {
+        console.error('Error al eliminar los perros', error);
+    } finally {
+        await sql.close();
+    }
+}
+
+
 module.exports = {
     createDog,
     updateDog,
@@ -220,5 +237,6 @@ module.exports = {
     getDogById,
     getDogNameRanking,
     getDogBreedRanking,
-    getBreeds
+    getBreeds,
+    deleteDogsByOwnerId
 };

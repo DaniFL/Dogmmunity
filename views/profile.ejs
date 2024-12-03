@@ -20,22 +20,33 @@
         <button type="button" class="btn btn-secondary mb-3 w-50" id="modificarFoto" name="modificarFoto"
             onclick="window.location.href='/edit_user_photo';">Modificar foto de perfil</button>
         
-         <!-- Botón de eliminar cuenta -->
-         <form action="/profile/delete_account" method="POST">
-            <button type="submit" class="btn btn-danger mb-3 w-50">Eliminar cuenta</button>
-        </form>
-        <!-- <form action="/profile/delete_account" method="POST">
-       <button type="submit" class="btn btn-danger mb-3 w-50">Eliminar cuenta</button>
-        </form> -->
-
-        <!-- Botón de añadir perro 
-        <button type="button" class="btn btn-success mb-3 w-100" id="añadirPerro" name="añadirPerro"
-            onclick="window.location.href='/edit_dog_profile';">Añadir perro</button> -->
-
-        <!-- Botón de cerrar sesión 
-        <button type="button" class="btn btn-danger w-100" id="logout-btn" name="logout"
-            onclick="window.location.href='/logout';">Cerrar sesión</button> -->
-    </form>
+        <!-- Botón de eliminar cuenta -->
+        <button type="button" class="btn btn-danger mb-3 w-50" id="deleteAccountButton">Eliminar cuenta</button>
+</form>
 </div>
+
+<script>
+    // Capturar el evento del botón
+    document.getElementById("deleteAccountButton").addEventListener("click", function () {
+        if (confirm("¿Estás seguro de que quieres eliminar tu cuenta? Perderás a todos tus perros. Esta acción no se puede deshacer.")) {
+            fetch("/profile", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }).then(response => {
+                if (response.ok) {
+                    alert("Cuenta eliminada con éxito.");
+                    window.location.href = "/";
+                } else {
+                    alert("Hubo un error al eliminar la cuenta.");
+                }
+            }).catch(error => {
+                console.error("Error al eliminar la cuenta:", error);
+                alert("Hubo un error al procesar la solicitud.");
+            });
+        }
+    });
+</script>
 
 <%- include("footer", {}) %>

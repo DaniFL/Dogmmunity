@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const { deleteUser } = require("../db/tables/users");
-
+const { deleteDogsByOwnerId } = require("../db/tables/dogs");
 
 /* GET profile page. */
 router.get("/", function(req, res, next) {
@@ -34,19 +34,29 @@ router.get("/", function(req, res, next) {
     user: req.session.user });
 });
 /* Ruta para eliminar cuenta */
-router.post('/delete_account', async (req, res) => {
-  const userId = req.session.user.id;  // Asegúrate de que el ID del usuario esté en la sesión
-  
+router.post('/', async (req, res) => {
+  console.log('Solicitud POST recibida en /profile');
+
+  if (!req.session.user || !req.session.user.id) {
+      console.log('No hay usuario en la sesión');
+      return res.status(403).json({ error: 'No autorizado' });
+  }
+
+  const userId = req.session.user.id;
+  console.log('ID del usuario a eliminar:', userId);
+
   try {
-      // Llamar a la función para eliminar el usuario
+      await deleteDogsByOwnerId(userId);
+      console.log('Perros del usuario eliminados exitosamente');
       await deleteUser(userId);
-      console.log("se ha pegado una ostia");
       req.session.destroy();
-      res.redirect('/');
+      console.log('Usuario eliminado exitosamente');
+      res.status(200).json({ message: 'Cuenta eliminada exitosamente' });
   } catch (error) {
       console.error('Error al eliminar la cuenta: ', error);
-      res.status(500).send('Error al eliminar la cuenta');
+      res.status(500).json({ error: 'Error al eliminar la cuenta' });
   }
 });
+
 
 module.exports = router;
