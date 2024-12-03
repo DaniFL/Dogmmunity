@@ -1,5 +1,21 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const fs = require("fs");
+const path = require("path");
+const router = express.Router();
+
+/* GET Puntos de Interés desde JSON */
+router.get("/puntos-de-interes", (req, res) => {
+  const filePath = path.join(__dirname, "../public/puntos_de_interes.json");
+  
+  fs.readFile(filePath, "utf8", (err, data) => {
+    if (err) {
+      console.error("Error leyendo el archivo JSON:", err);
+      res.status(500).send("Error al obtener los puntos de interés");
+    } else {
+      res.json(JSON.parse(data)); // Envía los puntos de interés como JSON
+    }
+  });
+});
 
 /* GET index page. */
 router.get("/", function(req, res, next) {
@@ -29,7 +45,7 @@ router.get("/", function(req, res, next) {
     sub_navbar_item4: "Rankings",
 
     
-    script: "",
+    script: "/js/contact_us.js",
     user: req.session.user });
 });
 
