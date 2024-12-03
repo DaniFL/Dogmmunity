@@ -1,0 +1,124 @@
+<%- include("header", { title: title }) %>
+
+<div class="container mt-5">
+  <h1 class="text-center mb-4"><%= title %></h1>
+
+  <!-- Mostrar el resultado si está disponible -->
+<!-- Mostrar el resultado si está disponible -->
+<% if (resultado) { %>
+    <% if (score <= 4) { %>
+      <div id="result" class="text-center mt-5 py-5 rounded-3" style="background-color: #ff9e9e; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);">
+        <h3 class="text-danger" id="result-message" style="font-size: 2rem; font-weight: bold;">
+          <i class="bi bi-x-circle" style="font-size: 2rem;"></i> <%= resultado %>
+        </h3>
+        <p class="mt-3" style="font-size: 1.25rem; color: #000000;">Adopta un gato, p*to mataperros.</p>
+        <p class="mt-3" style="font-size: 1.25rem; color: #000000;"><%= score %>/8</p>
+      </div>
+      <br>
+    <% } else if (score > 4 && score <= 6) { %>
+      <div id="result" class="text-center mt-5 py-5 rounded-3" style="background-color: #ff8c42; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);">
+        <h3 style="color: #b35900; font-size: 2rem; font-weight: bold;" id="result-message">
+          <i class="bi bi-exclamation-triangle" style="font-size: 2rem;"></i> <%= resultado %>
+        </h3>
+        <p class="mt-3" style="font-size: 1.25rem; color: #000000;">Tienes áreas de mejora.</p>
+        <p class="mt-3" style="font-size: 1.25rem; color: #000000;"><%= score %>/8</p>
+      </div>
+      <br>
+    <% } else { %>
+      <div id="result" class="text-center mt-5 py-5 rounded-3" style="background-color: #a8f998; box-shadow: 0px 4px 8px rgba(34, 0, 255, 0.2);">
+        <h3 class="text-success" id="result-message" style="font-size: 2rem; font-weight: bold;">
+          <i class="bi bi-check-circle" style="font-size: 2rem;"></i> <%= resultado %>
+        </h3>
+        <p class="mt-3" style="font-size: 1.25rem; color: #000000;">Eres un GOD.</p>
+        <p class="mt-3" style="font-size: 1.25rem; color: #000000;"><%= score %>/8</p>
+      </div>
+      <br>
+    <% } %>
+  <% } %>
+  
+
+  <!-- Formulario para el test -->
+  <form id="owner-test" action="/test_duenno" method="POST" class="mb-5">
+    <!-- Pregunta 1 -->
+    <div class="mb-4">
+      <label for="q1" class="form-label">¿Llevas a tu mascota al veterinario regularmente?</label>
+      <select id="q1" name="q1" class="form-select" required>
+        <option value="">Selecciona una opción</option>
+        <option value="yes">Sí</option>
+        <option value="no">No</option>
+      </select>
+    </div>
+
+    <!-- Pregunta 2 -->
+    <div class="mb-4">
+      <label for="q2" class="form-label">¿Proporcionas ejercicio diario a tu mascota?</label>
+      <select id="q2" name="q2" class="form-select" required>
+        <option value="">Selecciona una opción</option>
+        <option value="yes">Sí</option>
+        <option value="no">No</option>
+      </select>
+    </div>
+
+    <!-- Pregunta 3 -->
+    <div class="mb-4">
+      <label for="q3" class="form-label">¿Tu mascota tiene una dieta adecuada y balanceada?</label>
+      <select id="q3" name="q3" class="form-select" required>
+        <option value="">Selecciona una opción</option>
+        <option value="yes">Sí</option>
+        <option value="no">No</option>
+      </select>
+    </div>
+
+    <!-- Pregunta 4 -->
+    <div class="mb-4">
+      <label for="q4" name="q4" class="form-label">¿Le brindas suficiente atención y afecto?</label>
+      <select id="q4" name="q4" class="form-select" required>
+        <option value="">Selecciona una opción</option>
+        <option value="yes">Sí</option>
+        <option value="no">No</option>
+      </select>
+    </div>
+
+    <!-- Pregunta 5 -->
+    <div class="mb-4">
+      <label for="q5" name="q5" class="form-label">¿Tu mascota tiene un lugar cómodo y seguro para dormir?</label>
+      <select id="q5" name="q5" class="form-select" required>
+        <option value="">Selecciona una opción</option>
+        <option value="yes">Sí</option>
+        <option value="no">No</option>
+      </select>
+    </div>
+
+    <!-- Pregunta 6 -->
+    <div class="mb-4">
+      <label for="q6" name="q6" class="form-label">¿Le proporcionas juguetes y actividades para mantenerla entretenida?</label>
+      <select id="q6" name="q6" class="form-select" required>
+        <option value="">Selecciona
+            <option value="yes">Sí</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+    
+        <!-- Pregunta 7 -->
+        <div class="mb-4">
+          <label for="q7" name="q7" class="form-label">¿Tienes tiempo para socializar con tu mascota y permitirle interactuar con otras mascotas?</label>
+          <select id="q7" name="q7" class="form-select" required>
+            <option value="">Selecciona una opción</option>
+            <option value="yes">Sí</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+    
+        <!-- Pregunta 8 -->
+        <div class="mb-4">
+          <label for="q8" name="q8" class="form-label">¿Tu mascota está vacunada y tiene tratamientos preventivos contra parásitos?</label>
+          <select id="q8" name="q8" class="form-select" required>
+            <option value="">Selecciona una opción</option>
+            <option value="yes">Sí</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+    
+        <button type="submit" class="btn btn-primary">Calcular resultado</button>
+      </form>
+    </div>
