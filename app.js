@@ -86,6 +86,7 @@ app.use("/edit_user_profile", userprofileRouter);
 app.use("/edit_user_photo", userphotoRouter);
 app.use("/dog", dogRouter);
 app.use("/edit_dog_profile", dogprofileRouter);
+app.use("test_duenno", testRouter);
 app.use("/restricted", restrictedRouter);
 app.use("/logout", (req, res) => {
   req.session.destroy();
