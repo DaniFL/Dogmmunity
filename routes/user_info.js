@@ -30,10 +30,18 @@ router.get("/", function(req, res, next) {
     sub_navbar_item4: "Editar Perfil",
     sub_navbar_item5: "Cambiar Contraseña",
     sub_navbar_item6: "Cambiar Avatar",
-
-    profile_photo: "/img/img_perfil1.jpg",
+    
     script: "",
     user: req.session.user });
+});
+
+/* POST user_info */
+router.post("/", async function(req, res, next) {
+const  id  = req.session.user;
+const { first_name, last_name, phone_number} = req.body;
+const user = await updateUser(id, first_name, last_name, phone_number);
+
+res.redirect("/profile");
 });
 
 module.exports = router;
