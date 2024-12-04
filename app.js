@@ -28,6 +28,7 @@ let verifyRouter = require("./routes/verify");
 let rankingRouter = require("./routes/ranking");
 let ranking_razasRouter = require("./routes/ranking_razas");
 let testRouter = require("./routes/test_duenno");
+let user_infoRouter = require("./routes/user_info");
 
 
 // Conexión a SQL
@@ -80,6 +81,7 @@ app.use("/feed_lostdog", feed_lostdogRouter);
 app.use("/dog_vision", dog_visionRouter); // Ruta para el simulador de visión perruna
 app.use("/ranking", rankingRouter);
 app.use("/profile", profileRouter);
+app.use("/user_info", user_infoRouter);
 app.use("/edit_user_profile", userprofileRouter);
 app.use("/edit_user_photo", userphotoRouter);
 app.use("/dog", dogRouter);

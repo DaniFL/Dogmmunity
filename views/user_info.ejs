@@ -1,0 +1,62 @@
+<%- include("header", {}) %>
+
+
+<% if (!user.first_name || user.first_name === 'N/A' || !user.last_name || user.last_name === 'N/A' || !user.phone_number || user.phone_number === '000-000-0000') { %>
+<!-- cambiar el nombre -->
+    <form id="formularioNombre" class="formularioPerfil">
+        <div class="form-group">
+            <label for="nuevoNombre">Nuevo nombre</label>
+            <br>
+            <input type="text" class="nuevoNombre" id="nuevoNombre" name="nuevoNombre">
+            <br><br>
+        </div>
+        <div class="form-group">
+            <label for="confirmarNombre">Confirmar nuevo nombre</label>
+            <br>
+            <input type="text" id="confirmarNombre" name="confirmarNombre">
+            <br><br>
+        </div>
+        <button class="botonesGuardarPerfil" type="submit">Guardar nombre</button>
+    
+
+    <!--cambiar el apellido --> 
+            <div class="form-group">
+            <label for="nuevoApellido">Nuevo apellido</label>
+            <br>
+            <input type="text" id="nuevoApellido" name="nuevoApellido">
+            <br><br>
+        </div>
+        <div class="form-group">
+            <label for="confirmarApellido">Confirmar nuevo apellido</label>
+            <br>
+            <input type="text" id="confirmarApellido" name="confirmarApellido">
+            <br><br>
+        </div>
+        <button class="botonesGuardarPerfil" type="submit">Guardar apellido</button>
+
+    <!-- cambiar el correo -->
+        <div class="form-group">
+            <label for="nuevoCorreo">Nuevo correo electrónico</label>
+            <br>
+            <input type="email" id="nuevoCorreo" name="nuevoCorreo">
+            <br><br>
+        </div>
+        <div class="form-group">
+            <label for="confirmarCorreo">Confirmar nuevo correo electrónico</label>
+            <br>
+            <input type="email" id="confirmarCorreo" name="confirmarCorreo">
+            <br><br>
+        </div>
+        <button class="botonesGuardarPerfil" type="submit">Guardar correo</button>
+    </form>
+
+<% } else { %>
+<div> 
+    <p>Nombre: <%= user.first_name %></p>
+    <p>Apellido: <%= user.last_name %></p>
+    <p>Correo: <%= user.email %></p>
+    <p>Nº de teléfono: <%= user.phone_number %></p>
+</div>
+<% } %>
+
+<%- include("footer", {}) %>

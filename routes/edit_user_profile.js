@@ -26,15 +26,16 @@ router.get("/", function (req, res, next) {
     sub_navbar_add1: "/dog",
     sub_navbar_add2: "/edit_dog_profile",
     sub_navbar_add3: "/feed_lostdog",
-    sub_navbar_add4: "/edit_user_profile",
-    sub_navbar_add5: "/edit_user_photo",
+    sub_navbar_add4: "/user_info",
+    sub_navbar_add5: "/edit_user_profile",
+    sub_navbar_add6: "/edit_user_photo",
 
     sub_navbar_item1: "My Pet",
     sub_navbar_item2: "Add Pet",
     sub_navbar_item3: "Lost Dogs",
-    sub_navbar_item4: "Edit Profile",
-    sub_navbar_item5: "Edit Photo",
-
+    sub_navbar_item4: "Editar Perfil",
+    sub_navbar_item5: "Cambiar Contraseña",
+    sub_navbar_item6: "Cambiar Avatar",
     script: "",
     
     errorMessage: errorMessage,

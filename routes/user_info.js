@@ -5,7 +5,7 @@ const { deleteDogsByOwnerId } = require("../db/tables/dogs");
 
 /* GET profile page. */
 router.get("/", function(req, res, next) {
-  res.render("profile", {
+  res.render("user_info", {
     title: "Profile",
     navbar_addr1: "/profile",
     navbar_addr2: "/profile", 
@@ -35,30 +35,5 @@ router.get("/", function(req, res, next) {
     script: "",
     user: req.session.user });
 });
-/* Ruta para eliminar cuenta */
-router.post('/', async (req, res) => {
-  console.log('Solicitud POST recibida en /profile');
-
-  if (!req.session.user || !req.session.user.id) {
-      console.log('No hay usuario en la sesión');
-      return res.status(403).json({ error: 'No autorizado' });
-  }
-
-  const userId = req.session.user.id;
-  console.log('ID del usuario a eliminar:', userId);
-
-  try {
-      await deleteDogsByOwnerId(userId);
-      console.log('Perros del usuario eliminados exitosamente');
-      await deleteUser(userId);
-      req.session.destroy();
-      console.log('Usuario eliminado exitosamente');
-      res.status(200).json({ message: 'Cuenta eliminada exitosamente' });
-  } catch (error) {
-      console.error('Error al eliminar la cuenta: ', error);
-      res.status(500).json({ error: 'Error al eliminar la cuenta' });
-  }
-});
-
 
 module.exports = router;
