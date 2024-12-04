@@ -1,73 +1,72 @@
 [
-    {
+  {
       "id": 1,
       "nombre": "Hospital Veterinario Puchol",
       "tipo": "Veterinario",
       "lat": 40.438131,
       "lng": -3.689269
-    },
-    {
+  },
+  {
       "id": 2,
       "nombre": "Clínica Veterinaria Tu Dogtora - Hortaleza",
       "tipo": "Veterinario",
       "lat": 40.469654,
       "lng": -3.640764
-    },
-    {
+  },
+  {
       "id": 3,
       "nombre": "Clínica Veterinaria Tu Dogtora - Retiro",
       "tipo": "Veterinario",
       "lat": 40.413917,
       "lng": -3.676216
-    },
-    {
+  },
+  {
       "id": 4,
       "nombre": "La Clínica Veterinaria - Madrid",
       "tipo": "Veterinario",
       "lat": 40.416775,
-      "lng": -3.703790
-    },
-    {
+      "lng": -3.70379
+  },
+  {
       "id": 5,
       "nombre": "Clínica Veterinaria Ascao",
       "tipo": "Veterinario",
-      "lat": 40.429380,
-      "lng": -3.636550
-    },
-    {
+      "lat": 40.42938,
+      "lng": -3.63655
+  },
+  {
       "id": 6,
       "nombre": "Parque del Retiro",
       "tipo": "Parque",
-      "lat": 40.415260,
+      "lat": 40.41526,
       "lng": -3.684419
-    },
-    {
+  },
+  {
       "id": 7,
       "nombre": "Parque de El Capricho",
       "tipo": "Parque",
       "lat": 40.465123,
       "lng": -3.592123
-    },
-    {
+  },
+  {
       "id": 8,
       "nombre": "Casa de Campo",
       "tipo": "Parque",
-      "lat": 40.417000,
-      "lng": -3.745000
-    },
-    {
+      "lat": 40.417,
+      "lng": -3.745
+  },
+  {
       "id": 9,
       "nombre": "Parque Juan Carlos I",
       "tipo": "Parque",
-      "lat": 40.462500,
-      "lng": -3.612500
-    },
-    {
+      "lat": 40.4625,
+      "lng": -3.6125
+  },
+  {
       "id": 10,
       "nombre": "Parque del Oeste",
       "tipo": "Parque",
       "lat": 40.428611,
       "lng": -3.721944
-    }
-  ]
-  
+  }
+]

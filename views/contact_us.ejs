@@ -1,9 +1,14 @@
 <%- include("header", {}) %>
 
+<head>
+    <!-- Importar styles.css -->
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+
 <main class="main">
 
     <script src="/js/contact_us.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=TU_API_KEY"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATmrT4VThAs1_nSA--xf6An2RQckC0d2w"></script>
 
 
     <!-- Page Title -->
@@ -25,10 +30,15 @@
         <div class="container" data-aos="fade-up" data-aos-delay="100">
 
             <div class="mb-4" data-aos="fade-up" data-aos-delay="200">
-                <iframe style="border:0; width: 100%; height: 270px;"
-                    src = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12129.041230097857!2d-3.871126!3d40.406519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd423434cc53fb13%3A0x9085b33e1b4b84df!2sUniversidad%20CEU%20San%20Pablo%20-%20Campus%20de%20Montepr%C3%ADncipe!5e0!3m2!1ses!2ses!4v1697012345678!5m2!1ses!2ses"
-                    frameborder="0" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <div id="map" style="width: 100%; height: 300px; margin: 0 auto;"></div>
+                <div id="legend" style="margin-top: 10px;">
+                    <p><span style="color: blue;">&#9679;</span> Veterinario</p>
+                    <p><span style="color: green;">&#9679;</span> Parque</p>
+                    <p><span style="color: yellow;">&#9679;</span> Usuario Cercano</p>
+                    <p><span style="color: purple;">&#9679;</span> Evento</p>
+                  </div>
+                  
+                               
             </div><!-- End Google Maps -->
 
             <div class="row gy-4">

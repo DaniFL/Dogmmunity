@@ -3,22 +3,77 @@ const fs = require("fs");
 const path = require("path");
 const router = express.Router();
 
-/* GET Puntos de Interés desde JSON */
+// Endpoint para puntos de interés
 router.get("/puntos-de-interes", (req, res) => {
-  const filePath = path.join(__dirname, "../public/puntos_de_interes.json");
-  
+  const filePath = path.join(__dirname, "../public/puntos_interes.json");
+  console.log("Leyendo archivo JSON desde:", filePath);
+
   fs.readFile(filePath, "utf8", (err, data) => {
     if (err) {
       console.error("Error leyendo el archivo JSON:", err);
-      res.status(500).send("Error al obtener los puntos de interés");
-    } else {
-      res.json(JSON.parse(data)); // Envía los puntos de interés como JSON
+      res.status(500).send("Error al leer el archivo JSON");
+      return;
+    }
+
+    try {
+      const jsonData = JSON.parse(data); // Intenta parsear el archivo
+      console.log("Contenido del JSON:", jsonData); // Muestra los datos en consola
+      res.json(jsonData);
+    } catch (parseError) {
+      console.error("Error de formato en el JSON:", parseError);
+      res.status(500).send("El archivo JSON tiene un formato inválido");
+    }
+  });
+});
+
+// Endpoint para usuarios cercanos
+router.get("/usuarios-cercanos", (req, res) => {
+  const filePath = path.join(__dirname, "../public/usuarios_cercanos.json");
+  console.log("Leyendo archivo JSON desde:", filePath);
+
+  fs.readFile(filePath, "utf8", (err, data) => {
+    if (err) {
+      console.error("Error leyendo el archivo JSON de usuarios cercanos:", err);
+      res.status(500).send("Error al leer el archivo JSON de usuarios cercanos");
+      return;
+    }
+
+    try {
+      const jsonData = JSON.parse(data);
+      console.log("Contenido del JSON de usuarios cercanos:", jsonData);
+      res.json(jsonData);
+    } catch (parseError) {
+      console.error("Error de formato en el JSON de usuarios cercanos:", parseError);
+      res.status(500).send("El archivo JSON de usuarios cercanos tiene un formato inválido");
+    }
+  });
+});
+
+// Endpoint para eventos caninos
+router.get("/eventos-caninos", (req, res) => {
+  const filePath = path.join(__dirname, "../public/eventos_caninos.json");
+  console.log("Leyendo archivo JSON desde:", filePath);
+
+  fs.readFile(filePath, "utf8", (err, data) => {
+    if (err) {
+      console.error("Error leyendo el archivo JSON de eventos caninos:", err);
+      res.status(500).send("Error al leer el archivo JSON de eventos caninos");
+      return;
+    }
+
+    try {
+      const jsonData = JSON.parse(data);
+      console.log("Contenido del JSON de eventos caninos:", jsonData);
+      res.json(jsonData);
+    } catch (parseError) {
+      console.error("Error de formato en el JSON de eventos caninos:", parseError);
+      res.status(500).send("El archivo JSON de eventos caninos tiene un formato inválido");
     }
   });
 });
 
 /* GET index page. */
-router.get("/", function(req, res, next) {
+router.get("/", function (req, res, next) {
   res.render("contact_us", {
     title: "Contact Us",
     navbar_addr1: "/",
@@ -46,9 +101,9 @@ router.get("/", function(req, res, next) {
     sub_navbar_item4: "Rankings",
     sub_navbar_item5: "Test de dueño",
 
-    
     script: "/js/contact_us.js",
-    user: req.session.user });
+    user: req.session.user,
+  });
 });
 
 module.exports = router;

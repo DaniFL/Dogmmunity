@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "nombre": "Juan y Max",
+        "lat": 40.4168,
+        "lng": -3.7038,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+    },
+    {
+        "id": 2,
+        "nombre": "Ana y Toby",
+        "lat": 40.4175,
+        "lng": -3.706,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+    },
+    {
+        "id": 3,
+        "nombre": "Carlos y Luna",
+        "lat": 40.419,
+        "lng": -3.701,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+    },
+    {
+        "id": 4,
+        "nombre": "Marta y Rocky",
+        "lat": 40.414,
+        "lng": -3.7045,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+    },
+    {
+        "id": 5,
+        "nombre": "Pedro y Rex",
+        "lat": 40.4155,
+        "lng": -3.709,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+    }
+]

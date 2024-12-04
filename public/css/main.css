@@ -2102,3 +2102,18 @@ section,
     color: color-mix(in srgb, var(--default-color), transparent 30%);
     margin: 10px 0 0 0;
 }
+
+/*Estilos mapa*/
+#legend {
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    background: #fff;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 10px;
+  }
+  #legend p {
+    margin: 5px 0;
+  }

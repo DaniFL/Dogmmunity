@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "nombre": "Feria Canina Madrid",
+        "tipo": "Evento",
+        "lat": 40.4185,
+        "lng": -3.7,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/purple-dot.png"
+    },
+    {
+        "id": 2,
+        "nombre": "Competencia Agility",
+        "tipo": "Evento",
+        "lat": 40.42,
+        "lng": -3.705,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/purple-dot.png"
+    },
+    {
+        "id": 3,
+        "nombre": "Reunión en Parque del Retiro",
+        "tipo": "Evento",
+        "lat": 40.415,
+        "lng": -3.684,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/purple-dot.png"
+    },
+    {
+        "id": 4,
+        "nombre": "Desfile de Moda Canina",
+        "tipo": "Evento",
+        "lat": 40.4145,
+        "lng": -3.708,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/purple-dot.png"
+    },
+    {
+        "id": 5,
+        "nombre": "Clase de Obediencia",
+        "tipo": "Evento",
+        "lat": 40.417,
+        "lng": -3.69,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/purple-dot.png"
+    }
+]
