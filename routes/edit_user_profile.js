@@ -74,7 +74,8 @@ router.post("/", async function(req, res, next) {
 
     req.session.success = "Contraseña actualizada exitosamente.";
     console.log("Contraseña actualizada exitosamente");
-    res.redirect("/profile");
+    req.session.destroy();
+    res.redirect("/login");
   } catch (err) {
     console.error("Error durante el cambio de contraseña:", err);
     req.session.error = "Hubo un problema al cambiar la contraseña. Intente de nuevo.";

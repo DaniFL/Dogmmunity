@@ -69,6 +69,23 @@
                 <input class="form-control" type="password" id="confirmarContrasena" name="confirmarContrasena" required>
                 <div class="invalid-feedback">Por favor, confirma la nueva contraseña.</div>
             </div>
+            <script>
+                document.getElementById('formularioContraseña').addEventListener('submit', function(event) {
+                    var nuevaContrasena = document.getElementById('nuevaContrasena').value;
+                    var confirmarContrasena = document.getElementById('confirmarContrasena').value;
+            
+                    if (nuevaContrasena !== confirmarContrasena) {
+                        event.preventDefault();
+                        alert('Las contraseñas no coinciden. Por favor, inténtalo de nuevo.');
+                    } else {
+                        window.location.href = '/login';
+                        alert('Contraseña guardada correctamente.');                        
+                    }
+
+                });
+            </script>
+            <!--añdir opcion de no igual q la anterior
+            ambos campos iguales-->
             <button class="btn btn-primary" type="submit">Guardar contraseña</button>
         </form>
         <br><br><br><br>

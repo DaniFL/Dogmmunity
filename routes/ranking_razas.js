@@ -31,12 +31,13 @@ router.get('/', async (req, res) => {
             sub_navbar_add1: "/feed_lostdog",
             sub_navbar_add2: "/dog_food_advice",
             sub_navbar_add3: "/dog_vision",
-            sub_navbar_add4: "/ranking", // Dirección del enlace "Rankings"
-
+            sub_navbar_add4: "/ranking",
+            sub_navbar_add5: "/test_duenno",
             sub_navbar_item1: "Perros perdidos",
             sub_navbar_item2: "Alimentación y Nutrición",
             sub_navbar_item3: "Simulador de visión perruna",
-            sub_navbar_item4: "Rankings", // Nuevo elemento
+            sub_navbar_item4: "Rankings",
+            sub_navbar_item5: "Test de dueño",
             breedRanking, // Pasar el ranking de razas a la vista
             gender:req.query.gender, // Pasar el género seleccionado para mantener el filtro
             user: req.session.user

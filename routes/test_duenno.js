@@ -23,10 +23,12 @@ router.get("/", function (req, res, next) {
     sub_navbar_add2: "/dog_food_advice",
     sub_navbar_add3: "/dog_vision",
     sub_navbar_add4: "/ranking",
+    sub_navbar_add5: "/test_duenno",
     sub_navbar_item1: "Perros perdidos",
     sub_navbar_item2: "Alimentación y Nutrición",
     sub_navbar_item3: "Simulador de visión perruna",
     sub_navbar_item4: "Rankings",
+    sub_navbar_item5: "Test de dueño",
 
     script: "/public/js/test_duenno.js", // Referencia al archivo correcto
     user: req.session.user, // Información del usuario
