@@ -7,6 +7,7 @@ const session = require("express-session");
 const createError = require("http-errors");
 const cookieParser = require("cookie-parser");
 
+
 // Módulos propios de la aplicación
 const dbConnect = require("./db/sqlServer_connection.js");
 
@@ -29,6 +30,7 @@ let rankingRouter = require("./routes/ranking");
 let ranking_razasRouter = require("./routes/ranking_razas");
 let testRouter = require("./routes/test_duenno");
 let user_infoRouter = require("./routes/user_info");
+let mapOnlyRouter = require("./routes/map_only");
 
 
 // Conexión a SQL
@@ -94,6 +96,8 @@ app.use("/logout", (req, res) => {
 app.use("/verify", verifyRouter);
 app.use("/ranking_razas", ranking_razasRouter);
 app.use("/test_duenno", testRouter);
+app.use("/map_only", mapOnlyRouter);
+
 
 // 404 error
 app.use(function(req, res, next) {
