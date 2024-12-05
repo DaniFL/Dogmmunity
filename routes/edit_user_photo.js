@@ -1,12 +1,13 @@
 var express = require("express");
 var router = express.Router();
+const { updateUser, getUserById } = require("../db/tables/users");
+
 
 
 /* GET edit_user_photo page. */
 router.get("/", function(req, res, next) {
   res.render("edit_user_photo", {
     title: "Edit User Photo",
-    user: req.session.user,
     navbar_addr1: "/profile",
     navbar_addr2: "/profile", 
     navbar_addr3: "/profile",
@@ -36,23 +37,29 @@ router.get("/", function(req, res, next) {
 });
 
 /* POST edit_user_photo page. */
-router.post("/", async function(req, res, next) {
-    const { fotoPerfil, userId } = req.body; // Asegúrate de que el userId se envíe en el cuerpo de la solicitud
-
+router.post("/", async function (req, res, next) {
     try {
-        // Actualiza el campo photo del usuario con el userId proporcionado
-        const updatedUser = await User.findByIdAndUpdate(userId, { photo: fotoPerfil }, { new: true });
-
-        if (updatedUser) {
-            console.log('Usuario actualizado:', updatedUser); // Imprime el usuario actualizado
-            res.status(200).send('Foto de perfil actualizada con éxito');
-        } else {
-            res.status(404).send('Usuario no encontrado');
+        const user = await getUserById(req.session.user.id);
+        if (!user) {
+            return res.status(404).json({ error: "Usuario no encontrado" });
         }
+
+        const { fotoPerfil } = req.body;
+
+        if (!fotoPerfil) {
+            return res.status(400).json({ error: "No se proporcionó la foto de perfil." });
+        }
+        
+        await updateUser(user.id, { photo_path: fotoPerfil });
+
+        console.log("Usuario actualizado:", user);
+        return res.redirect("/profile");
+        
     } catch (err) {
-        console.error('Error al actualizar la foto de perfil:', err);
-        res.status(500).send('Error al actualizar la foto de perfil. Por favor, intenta nuevamente más tarde.');
+        console.error("Error al actualizar la foto de perfil:", err);
+        return res.status(500).send("Error al actualizar la foto de perfil. Por favor, intenta nuevamente más tarde.");
     }
 });
+
 
 module.exports = router;

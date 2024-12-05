@@ -1,7 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const router = express.Router();
-const { createUser, getUserByUsername } = require("../db/tables/users");
+const { getUserByUsername } = require("../db/tables/users");
 //const jwt = require("jsonwebtoken");
 
 /* GET login page. */

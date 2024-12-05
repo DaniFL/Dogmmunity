@@ -143,17 +143,45 @@ async function getUserByToken(token) {
 
 
 // Actualizar un usuario
-async function updateUser(id, updates) {
+async function updateUser(id, data) {
     try {
         await connectToDb();
-        const fields = Object.keys(updates).map(key => `${key} = @${key}`).join(', ');
-        const query = `UPDATE Usuarios SET ${fields} WHERE id = @Id`;
+        
+        let query = 'UPDATE Usuarios SET ';
         const request = new sql.Request();
+        
+        if (data.nombre !== undefined) {
+            query += 'username = @Nombre, ';
+            request.input('Nombre', sql.NVarChar, data.nombre);
+        }
+        if (data.email !== undefined) {
+            query += 'email = @Email, ';
+            request.input('Email', sql.NVarChar, data.email);
+        }
+        if (data.password !== undefined) {
+            query += 'password = @Password, ';
+            request.input('Password', sql.NVarChar, data.password);
+        }
+        if (data.photo_path !== undefined) {
+            query += 'photo_path = @PhotoPath, ';
+            request.input('PhotoPath', sql.NVarChar, data.photo_path);
+        }
+        if (data.is_verified !== undefined) {
+            query += 'is_verified = @IsVerified, ';
+            request.input('IsVerified', sql.Bit, data.is_verified);
+        }
+        if (data.verification_token !== undefined) {
+            query += 'verification_token = @VerificationToken, ';
+            request.input('VerificationToken', sql.NVarChar, data.verification_token);
+        }
+        
+        // Remove the last comma and space
+        query = query.slice(0, -2);
+        query += ' WHERE id = @Id';
+        
         request.input('Id', sql.UniqueIdentifier, id);
-        Object.keys(updates).forEach(key => {
-            request.input(key, sql.NVarChar, updates[key]);
-        });
         await request.query(query);
+        
         console.log('Usuario actualizado exitosamente');
     } catch (error) {
         console.error('Error al actualizar el usuario', error);
