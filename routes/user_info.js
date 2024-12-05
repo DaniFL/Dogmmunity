@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
-const { deleteUser } = require("../db/tables/users");
-const { deleteDogsByOwnerId } = require("../db/tables/dogs");
+const { updateUser, getUserById } = require("../db/tables/users");
+
 
 /* GET profile page. */
 router.get("/", function(req, res, next) {
@@ -37,10 +37,9 @@ router.get("/", function(req, res, next) {
 
 /* POST user_info */
 router.post("/", async function(req, res, next) {
-const  id  = req.session.user;
+const user = await getUserById(req.session.user.id);
 const { first_name, last_name, phone_number} = req.body;
-const user = await updateUser(id, first_name, last_name, phone_number);
-
+await updateUser(user.id, { first_name, last_name, phone_number });
 res.redirect("/profile");
 });
 

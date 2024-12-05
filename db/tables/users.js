@@ -174,12 +174,28 @@ async function updateUser(id, data) {
             query += 'verification_token = @VerificationToken, ';
             request.input('VerificationToken', sql.NVarChar, data.verification_token);
         }
+        if (data.first_name !== undefined) {
+            query += 'first_name = @FirstName, ';
+            request.input('FirstName', sql.NVarChar, data.first_name);
+        }
+        if (data.last_name !== undefined) {
+            query += 'last_name = @LastName, ';
+            request.input('LastName', sql.NVarChar, data.last_name);
+        }
+        if (data.phone_number !== undefined) {
+            query += 'phone_number = @PhoneNumber, ';
+            request.input('PhoneNumber', sql.NVarChar, data.phone_number);
+        }
         
         // Remove the last comma and space
         query = query.slice(0, -2);
         query += ' WHERE id = @Id';
         
         request.input('Id', sql.UniqueIdentifier, id);
+
+        // Debug statement to print the final query
+        console.log('Final query:', query);
+
         await request.query(query);
         
         console.log('Usuario actualizado exitosamente');
