@@ -2,8 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 require('dotenv').config();
-const API = "AIzaSyBZJC53ZTFRFwu4rYjdVOPviuwVs3c9KeU"
-const genAI = new GoogleGenerativeAI(API);
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 router.get('/', (req, res) => {
     if (!req.session.user) {
