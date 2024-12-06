@@ -24,30 +24,36 @@ router.get("/", async function (req, res, next) {
     if (req.session.user) {
       Object.assign(renderData, {
         navbar_addr1: "/profile",
-        navbar_addr2: "/profile",
+        navbar_addr2: "/profile", 
         navbar_addr3: "/adiestradores",
         navbar_addr4: "/profile",
-        navbar_addr5: "/logout",
-
-        navbar_item1: "Profile",
-        navbar_item2: "Pets",
+        navbar_addr5: "/profile",
+        navbar_addr6: "/logout",
+  
+        navbar_item1: "Perfil",
+        navbar_item2: "Perros",
         navbar_item3: "Adiestradores",
-        navbar_item4: "Settings",
-        navbar_item5: "Logout",
-
+        navbar_item4: "Social",
+        navbar_item5: "Ajustes",
+        navbar_item6: "Cerrar Sesión",
+  
         sub_navbar_add1: "/dog",
         sub_navbar_add2: "/edit_dog_profile",
         sub_navbar_add3: "/feed_lostdog",
-        sub_navbar_add4: "/user_info",
-        sub_navbar_add5: "/edit_user_profile",
-        sub_navbar_add6: "/edit_user_photo",
-
-        sub_navbar_item1: "My Pet",
-        sub_navbar_item2: "Add Pet",
-        sub_navbar_item3: "Lost Dogs",
-        sub_navbar_item4: "Editar Perfil",
-        sub_navbar_item5: "Cambiar Contraseña",
-        sub_navbar_item6: "Cambiar Avatar",
+        sub_navbar_add4: "/map_only",
+        sub_navbar_add5: "/publicaciones",
+        sub_navbar_add6: "/user_info",
+        sub_navbar_add7: "/edit_user_profile",
+        sub_navbar_add8: "/edit_user_photo",
+  
+        sub_navbar_item1: "Mis perros",
+        sub_navbar_item2: "Añadir perro",
+        sub_navbar_item3: "Perros perdidos",
+        sub_navbar_item4: "Mapa",
+        sub_navbar_item5: "Publicaciones",
+        sub_navbar_item6: "Editar perfil",
+        sub_navbar_item7: "Cambiar contraseña",
+        sub_navbar_item8: "Cambiar foto de perfil",
       });
     } else {
       Object.assign(renderData, {
@@ -57,24 +63,25 @@ router.get("/", async function (req, res, next) {
         navbar_addr4: "/register",
         navbar_addr5: "/about_us",
         navbar_addr6: "/contact_us",
-          
-        navbar_item1: "Home",
-        navbar_item2: "Blog",
-        navbar_item3: "Login",
-        navbar_item4: "Register",
-        navbar_item5: "About Us",
-        navbar_item6: "Contact",
-          
+    
+        navbar_item1: "Inicio",
+        navbar_item2: "Sobre perros",
+        navbar_item3: "Iniciar sesión",
+        navbar_item4: "Registrate",
+        navbar_item5: "Sobre nosotros",
+        navbar_item6: "Contacto",
+    
         sub_navbar_add1: "/feed_lostdog",
         sub_navbar_add2: "/dog_food_advice",
         sub_navbar_add3: "/dog_vision",
         sub_navbar_add4: "/ranking",
         sub_navbar_add5: "/test_duenno",
+    
         sub_navbar_item1: "Perros perdidos",
-        sub_navbar_item2: "Alimentación y Nutrición",
+        sub_navbar_item2: "Alimentación y nutrición",
         sub_navbar_item3: "Simulador de visión perruna",
         sub_navbar_item4: "Rankings",
-        sub_navbar_item5: "Test de dueño",
+        sub_navbar_item5: "Test del buen dueño",
 
       });
     }

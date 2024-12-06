@@ -4,7 +4,7 @@ var router = express.Router();
 /* GET test page */
 router.get("/", function (req, res, next) {
   res.render("test_duenno", {
-    title: "¿Eres un buen dueño?",
+    title: "Test sobre el dueño",
     navbar_addr1: "/",
     navbar_addr2: "/",
     navbar_addr3: "/login",
@@ -12,23 +12,24 @@ router.get("/", function (req, res, next) {
     navbar_addr5: "/about_us",
     navbar_addr6: "/contact_us",
 
-    navbar_item1: "Home",
-    navbar_item2: "Blog",
-    navbar_item3: "Login",
-    navbar_item4: "Register",
-    navbar_item5: "About Us",
-    navbar_item6: "Contact",
+    navbar_item1: "Inicio",
+    navbar_item2: "Sobre perros",
+    navbar_item3: "Iniciar sesión",
+    navbar_item4: "Registrate",
+    navbar_item5: "Sobre nosotros",
+    navbar_item6: "Contacto",
 
     sub_navbar_add1: "/feed_lostdog",
     sub_navbar_add2: "/dog_food_advice",
     sub_navbar_add3: "/dog_vision",
     sub_navbar_add4: "/ranking",
     sub_navbar_add5: "/test_duenno",
+
     sub_navbar_item1: "Perros perdidos",
-    sub_navbar_item2: "Alimentación y Nutrición",
+    sub_navbar_item2: "Alimentación y nutrición",
     sub_navbar_item3: "Simulador de visión perruna",
     sub_navbar_item4: "Rankings",
-    sub_navbar_item5: "Test de dueño",
+    sub_navbar_item5: "Test del buen dueño",
 
     script: "/public/js/test_duenno.js", // Referencia al archivo correcto
     user: req.session.user, // Información del usuario
@@ -69,7 +70,7 @@ router.post("/", function (req, res, next) {
 
   // Renderiza la vista con el resultado
   res.render("test_duenno", {
-    title: "¿Eres un buen dueño?",
+    title: "Test sobre el dueño",
     navbar_addr1: "/",
     navbar_addr2: "/",
     navbar_addr3: "/login",
@@ -77,23 +78,24 @@ router.post("/", function (req, res, next) {
     navbar_addr5: "/about_us",
     navbar_addr6: "/contact_us",
 
-    navbar_item1: "Home",
-    navbar_item2: "Blog",
-    navbar_item3: "Login",
-    navbar_item4: "Register",
-    navbar_item5: "About Us",
-    navbar_item6: "Contact",
+    navbar_item1: "Inicio",
+    navbar_item2: "Sobre perros",
+    navbar_item3: "Iniciar sesión",
+    navbar_item4: "Registrate",
+    navbar_item5: "Sobre nosotros",
+    navbar_item6: "Contacto",
 
     sub_navbar_add1: "/feed_lostdog",
     sub_navbar_add2: "/dog_food_advice",
     sub_navbar_add3: "/dog_vision",
     sub_navbar_add4: "/ranking",
     sub_navbar_add5: "/test_duenno",
+
     sub_navbar_item1: "Perros perdidos",
-    sub_navbar_item2: "Alimentación y Nutrición",
+    sub_navbar_item2: "Alimentación y nutrición",
     sub_navbar_item3: "Simulador de visión perruna",
     sub_navbar_item4: "Rankings",
-    sub_navbar_item5: "Test de dueño",
+    sub_navbar_item5: "Test del buen dueño",
 
     script: "/public/js/test_duenno.js", // Referencia al archivo correcto
     user: req.session.user, // Información del usuario
