@@ -17,14 +17,16 @@ router.get('/', isAuthenticated, function(req, res, next) {
         title: 'Edit Dog Profile',
         user: req.session.user,
         navbar_addr1: "/profile",
-        navbar_addr2: "/profile", 
-        navbar_addr3: "/profile",
-        navbar_addr4: "/logout",
-        
+        navbar_addr2: "/profile",
+        navbar_addr3: "/adiestradores",
+        navbar_addr4: "/profile",
+        navbar_addr5: "/logout",
+
         navbar_item1: "Profile",
         navbar_item2: "Pets",
-        navbar_item3: "Settings",
-        navbar_item4: "Logout",
+        navbar_item3: "Adiestradores",
+        navbar_item4: "Settings",
+        navbar_item5: "Logout",
         
         sub_navbar_add1: "/dog",
         sub_navbar_add2: "/edit_dog_profile",

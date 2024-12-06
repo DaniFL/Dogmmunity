@@ -1,14 +1,12 @@
 var express = require("express");
 var router = express.Router();
-const { updateUser, getUserById } = require("../db/tables/users");
 
-
-/* GET profile page. */
+/* GET index page. */
 router.get("/", function(req, res, next) {
-  res.render("user_info", {
-    title: "Profile",
+  res.render("adiestradores", {
+    title: "Portal de adiestradores",
     navbar_addr1: "/profile",
-    navbar_addr2: "/profile",
+    navbar_addr2: "/profile", 
     navbar_addr3: "/adiestradores",
     navbar_addr4: "/profile",
     navbar_addr5: "/logout",
@@ -35,14 +33,6 @@ router.get("/", function(req, res, next) {
     
     script: "",
     user: req.session.user });
-});
-
-/* POST user_info */
-router.post("/", async function(req, res, next) {
-const user = await getUserById(req.session.user.id);
-const { first_name, last_name, phone_number} = req.body;
-await updateUser(user.id, { first_name, last_name, phone_number });
-res.redirect("/profile");
 });
 
 module.exports = router;
