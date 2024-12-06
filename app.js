@@ -33,6 +33,7 @@ let user_infoRouter = require("./routes/user_info");
 let mapOnlyRouter = require("./routes/map_only");
 let adiestradoresRouter = require("./routes/adiestradores");
 let chatRouter = require('./routes/chat');
+let publicacionesRouter = require('./routes/publicaciones');
 
 
 // Conexión a SQL
@@ -101,6 +102,7 @@ app.use("/test_duenno", testRouter);
 app.use("/map_only", mapOnlyRouter);
 app.use("/adiestradores", adiestradoresRouter);
 app.use('/chat', chatRouter);
+app.use('/publicaciones', publicacionesRouter);
 
 
 // 404 error

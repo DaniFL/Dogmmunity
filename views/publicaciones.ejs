@@ -1,0 +1,78 @@
+<%- include("header", {}) %>
+
+<div class="page-title">
+    <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">Publicaciones</h1>
+    </div>
+</div><!-- End Page Title -->
+
+<div class="container mt-5">
+    <div class="row">
+        <!-- Feed de publicaciones -->
+        <div class="col-lg-8">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <img src="/public/img/cachorros.jpg" class="card-img-top img-fluid" alt="Imagen del perro perdido">
+                        <div class="card-body">
+                            <h5 class="card-title"></h5>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulario para añadir perros perdidos -->
+        <div class="col-lg-4">
+            <% if (user) { %>
+                <h3>Añadir un perro perdido</h3>
+                <form action="/puclicaciones" method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label class="form-label" for="nombrePerro">¿Cómo se llama tu perro?</label>
+                        <input class="form-control" type="text" id="nombrePerro" name="nombrePerro"
+                            placeholder="Indica el nombre de tu perro" required>
+                        <div class="invalid-feedback">Por favor, indica el nombre de tu perro.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="edadPerro">Edad de tu perro</label>
+                        <input class="form-control" type="date" id="edadPerro" name="edadPerro" min="1994-01-01"
+                            placeholder="Ingresa la fecha de nacimiento de tu perro" required>
+                        <div class="invalid-feedback">Por favor, ingresa la fecha de nacimiento de tu perro.</div>
+                        <script>
+                            const today = new Date().toISOString().split('T')[0];
+                            document.getElementById('edadPerro').setAttribute('max', today); 
+                        </script>
+                    </div>
+        
+                    <div class="mb-3">
+                        <label class="form-label" for="pesoPerro">¿Cuánto pesa tu perro?</label>
+                        <input class="form-control" type="number" id="pesoPerro" name="pesoPerro" min="1" max="162"
+                            placeholder="Ingresa el peso en kg" required>
+                        <div class="invalid-feedback">Por favor, ingresa el peso de tu perro.</div>
+                    </div>
+        
+                    <div class="mb-3">
+                        <label class="form-label" for="sexoPerro">¿De qué sexo es tu perro?</label>
+                        <input class="form-control" type="text" list="sexo" id="sexoPerro" name="sexo"
+                            placeholder="Escribe o selecciona el sexo" required>
+                        <datalist id="sexo">
+                            <option value="Macho">
+                            <option value="Hembra">
+                        </datalist>
+                        <div class="invalid-feedback">Por favor, selecciona el sexo de tu perro.</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Añadir perro perdido</button>
+                </form>
+            <% } else { %>
+                <!-- Mostrar mensaje amigable para que el usuario inicie sesión -->
+                <div class="alert alert-info" role="alert">
+                    ¡Hola! Para declarar a tu perro como perdido, primero necesitas <a href="/login" class="alert-link">iniciar
+                        sesión</a> o <a href="/register" class="alert-link">crear una cuenta</a>. Es rápido y fácil, y nos ayudará a
+                    conectar mejor contigo.
+                </div>
+            <% } %>
+        </div>
+    </div>
+</div>
+
+<%- include("footer", {}) %>
