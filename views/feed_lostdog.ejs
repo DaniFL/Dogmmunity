@@ -164,7 +164,7 @@
                                 <option value="" disabled selected>Selecciona un perro</option>
                                 <% if (dogs && dogs.length > 0) { %>
                                     <% dogs.forEach(dog => { %>
-                                        <option value="<%= dog.id %>"><%= dog.name %> - <%= dog.breed %></option>
+                                        <option value="<%= dog.id %>" data-photo="<%= dog.photo_dog_perdido %>"><%= dog.name %> - <%= dog.breed %></option>
                                     <% }) %>
                                 <% } else { %>
                                     <option value="" disabled>No tienes perros registrados</option>
@@ -172,6 +172,13 @@
                             </select>
                             <div class="invalid-feedback">Por favor, selecciona un perro registrado.</div>
                         </div>
+                    </div>
+
+                    <!-- Campo para subir una foto nueva -->
+                    <div class="mb-3" id="fotoPerroRegistradoDiv" style="display: none;">
+                        <label class="form-label" for="fotoPerroRegistrado">Adjunta una foto del perro</label>
+                        <input class="form-control" type="file" id="fotoPerroRegistrado" name="fotoPerroPerdido" accept="image/*">
+                        <div class="invalid-feedback">Por favor, adjunta una foto del perro.</div>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Añadir perro perdido</button>
@@ -197,24 +204,47 @@
     const nuevoPerroInfo = document.getElementById('nuevoPerroInfo');
     const perroRegistradoInfo = document.getElementById('perroRegistradoInfo');
 
+    const selectDog = document.getElementById('selectDog');
+    const fotoPerroRegistradoDiv = document.getElementById('fotoPerroRegistradoDiv');
+    const defaultPhoto = "00000_scooby_doo_DEFAULT.jpg"; // Foto predeterminada
+
     // Mostrar la sección correspondiente según la opción seleccionada
     function toggleSections() {
         if (nuevoPerroRadio.checked) {
             nuevoPerroInfo.style.display = 'block';
             perroRegistradoInfo.style.display = 'none';
+            fotoPerroRegistradoDiv.style.display = 'none';
         } else if (perroRegistradoRadio.checked) {
             nuevoPerroInfo.style.display = 'none';
             perroRegistradoInfo.style.display = 'block';
+
+            // Comprobar la foto del perro seleccionado
+            checkPhotoRequirement();
         }
     }
 
-    // Comprobar si los elementos existen
-    if (nuevoPerroRadio && perroRegistradoRadio) {
-        // Cambiar la visibilidad al seleccionar una opción
+    // Comprobar si el perro seleccionado tiene la foto predeterminada
+    function checkPhotoRequirement() {
+        if (selectDog) {
+            const selectedOption = selectDog.options[selectDog.selectedIndex];
+            const selectedPhoto = selectedOption.getAttribute('data-photo');
+
+            // Mostrar el campo de foto si la foto actual es la predeterminada
+            if (selectedPhoto === defaultPhoto) {
+                fotoPerroRegistradoDiv.style.display = 'block';
+            } else {
+                fotoPerroRegistradoDiv.style.display = 'none';
+            }
+        }
+    }
+
+    // Listeners para manejar los cambios en las opciones
+    if (nuevoPerroRadio && perroRegistradoRadio && selectDog) {
         nuevoPerroRadio.addEventListener('change', toggleSections);
         perroRegistradoRadio.addEventListener('change', toggleSections);
+        selectDog.addEventListener('change', checkPhotoRequirement);
 
-        // Llamar a la función inicialmente para que se ajuste la vista
+        // Inicializar el estado
         toggleSections();
     }
 });

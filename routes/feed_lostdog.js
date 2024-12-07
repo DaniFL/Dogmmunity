@@ -133,20 +133,19 @@ router.get("/", async function (req, res, next) {
 
 // Ruta POST para añadir un perro perdido
 router.post("/", isAuthenticated, upload.single("fotoPerroPerdido"), async function (req, res, next) {
-  if (!req.file) {
-    console.log("No se adjuntó un archivo para la foto.");
-    return res.status(400).send("Es obligatorio adjuntar una foto del perro.");
-  }
-  
+
   const { nombrePerro, edadPerro, pesoPerro, sexoPerro, razaPerro, perroId, perroOpciones } = req.body;
   console.log(req.body); // Depuración
 
   const userId = req.session.user.id;
 
   // Validar según la opción seleccionada
-  if (perroOpciones === "nuevo") {
+  if (perroOpciones === "nuevo") { ////////////////////////////////////////// NUEVO ///////////////////////////////////////////////////
     // Validación para un nuevo perro
-
+    if (!req.file) {
+      console.log("No se adjuntó un archivo para la foto.");
+      return res.status(400).send("Es obligatorio adjuntar una foto del perro.");
+    }
 
 
     if (!nombrePerro || !edadPerro || !pesoPerro || !sexoPerro || !razaPerro || !req.file) {
@@ -178,7 +177,12 @@ router.post("/", isAuthenticated, upload.single("fotoPerroPerdido"), async funct
       console.error("Error al registrar un nuevo perro perdido:", error);
       res.status(500).send("Error al registrar un nuevo perro perdido.");
     }
-  } else if (perroOpciones === "registrado") {
+
+
+
+
+
+  } else if (perroOpciones === "registrado") { ////////////////////////////////////////// REGISTRADO ///////////////////////////////////////////////////
     // Validación para un perro registrado
     if (!perroId) {
       console.log("No se seleccionó un perro registrado.");
@@ -190,15 +194,19 @@ router.post("/", isAuthenticated, upload.single("fotoPerroPerdido"), async funct
       const selectedDog = userDogs.find(dog => dog.id === perroId);
 
       if (!selectedDog) {
+        console.log("El perro seleccionado no pertenece al usuario.");
         return res.status(404).send("El perro seleccionado no pertenece al usuario.");
       }
 
+      // Validar si el perro tiene una foto predeterminada
       if (selectedDog.photo_dog_perdido === "00000_scooby_doo_DEFAULT.jpg" && !req.file) {
+        console.log("Debe adjuntar una foto para este perro, ya que actualmente tiene la imagen por defecto.");
         return res.status(400).send("Debe adjuntar una foto para este perro, ya que actualmente tiene la imagen por defecto.");
       }
 
+      // Si se subió una nueva foto, usarla; de lo contrario, mantener la foto existente
       const updatedPhoto = req.file ? req.file.filename : selectedDog.photo_dog_perdido;
-      const dog = await declareLostDog(perroId, true, updatedPhoto);
+      const dog = await declareLostDog(perroId, true, updatedPhoto); // Declarar el perro como perdido
       console.log(`Perro registrado marcado como perdido: ${dog}`);
       return res.redirect("/feed_lostdog");
     } catch (error) {
