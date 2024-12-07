@@ -62,9 +62,20 @@ router.get("/", async (req, res) => {
   
   // Ruta para manejar el restablecimiento de contraseña
   router.post("/", async (req, res) => {
-    const { token, nuevaContrasena } = req.body;
+    const { token, nuevaContrasena, confirmarContrasena } = req.body;
   
     try {
+
+      // Validar que las contraseñas coinciden
+      if (nuevaContrasena !== confirmarContrasena) {
+        return res.render("reset_password", {
+          ...baseViewData,
+          token,
+          error: "Las contraseñas no coinciden.",
+          success: null,
+          user: req.session.user || null,
+        });
+      }
       const user = await getUserByToken(token);
       if (!user) {
         return res.status(400).send("Token inválido o expirado.");
