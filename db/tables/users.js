@@ -125,6 +125,22 @@ async function getUserByUsername(username) {
         await sql.close();
     }
 }
+//Obtener un Usuario por su correo
+async function getUserByEmail(email) {
+    try {
+        await connectToDb(); 
+        const query = 'SELECT * FROM Usuarios WHERE email = @Email';
+        const request = new sql.Request();
+        request.input('Email', sql.NVarChar, email);
+        const result = await request.query(query);
+        return result.recordset[0];
+    } catch (error) {
+        console.error('Error al obtener el usuario por correo:', error);
+        throw error; 
+    } finally {
+        await sql.close();
+    }
+}
 // Obtener un usuario por su token de verificación
 async function getUserByToken(token) {
     try {
@@ -247,5 +263,6 @@ module.exports = {
     updateUser,
     deleteUser,
     getUserByToken,
-    verifyUser
+    verifyUser,
+    getUserByEmail
 };

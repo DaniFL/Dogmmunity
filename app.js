@@ -33,7 +33,8 @@ let user_infoRouter = require("./routes/user_info");
 let mapOnlyRouter = require("./routes/map_only");
 let adiestradoresRouter = require("./routes/adiestradores");
 let chatRouter = require('./routes/chat');
-
+let forgotPasswordRouter = require("./routes/forgot_password.js");
+let resetPasswrodRouter = require("./routes/reset_password.js");
 
 // Conexión a SQL
 dbConnect();
@@ -101,6 +102,8 @@ app.use("/test_duenno", testRouter);
 app.use("/map_only", mapOnlyRouter);
 app.use("/adiestradores", adiestradoresRouter);
 app.use('/chat', chatRouter);
+app.use("/forgot_password", forgotPasswordRouter);
+app.use("/reset_password", resetPasswrodRouter);
 
 
 // 404 error
