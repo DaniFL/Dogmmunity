@@ -2,6 +2,8 @@ var express = require("express");
 var router = express.Router();
 const { getDogsIdByUserId, getDogById } = require("../db/tables/dogs");
 
+var path = require("path");
+
 /* GET dog page. */
 router.get("/", async function(req, res, next) {
   try {
@@ -19,6 +21,10 @@ router.get("/", async function(req, res, next) {
     const dogs = [];
     for (const id of dogIds) {
       const dogData = await getDogById(id);
+      // Agregar la URL completa para las fotos
+      if (dogData.photo_dog_perdido) {
+        dogData.photo_dog_perdido = `/uploads/${dogData.photo_dog_perdido}`;
+      }
       dogs.push(dogData);
     }
 

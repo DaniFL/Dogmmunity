@@ -65,6 +65,8 @@ app.use(
     cookie: { secure: false }, // Indica si la cookie debe ser enviada solo a través de conexiones HTTPS.
   })
 );
+app.use('/uploads', express.static('uploads')); // Ruta para acceder a las imágenes subidas
+
 
 app.use((req,res,next) => {
   const message = req.session.message;

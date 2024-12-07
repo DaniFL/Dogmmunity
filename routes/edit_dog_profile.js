@@ -92,6 +92,10 @@ router.get('/', isAuthenticated, function(req, res, next) {
 router.post('/', isAuthenticated, upload.single("fotoPerroPerdido"), async function(req, res, next) {
     const { nombrePerro, edadPerro, pesoPerro, sexo, raza } = req.body;
     console.log(req.body); // Depuración
+
+    // Si no se subió una imagen, asignamos la imagen por defecto
+    const photoFileName = req.file ? req.file.filename : "00000_scooby_doo_DEFAULT.jpg";
+
     const dog = {
         name: nombrePerro,
         breed: raza,
@@ -100,7 +104,7 @@ router.post('/', isAuthenticated, upload.single("fotoPerroPerdido"), async funct
         colour: "", // Assuming colour is not provided in the form
         sex: sexo,
         owner_id: req.session.user.id, // Assuming user ID is stored in session
-        photo_dog_perdido: req.file ? req.file.filename : null, // Guarda el nombre del archivo
+        photo_dog_perdido: photoFileName, // Nombre de la imagen (subida o por defecto)
         is_lost: 0 // Assuming is_lost is provided
     };
 
