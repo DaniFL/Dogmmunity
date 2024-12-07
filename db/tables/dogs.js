@@ -226,6 +226,36 @@ async function deleteDogsByOwnerId(ownerId) {
         await sql.close();
     }
 }
+async function declareLostDog(dogId, isLost) {
+    try {
+        await connectToDb();
+        const query = 'UPDATE Dogs SET is_lost = @isLost WHERE id = @dogId';
+        const request = new sql.Request();
+        request.input('dogId', sql.UniqueIdentifier, dogId);
+        request.input('isLost', sql.TinyInt, isLost ? 1 : 0);
+        await request.query(query);
+        console.log('Perro marcado como perdido exitosamente');
+    } catch (error) {
+        console.error('Error al marcar el perro como perdido', error);
+    } finally {
+        await sql.close();
+    }
+}
+async function getUserDogs(owner_id) {
+    try {
+        await connectToDb(); // Asegúrate de que la conexión a la base de datos esté establecida
+        const query = 'SELECT * FROM Dogs WHERE owner_id = @owner_id';
+        const request = new sql.Request();;
+        request.input('owner_id', sql.UniqueIdentifier, owner_id); // Asegúrate de que el tipo de dato sea correcto
+        const result = await request.query(query); // Ejecutamos la consulta
+        return result.recordset; // Devolvemos los perros del usuario
+    } catch (error) {
+        console.error('Error al obtener los perros del usuario', error);
+        throw error;  // Lanzamos el error para manejarlo en el controlador
+    } finally {
+        await sql.close();  // Cerramos la conexión
+    }
+}
 
 
 module.exports = {
@@ -238,5 +268,7 @@ module.exports = {
     getDogNameRanking,
     getDogBreedRanking,
     getBreeds,
-    deleteDogsByOwnerId
+    deleteDogsByOwnerId,
+    declareLostDog,
+    getUserDogs
 };

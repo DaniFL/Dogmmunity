@@ -39,97 +39,132 @@
             <% if (user) { %>
                 <h3>Añadir un perro perdido</h3>
                 <form action="/feed_lostdog" method="POST" enctype="multipart/form-data">
+                    <!-- Opción para declarar perro perdido -->
                     <div class="mb-3">
-                        <label class="form-label" for="nombrePerro">¿Cómo se llama tu perro?</label>
-                        <input class="form-control" type="text" id="nombrePerro" name="nombrePerro"
-                            placeholder="Indica el nombre de tu perro" required>
-                        <div class="invalid-feedback">Por favor, indica el nombre de tu perro.</div>
+                        <label class="form-label">¿Deseas declarar un perro como perdido?</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="perroOpciones" id="nuevoPerro" value="nuevo" checked>
+                            <label class="form-check-label" for="nuevoPerro">
+                                Nuevo perro perdido
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="perroOpciones" id="perroRegistrado" value="registrado">
+                            <label class="form-check-label" for="perroRegistrado">
+                                Perro ya registrado
+                            </label>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="edadPerro">Edad de tu perro</label>
-                        <input class="form-control" type="date" id="edadPerro" name="edadPerro" min="1994-01-01"
-                            placeholder="Ingresa la fecha de nacimiento de tu perro" required>
-                        <div class="invalid-feedback">Por favor, ingresa la fecha de nacimiento de tu perro.</div>
-                        <script>
-                            const today = new Date().toISOString().split('T')[0];
-                            document.getElementById('edadPerro').setAttribute('max', today); 
-                        </script>
+
+                    <!-- Información del perro nuevo -->
+                    <div id="nuevoPerroInfo" style="display: block;">
+                        <div class="mb-3">
+                            <label class="form-label" for="nombrePerro">¿Cómo se llama tu perro?</label>
+                            <input class="form-control" type="text" id="nombrePerro" name="nombrePerro"
+                                placeholder="Indica el nombre de tu perro" required>
+                            <div class="invalid-feedback">Por favor, indica el nombre de tu perro.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="edadPerro">Edad de tu perro</label>
+                            <input class="form-control" type="date" id="edadPerro" name="edadPerro" min="1994-01-01"
+                                placeholder="Ingresa la fecha de nacimiento de tu perro" required>
+                            <div class="invalid-feedback">Por favor, ingresa la fecha de nacimiento de tu perro.</div>
+                            <script>
+                                const today = new Date().toISOString().split('T')[0];
+                                document.getElementById('edadPerro').setAttribute('max', today); 
+                            </script>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="pesoPerro">¿Cuánto pesa tu perro?</label>
+                            <input class="form-control" type="number" id="pesoPerro" name="pesoPerro" min="1" max="162"
+                                placeholder="Ingresa el peso en kg" required>
+                            <div class="invalid-feedback">Por favor, ingresa el peso de tu perro.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="sexoPerro">¿De qué sexo es tu perro?</label>
+                            <input class="form-control" type="text" list="sexo" id="sexoPerro" name="sexo"
+                                placeholder="Escribe o selecciona el sexo" required>
+                            <datalist id="sexo">
+                                <option value="Macho">
+                                <option value="Hembra">
+                            </datalist>
+                            <div class="invalid-feedback">Por favor, selecciona el sexo de tu perro.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="razaPerro">¿Qué raza de perro tienes?</label>
+                            <select class="form-control" id="razaPerro" name="raza" required>
+                                <option value="" disabled selected>Selecciona una raza</option>
+                                <option value="Labrador Retriever">Labrador Retriever</option>
+                                <option value="Golden Retriever">Golden Retriever</option>
+                                <option value="Bulldog">Bulldog</option>
+                                <option value="Poodle">Poodle</option>
+                                <option value="Pastor Alemán">Pastor Alemán</option>
+                                <option value="Beagle">Beagle</option>
+                                <option value="Rottweiler">Rottweiler</option>
+                                <option value="Yorkshire Terrier">Yorkshire Terrier</option>
+                                <option value="Dachshund">Dachshund</option>
+                                <option value="Boxer">Boxer</option>
+                                <option value="Husky Siberiano">Husky Siberiano</option>
+                                <option value="Chihuahua">Chihuahua</option>
+                                <option value="Doberman">Doberman</option>
+                                <option value="Shih Tzu">Shih Tzu</option>
+                                <option value="Cocker Spaniel">Cocker Spaniel</option>
+                                <option value="Pomerania">Pomerania</option>
+                                <option value="Border Collie">Border Collie</option>
+                                <option value="Dálmata">Dálmata</option>
+                                <option value="Boston Terrier">Boston Terrier</option>
+                                <option value="Gran Danés">Gran Danés</option>
+                                <option value="Akita">Akita</option>
+                                <option value="Alaskan Malamute">Alaskan Malamute</option>
+                                <option value="American Staffordshire Terrier">American Staffordshire Terrier</option>
+                                <option value="Basset Hound">Basset Hound</option>
+                                <option value="Bloodhound">Bloodhound</option>
+                                <option value="Bichón Frisé">Bichón Frisé</option>
+                                <option value="Borzoi">Borzoi</option>
+                                <option value="Bull Terrier">Bull Terrier</option>
+                                <option value="Cane Corso">Cane Corso</option>
+                                <option value="Cavalier King Charles Spaniel">Cavalier King Charles Spaniel</option>
+                                <option value="Chow Chow">Chow Chow</option>
+                                <option value="Dogo Argentino">Dogo Argentino</option>
+                                <option value="Dogo de Burdeos">Dogo de Burdeos</option>
+                                <option value="Fox Terrier">Fox Terrier</option>
+                                <option value="Galgo Español">Galgo Español</option>
+                                <option value="Jack Russell Terrier">Jack Russell Terrier</option>
+                                <option value="Mastín Español">Mastín Español</option>
+                                <option value="Mastín Napolitano">Mastín Napolitano</option>
+                                <option value="Perro de Agua Español">Perro de Agua Español</option>
+                                <option value="Samoyedo">Samoyedo</option>
+                                <option value="San Bernardo">San Bernardo</option>
+                                <option value="Shiba Inu">Shiba Inu</option>
+                                <option value="Springer Spaniel">Springer Spaniel</option>
+                                <option value="Staffordshire Bull Terrier">Staffordshire Bull Terrier</option>
+                                <option value="Terranova">Terranova</option>
+                                <option value="Whippet">Whippet</option>
+                                <option value="West Highland White Terrier">West Highland White Terrier</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                            <div class="invalid-feedback">Por favor, selecciona una raza de perro.</div>
+                        </div>
                     </div>
-        
-                    <div class="mb-3">
-                        <label class="form-label" for="pesoPerro">¿Cuánto pesa tu perro?</label>
-                        <input class="form-control" type="number" id="pesoPerro" name="pesoPerro" min="1" max="162"
-                            placeholder="Ingresa el peso en kg" required>
-                        <div class="invalid-feedback">Por favor, ingresa el peso de tu perro.</div>
+
+                    <!-- Selección de perro ya registrado -->
+                    <div id="perroRegistradoInfo" style="display: none;">
+                        <div class="mb-3">
+                            <label class="form-label" for="selectDog">Selecciona uno de tus perros</label>
+                            <select class="form-control" id="selectDog" name="perroId" required>
+                                <option value="" disabled selected>Selecciona un perro</option>
+                                <% if (dogs && dogs.length > 0) { %>
+                                    <% dogs.forEach(dog => { %>
+                                        <option value="<%= dog.id %>"><%= dog.name %> - <%= dog.breed %></option>
+                                    <% }) %>
+                                <% } else { %>
+                                    <option value="" disabled>No tienes perros registrados</option>
+                                <% } %>
+                            </select>
+                            <div class="invalid-feedback">Por favor, selecciona un perro registrado.</div>
+                        </div>
                     </div>
-        
-                    <div class="mb-3">
-                        <label class="form-label" for="sexoPerro">¿De qué sexo es tu perro?</label>
-                        <input class="form-control" type="text" list="sexo" id="sexoPerro" name="sexo"
-                            placeholder="Escribe o selecciona el sexo" required>
-                        <datalist id="sexo">
-                            <option value="Macho">
-                            <option value="Hembra">
-                        </datalist>
-                        <div class="invalid-feedback">Por favor, selecciona el sexo de tu perro.</div>
-                    </div>
-        
-                    <div class="mb-3">
-                        <label class="form-label" for="razaPerro">¿Qué raza de perro tienes?</label>
-                        <select class="form-control" id="razaPerro" name="raza" required>
-                            <option value="" disabled selected>Selecciona una raza</option>
-                            <option value="Labrador Retriever">Labrador Retriever</option>
-                            <option value="Golden Retriever">Golden Retriever</option>
-                            <option value="Bulldog">Bulldog</option>
-                            <option value="Poodle">Poodle</option>
-                            <option value="Pastor Alemán">Pastor Alemán</option>
-                            <option value="Beagle">Beagle</option>
-                            <option value="Rottweiler">Rottweiler</option>
-                            <option value="Yorkshire Terrier">Yorkshire Terrier</option>
-                            <option value="Dachshund">Dachshund</option>
-                            <option value="Boxer">Boxer</option>
-                            <option value="Husky Siberiano">Husky Siberiano</option>
-                            <option value="Chihuahua">Chihuahua</option>
-                            <option value="Doberman">Doberman</option>
-                            <option value="Shih Tzu">Shih Tzu</option>
-                            <option value="Cocker Spaniel">Cocker Spaniel</option>
-                            <option value="Pomerania">Pomerania</option>
-                            <option value="Border Collie">Border Collie</option>
-                            <option value="Dálmata">Dálmata</option>
-                            <option value="Boston Terrier">Boston Terrier</option>
-                            <option value="Gran Danés">Gran Danés</option>
-                            <option value="Akita">Akita</option>
-                            <option value="Alaskan Malamute">Alaskan Malamute</option>
-                            <option value="American Staffordshire Terrier">American Staffordshire Terrier</option>
-                            <option value="Basset Hound">Basset Hound</option>
-                            <option value="Bloodhound">Bloodhound</option>
-                            <option value="Bichón Frisé">Bichón Frisé</option>
-                            <option value="Borzoi">Borzoi</option>
-                            <option value="Bull Terrier">Bull Terrier</option>
-                            <option value="Cane Corso">Cane Corso</option>
-                            <option value="Cavalier King Charles Spaniel">Cavalier King Charles Spaniel</option>
-                            <option value="Chow Chow">Chow Chow</option>
-                            <option value="Dogo Argentino">Dogo Argentino</option>
-                            <option value="Dogo de Burdeos">Dogo de Burdeos</option>
-                            <option value="Fox Terrier">Fox Terrier</option>
-                            <option value="Galgo Español">Galgo Español</option>
-                            <option value="Jack Russell Terrier">Jack Russell Terrier</option>
-                            <option value="Mastín Español">Mastín Español</option>
-                            <option value="Mastín Napolitano">Mastín Napolitano</option>
-                            <option value="Perro de Agua Español">Perro de Agua Español</option>
-                            <option value="Samoyedo">Samoyedo</option>
-                            <option value="San Bernardo">San Bernardo</option>
-                            <option value="Shiba Inu">Shiba Inu</option>
-                            <option value="Springer Spaniel">Springer Spaniel</option>
-                            <option value="Staffordshire Bull Terrier">Staffordshire Bull Terrier</option>
-                            <option value="Terranova">Terranova</option>
-                            <option value="Whippet">Whippet</option>
-                            <option value="West Highland White Terrier">West Highland White Terrier</option>
-                            <option value="Otro">Otro</option>
-        
-                        </select>
-                        <div class="invalid-feedback">Por favor, selecciona una raza de perro.</div>
-                    </div>
+
                     <button type="submit" class="btn btn-primary">Añadir perro perdido</button>
                 </form>
             <% } else { %>
@@ -145,3 +180,34 @@
 </div>
 
 <%- include("footer", {}) %>
+
+<script>
+   document.addEventListener('DOMContentLoaded', function () {
+    const nuevoPerroRadio = document.getElementById('nuevoPerro');
+    const perroRegistradoRadio = document.getElementById('perroRegistrado');
+    const nuevoPerroInfo = document.getElementById('nuevoPerroInfo');
+    const perroRegistradoInfo = document.getElementById('perroRegistradoInfo');
+
+    // Mostrar la sección correspondiente según la opción seleccionada
+    function toggleSections() {
+        if (nuevoPerroRadio.checked) {
+            nuevoPerroInfo.style.display = 'block';
+            perroRegistradoInfo.style.display = 'none';
+        } else if (perroRegistradoRadio.checked) {
+            nuevoPerroInfo.style.display = 'none';
+            perroRegistradoInfo.style.display = 'block';
+        }
+    }
+
+    // Comprobar si los elementos existen
+    if (nuevoPerroRadio && perroRegistradoRadio) {
+        // Cambiar la visibilidad al seleccionar una opción
+        nuevoPerroRadio.addEventListener('change', toggleSections);
+        perroRegistradoRadio.addEventListener('change', toggleSections);
+
+        // Llamar a la función inicialmente para que se ajuste la vista
+        toggleSections();
+    }
+});
+
+</script>

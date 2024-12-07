@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const {createDog, getLostDogs } = require("../db/tables/dogs");
+const { createDog, getLostDogs, declareLostDog, getUserDogs } = require("../db/tables/dogs");
 
 // Middleware para verificar si el usuario ha iniciado sesión
 function isAuthenticated(req, res, next) {
@@ -14,13 +14,14 @@ function isAuthenticated(req, res, next) {
 router.get("/", async function (req, res, next) {
   try {
     const lostDogs = await getLostDogs(); // Obtener los perros perdidos
+    const userDogs = req.session.user ? await getUserDogs(req.session.user.id) : []; // Obtener todos los datos de todos los perros del usuario logueado
     const renderData = {
       title: "Perros perdidos",
       user: req.session.user,
       lost_dogs: lostDogs, // Pasar la lista de perros perdidos al template
+      dogs: userDogs,
       script: ""
     };
-
     if (req.session.user) {
       Object.assign(renderData, {
         navbar_addr1: "/profile",
@@ -93,27 +94,41 @@ router.get("/", async function (req, res, next) {
   }
 });
 
-/* POST edit_dog_profile page. */
-router.post('/', isAuthenticated, async function(req, res, next) {
-  const { nombrePerro, edadPerro, pesoPerro, sexo, raza } = req.body;
-  const dog = {
-      name: nombrePerro,
-      breed: raza,
-      age: new Date().getFullYear() - new Date(edadPerro).getFullYear(), // Calculate age from birth date
-      weight: pesoPerro,
-      colour: "",
-      sex: sexo,
-      owner_id: req.session.user.id, // Assuming user ID is stored in session
-      photo_dog_perdido: "", // Assuming photo is not provided in the form
-  };
+// Ruta POST para añadir un perro perdido
+router.post("/", async function (req, res, next) {
+  const { nombrePerro, edadPerro, pesoPerro, sexoPerro, razaPerro, perroId } = req.body;
+  const userId = req.session.user ? req.session.user.id : null; // Obtener ID del usuario logueado
+  
+  if (!userId) {
+      return res.status(403).send("Debes estar logueado para declarar un perro perdido.");
+  }
+
+  // Validación de los campos obligatorios
+  if (!nombrePerro || !edadPerro || !pesoPerro || !sexoPerro || !razaPerro) {
+    return res.status(400).send("Todos los campos son obligatorios.");
+  }
 
   try {
-      await createDog(dog);
-      res.redirect('/profile'); // Redirect to home or any other page after successful creation
+      if (perroId) {
+          // Si se seleccionó un perro ya registrado
+          await declareLostDog(perroId, true); // Llamamos a la función que actualiza el estado del perro como perdido
+          return res.redirect("/feed_lostdog"); // Redirigimos al feed de perros perdidos
+      } else {
+          // Si no se seleccionó un perro registrado, lo añadimos como nuevo perro perdido
+          await createDog({
+              name: nombrePerro,
+              age: edadPerro,
+              weight: pesoPerro,
+              sex: sexoPerro,
+              breed: razaPerro,
+              is_lost: 1, // Marcamos este perro como perdido
+              owner_id: userId, // Asociamos el perro con el usuario logueado
+          });
+          return res.redirect("/feed_lostdog"); // Redirigimos al feed de perros perdidos
+      }
   } catch (error) {
-      console.error('Error al crear el perro', error);
-      res.status(500).send('Error al crear el perro');
+      console.error("Error al declarar perro perdido:", error);
+      res.status(500).send("Error en el servidor al declarar perro perdido");
   }
 });
-
 module.exports = router;
