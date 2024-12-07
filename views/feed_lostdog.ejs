@@ -24,7 +24,50 @@
                                     <p class="card-text"><strong>Peso:</strong> <%= dog.weight %> kg</p>
                                     <p class="card-text"><strong>Sexo:</strong> <%= dog.sex %></p>
                                     <p class="card-text"><strong>Última vez visto:</strong> <%= dog.last_seen || 'Lugar desconocido' %></p>
-                                    <button type="button" class="btn btn-success w-100 mt-2" data-bs-toggle="modal" data-bs-target="#reportModal" data-perro-id="<%= dog.id %>">¡Creo que he encontrado a tu perro!</button>
+                                    
+                                    <!-- Botón para abrir el modal -->
+                                    <button 
+                                        type="button" 
+                                        class="btn btn-success w-100 mt-2" 
+                                        <% if (user) { %>
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#reportModal<%= dog.id %>"
+                                        <% } else { %>
+                                            onclick="redirectToLogin()"
+                                        <% } %>
+                                    >
+                                        ¡Creo que he encontrado a tu perro!
+                                    </button>
+
+                                    <!-- Modal para reporte -->
+                                    <div class="modal fade" id="reportModal<%= dog.id %>" tabindex="-1" aria-labelledby="reportModalLabel<%= dog.id %>" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <form action="/report_dog" method="post">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="reportModalLabel<%= dog.id %>">Reportar que has encontrado a <%= dog.name %></h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <input type="hidden" name="dogId" value="<%= dog.id %>">
+                                                        <div class="mb-3">
+                                                            <label for="message" class="form-label">Mensaje</label>
+                                                            <textarea class="form-control" id="message" name="message" rows="3" placeholder="Describe dónde y cuándo viste al perro"></textarea>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="contactInfo" class="form-label">Información de contacto</label>
+                                                            <input type="text" class="form-control" id="contactInfo" name="contactInfo" placeholder="Correo o número de teléfono">
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                        <button type="submit" class="btn btn-primary">Enviar</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -198,6 +241,14 @@
 <%- include("footer", {}) %>
 
 <script>
+
+    // Redirigir al usuario a la página de inicio de sesión
+    function redirectToLogin() {
+        alert("Debes iniciar sesión para reportar un perro encontrado.");
+        window.location.href = "/login"; // Redirige al usuario a la página de inicio de sesión
+    }
+
+    // Mostrar u ocultar campos según la opción seleccionada
    document.addEventListener('DOMContentLoaded', function () {
     const nuevoPerroRadio = document.getElementById('nuevoPerro');
     const perroRegistradoRadio = document.getElementById('perroRegistrado');

@@ -36,6 +36,7 @@ let chatRouter = require('./routes/chat');
 let forgotPasswordRouter = require("./routes/forgot_password.js");
 let resetPasswrodRouter = require("./routes/reset_password.js");
 let publicacionesRouter = require('./routes/publicaciones');
+let reportFoundDogRouter = require('./routes/report_found_dog');
 
 
 // Conexión a SQL
@@ -109,6 +110,7 @@ app.use('/chat', chatRouter);
 app.use("/forgot_password", forgotPasswordRouter);
 app.use("/reset_password", resetPasswrodRouter);
 app.use('/publicaciones', publicacionesRouter);
+app.use('/report_found_dog', reportFoundDogRouter);
 
 
 // 404 error

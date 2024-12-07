@@ -1,6 +1,8 @@
 var express = require("express");
 var router = express.Router();
 const { createDog, getLostDogs, declareLostDog, getUserDogs } = require("../db/tables/dogs");
+const { createReport } = require('../db/tables/reports'); // Importa la función para crear reportes
+
 
 const multer = require("multer");
 const path = require("path");
@@ -218,5 +220,39 @@ router.post("/", isAuthenticated, upload.single("fotoPerroPerdido"), async funct
     res.status(400).send("Opción no válida.");
   }
 });
+
+
+
+// Ruta para manejar la creación de reportes
+router.post('/report_dog', isAuthenticated, async (req, res) => {
+    const { dogId, message, contactInfo } = req.body;
+
+    // Validar que los campos requeridos estén presentes
+    if (!dogId || !message || !contactInfo) {
+        console.error('Faltan campos obligatorios en el formulario de reporte');
+        return res.status(400).send('Todos los campos son obligatorios para enviar el reporte.');
+    }
+
+    try {
+        // Crear el objeto del reporte
+        const report = {
+            dog_id: dogId,
+            message: message,
+            contact_info: contactInfo,
+            reporter_id: req.session.user.id, // ID del usuario que hace el reporte
+        };
+
+        // Llamar a la función para insertar el reporte en la base de datos
+        await createReport(report);
+        console.log('Reporte creado exitosamente');
+
+        // Redirigir de nuevo al feed después del envío exitoso
+        res.redirect('/feed_lostdog');
+    } catch (error) {
+        console.error('Error al crear el reporte:', error);
+        res.status(500).send('Hubo un problema al enviar el reporte. Por favor, inténtalo de nuevo.');
+    }
+});
+
 
 module.exports = router;
