@@ -133,6 +133,11 @@ router.get("/", async function (req, res, next) {
 
 // Ruta POST para añadir un perro perdido
 router.post("/", isAuthenticated, upload.single("fotoPerroPerdido"), async function (req, res, next) {
+  if (!req.file) {
+    console.log("No se adjuntó un archivo para la foto.");
+    return res.status(400).send("Es obligatorio adjuntar una foto del perro.");
+  }
+  
   const { nombrePerro, edadPerro, pesoPerro, sexoPerro, razaPerro, perroId, perroOpciones } = req.body;
   console.log(req.body); // Depuración
 
@@ -141,24 +146,32 @@ router.post("/", isAuthenticated, upload.single("fotoPerroPerdido"), async funct
   // Validar según la opción seleccionada
   if (perroOpciones === "nuevo") {
     // Validación para un nuevo perro
+
+
+
     if (!nombrePerro || !edadPerro || !pesoPerro || !sexoPerro || !razaPerro || !req.file) {
       console.log("Faltan campos obligatorios para un nuevo perro");
+      console.log(`Campos metidos: ${nombrePerro}, ${edadPerro}, ${pesoPerro}, ${sexoPerro}, ${razaPerro}, ${req.file}`);
       return res.status(400).send("Todos los campos, incluida una foto, son obligatorios para registrar un nuevo perro perdido.");
     }
 
+    const photoFileName = req.file.filename;
+
+        const newDog = {
+            name: nombrePerro,
+            age: new Date().getFullYear() - new Date(edadPerro).getFullYear(),
+            weight: pesoPerro,
+            sex: sexoPerro,
+            breed: razaPerro,
+            is_lost: 1, // Marcamos como perdido
+            owner_id: userId,
+            photo_dog_perdido: photoFileName,
+            colour: "" // Assuming colour is not provided
+        };
+
     try {
       // Crear un nuevo perro
-      await createDog({
-        name: nombrePerro,
-        age: new Date().getFullYear() - new Date(edadPerro).getFullYear(), // Calculate age from birth date
-        weight: pesoPerro,
-        sex: sexoPerro,
-        breed: razaPerro,
-        is_lost: 1, // Marcamos como perdido
-        owner_id: userId, // Asociamos al usuario logueado
-        photo_dog_perdido: req.file.filename, 
-        colour: "" // Assuming colour is not provided in the form
-      });
+      await createDog(newDog);
       console.log("Nuevo perro perdido registrado exitosamente.");
       return res.redirect("/feed_lostdog");
     } catch (error) {
