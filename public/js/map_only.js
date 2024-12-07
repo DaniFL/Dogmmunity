@@ -10,86 +10,94 @@ function initMap() {
     zoom: 12,
   });
 
-  // Función para agregar marcadores
-  function agregarMarcadores(datos, iconoDefecto, tipoContenido) {
+  const markers = {
+    parques: [],
+    veterinarios: [],
+    usuarios: [],
+    eventos: [],
+  };
+
+  function agregarMarcadores(datos, tipo, icono, visible = true) {
     datos.forEach((dato) => {
       const marker = new google.maps.Marker({
         position: { lat: dato.lat, lng: dato.lng },
-        map: map,
+        map: visible ? map : null,
         title: dato.nombre,
-        icon: dato.icono || iconoDefecto, // Usa el icono del JSON o el icono por defecto
+        icon: icono,
       });
 
       const infoWindow = new google.maps.InfoWindow({
-        content: `<h4>${dato.nombre}</h4><p>${tipoContenido}</p>`,
+        content: `<h4>${dato.nombre}</h4>
+                  <p>${dato.descripcion || "Sin descripción"}</p>
+                  <p><b>Dirección:</b> ${dato.direccion || "No disponible"}</p>`,
       });
 
       marker.addListener("click", () => {
         infoWindow.open(map, marker);
       });
+
+      markers[tipo].push(marker);
     });
   }
 
-  // Cargar parques
+  function toggleMarkers(tipo, visible) {
+    markers[tipo].forEach((marker) => {
+      marker.setMap(visible ? map : null);
+    });
+  }
+
+  // Cargar datos
   fetch("/map_only/parques.json")
-    .then((response) => {
-      if (!response.ok) throw new Error("Error en la respuesta del servidor.");
-      return response.json();
-    })
+    .then((response) => response.json())
     .then((parques) => {
-      agregarMarcadores(
-        parques.map((p) => ({ ...p, icono: "https://maps.google.com/mapfiles/ms/icons/green-dot.png" })),
-        null,
-        "Parque para perros"
-      );
-    })
-    .catch((error) => console.error("Error al cargar los parques:", error));
+      agregarMarcadores(parques, "parques", "https://maps.google.com/mapfiles/ms/icons/green-dot.png");
+    });
 
-  // Cargar veterinarios/hospitales
   fetch("/map_only/veterinarios_hospitales.json")
-    .then((response) => {
-      if (!response.ok) throw new Error("Error en la respuesta del servidor.");
-      return response.json();
-    })
+    .then((response) => response.json())
     .then((veterinarios) => {
-      agregarMarcadores(
-        veterinarios.map((v) => ({ ...v, icono: "https://maps.google.com/mapfiles/ms/icons/blue-dot.png" })),
-        null,
-        "Veterinario u hospital"
-      );
-    })
-    .catch((error) => console.error("Error al cargar veterinarios:", error));
+      agregarMarcadores(veterinarios, "veterinarios", "https://maps.google.com/mapfiles/ms/icons/blue-dot.png");
+    });
 
-  // Cargar eventos caninos
-  fetch("/map_only/eventos_caninos.json")
-    .then((response) => {
-      if (!response.ok) throw new Error("Error en la respuesta del servidor.");
-      return response.json();
-    })
-    .then((eventos) => {
-      agregarMarcadores(
-        eventos.map((e) => ({ ...e, icono: "https://maps.google.com/mapfiles/ms/icons/orange-dot.png" })),
-        null,
-        "Evento canino"
-      );
-    })
-    .catch((error) => console.error("Error al cargar eventos caninos:", error));
-
-  // Cargar usuarios cercanos
   fetch("/map_only/usuarios_cercanos.json")
-    .then((response) => {
-      if (!response.ok) throw new Error("Error en la respuesta del servidor.");
-      return response.json();
-    })
+    .then((response) => response.json())
     .then((usuarios) => {
-      agregarMarcadores(
-        usuarios.map((u) => ({ ...u, icono: "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png" })),
-        null,
-        "Usuario cercano con su perro"
-      );
-    })
-    .catch((error) => console.error("Error al cargar usuarios cercanos:", error));
+      agregarMarcadores(usuarios, "usuarios", "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png");
+    });
+
+  fetch("/map_only/eventos_caninos.json")
+    .then((response) => response.json())
+    .then((eventos) => {
+      agregarMarcadores(eventos, "eventos", "https://maps.google.com/mapfiles/ms/icons/orange-dot.png");
+    });
+
+  // Filtros
+  document.getElementById("filter-parques").addEventListener("change", (e) => {
+    toggleMarkers("parques", e.target.checked);
+  });
+  document.getElementById("filter-veterinarios").addEventListener("change", (e) => {
+    toggleMarkers("veterinarios", e.target.checked);
+  });
+  document.getElementById("filter-usuarios").addEventListener("change", (e) => {
+    toggleMarkers("usuarios", e.target.checked);
+  });
+  document.getElementById("filter-eventos").addEventListener("change", (e) => {
+    toggleMarkers("eventos", e.target.checked);
+  });
+
+  // Búsqueda
+  document.getElementById("search-box").addEventListener("input", (e) => {
+    const query = e.target.value.toLowerCase();
+    map.setZoom(12);
+    for (const tipo in markers) {
+      markers[tipo].forEach((marker) => {
+        if (marker.getTitle().toLowerCase().includes(query)) {
+          map.setCenter(marker.getPosition());
+          map.setZoom(15);
+        }
+      });
+    }
+  });
 }
 
-// Ejecutar el script al cargar la página
 window.onload = initMap;

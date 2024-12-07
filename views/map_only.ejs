@@ -8,16 +8,29 @@
   <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
+  <!-- Barra de búsqueda -->
+  <div style="margin: 10px;">
+    <input type="text" id="search-box" placeholder="Buscar en el mapa..." style="width: 100%; padding: 10px;">
+  </div>
+
+  <!-- Contenedor de filtros -->
+  <div id="filters" style="margin: 10px;">
+    <label><input type="checkbox" id="filter-parques" checked> Parques 🌲</label>
+    <label><input type="checkbox" id="filter-veterinarios" checked> Veterinarios y Hospitales 🏥</label>
+    <label><input type="checkbox" id="filter-usuarios" checked> Usuarios cercanos 🚀</label>
+    <label><input type="checkbox" id="filter-eventos" checked> Eventos 🎉</label>
+  </div>
+
   <!-- Contenedor del mapa -->
-  <div id="map" style="width: 100%; height: 75vh;"></div>
+  <div id="map" style="width: 100%; height: 60vh;"></div>
+
   <!-- Script personalizado para inicializar el mapa -->
   <script src="/js/map_only.js"></script>
 
   <div id="legend">
-    <span style="background-color: green; width: 20px; height: 20px; display: inline-block; margin-right: 5px;"></span>Parques🌲
-    <span style="background-color: rgb(32, 73, 209); width: 20px; height: 20px; display: inline-block; margin-right: 5px;"></span>Veterinarios y Hospitales🏥
-    <span style="background-color: orange; width: 20px; height: 20px; display: inline-block; margin-right: 5px;"></span>Usuarios cercanos🚀
-    <span style="background-color: purple; width: 20px; height: 20px; display: inline-block; margin-right: 5px;"></span>Eventos🎉
+    <span style="background-color: green; width: 20px; height: 20px; display: inline-block; margin-right: 5px;"></span>Parques
+    <span style="background-color: rgb(32, 73, 209); width: 20px; height: 20px; display: inline-block; margin-right: 5px;"></span>Veterinarios y Hospitales
+    <span style="background-color: orange; width: 20px; height: 20px; display: inline-block; margin-right: 5px;"></span>Usuarios cercanos
+    <span style="background-color: purple; width: 20px; height: 20px; display: inline-block; margin-right: 5px;"></span>Eventos
 </div>
-</body>
 <%- include("footer", {}) %>
