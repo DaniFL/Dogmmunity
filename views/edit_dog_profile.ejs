@@ -2,7 +2,7 @@
 
     <div class="container mt-4">
         <h2 class="text-center mb-4">Añade a tu perro</h2>
-        <form class="needs-validation" action="/edit_dog_profile" method="post" novalidate>
+        <form class="needs-validation" action="/edit_dog_profile" method="post" enctype="multipart/form-data" novalidate>
 
             <div class="mb-3">
                 <label class="form-label" for="nombrePerro">¿Cómo se llama tu perro?</label>
@@ -97,17 +97,8 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="is_lost">¿Se ha perdido tu perro?</label>
-                <select class="form-control" type="text" list="is_lost" id="is_lost" name="is_lost" required>
-                    <option value="0"> No está perdido </option>
-                    <option value="1"> Está perdido </option>
-                </select>
-                <div class="invalid-feedback">Por favor, selecciona el estado de tu perro.</div>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label" for="fotoPerro">Adjunta una foto de tu perro</label>
-                <input class="form-control" type="file" id="fotoPerro" name="fotoPerro" accept="image/*" required>
+                <label class="form-label" for="fotoPerroPerdido">Adjunta una foto de tu perro</label>
+                <input class="form-control" type="file" id="fotoPerroPerdido" name="fotoPerroPerdido" accept="image/*" required>
                 <div class="invalid-feedback">Por favor, adjunta una foto de tu perro.</div>
             </div>
 

@@ -2,6 +2,10 @@ var express = require("express");
 var router = express.Router();
 const { createDog } = require('../db/tables/dogs');
 
+const multer = require("multer");
+const path = require("path");
+const fs = require("fs");
+
 // Middleware para verificar si el usuario ha iniciado sesión
 function isAuthenticated(req, res, next) {
     if (req.session && req.session.user) {
@@ -10,6 +14,38 @@ function isAuthenticated(req, res, next) {
         res.redirect('/login'); // Redirige al usuario a la página de inicio de sesión si no ha iniciado sesión
     }
 }
+
+// Configuración de multer
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        // Asegúrate de que el directorio "uploads" existe
+        const dir = path.join(__dirname, "../uploads");
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir);
+        }
+        cb(null, dir); // Carpeta donde se guardarán las imágenes
+    },
+    filename: function (req, file, cb) {
+        const uniqueName = `${Date.now()}-${Math.round(Math.random() * 1E9)}${path.extname(file.originalname)}`;
+        cb(null, uniqueName); // Genera un nombre único para el archivo
+    }
+});
+
+const upload = multer({
+    storage: storage,
+    fileFilter: function (req, file, cb) {
+        const filetypes = /jpeg|jpg|png|gif/;
+        const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+        const mimetype = filetypes.test(file.mimetype);
+
+        if (mimetype && extname) {
+            return cb(null, true);
+        } else {
+            cb(new Error("El archivo debe ser una imagen válida (jpeg, jpg, png, gif)"));
+        }
+    }
+});
+
 
 /* GET edit_dog_profile page. */
 router.get('/', isAuthenticated, function(req, res, next) {
@@ -53,8 +89,9 @@ router.get('/', isAuthenticated, function(req, res, next) {
 });
 
 /* POST edit_dog_profile page. */
-router.post('/', isAuthenticated, async function(req, res, next) {
-    const { nombrePerro, edadPerro, pesoPerro, sexo, raza, is_lost } = req.body;
+router.post('/', isAuthenticated, upload.single("fotoPerroPerdido"), async function(req, res, next) {
+    const { nombrePerro, edadPerro, pesoPerro, sexo, raza } = req.body;
+    console.log(req.body); // Depuración
     const dog = {
         name: nombrePerro,
         breed: raza,
@@ -63,8 +100,8 @@ router.post('/', isAuthenticated, async function(req, res, next) {
         colour: "", // Assuming colour is not provided in the form
         sex: sexo,
         owner_id: req.session.user.id, // Assuming user ID is stored in session
-        photo_dog_perdido: "", // Assuming photo is not provided in the form
-        is_lost: is_lost // Assuming is_lost is provided
+        photo_dog_perdido: req.file ? req.file.filename : null, // Guarda el nombre del archivo
+        is_lost: 0 // Assuming is_lost is provided
     };
 
     try {
