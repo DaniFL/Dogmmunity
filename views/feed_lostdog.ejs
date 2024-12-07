@@ -43,7 +43,7 @@
                                     <div class="modal fade" id="reportModal<%= dog.id %>" tabindex="-1" aria-labelledby="reportModalLabel<%= dog.id %>" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
-                                                <form action="/feed_lostdog/report_dog" method="post">
+                                                <form action="/feed_lostdog/report_dog" method="post" enctype="multipart/form-data">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="reportModalLabel<%= dog.id %>">Reportar que has encontrado a <%= dog.name %></h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -58,7 +58,14 @@
                                                             <label for="contactInfo" class="form-label">Información de contacto</label>
                                                             <input type="text" class="form-control" id="contactInfo" name="contactInfo" placeholder="Correo o número de teléfono">
                                                         </div>
+                                                        <!-- Campo para subir la foto -->
+                                                        <div class="mb-3">
+                                                            <label for="fotoReporte" class="form-label">Foto del perro encontrado</label>
+                                                            <input type="file" class="form-control" id="fotoReporte" name="fotoReporte" accept="image/*" required>
+                                                            <div class="invalid-feedback">Por favor, adjunta una foto del perro encontrado.</div>
+                                                        </div>
                                                     </div>
+                                                    
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                                                         <button type="submit" class="btn btn-primary">Enviar</button>

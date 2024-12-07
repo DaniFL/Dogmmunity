@@ -224,7 +224,7 @@ router.post("/", isAuthenticated, upload.single("fotoPerroPerdido"), async funct
 
 
 // Ruta para manejar la creación de reportes
-router.post('/report_dog', isAuthenticated, async (req, res) => {
+router.post('/report_dog', isAuthenticated, upload.single('fotoReporte'), async (req, res) => {
     const { dogId, message, contactInfo } = req.body;
     console.log(req.body);
 
@@ -242,6 +242,7 @@ router.post('/report_dog', isAuthenticated, async (req, res) => {
             message: message,
             contact_info: contactInfo,
             reporter_id: req.session.user.id, // ID del usuario que hace el reporte
+            photo_dog_encontrado: req.file.filename // Usar el nombre del archivo de la foto
         };
 
         // Llamar a la función para insertar el reporte en la base de datos

@@ -26,22 +26,25 @@ async function createReport(report) {
     try {
         await connectToDb();
         const query = `
-            INSERT INTO Reports (id, dog_id, message, contact_info, reporter_id, created_at)
-            VALUES (NEWID(), @dog_id, @message, @contact_info, @reporter_id, DEFAULT)
+            INSERT INTO Reports (id, dog_id, message, contact_info, reporter_id, photo_dog_encontrado, created_at)
+            VALUES (NEWID(), @dog_id, @message, @contact_info, @reporter_id, @photo_dog_encontrado, GETDATE())
         `;
         const request = new sql.Request();
         request.input('dog_id', sql.UniqueIdentifier, report.dog_id);
         request.input('message', sql.Text, report.message);
         request.input('contact_info', sql.VarChar, report.contact_info);
         request.input('reporter_id', sql.UniqueIdentifier, report.reporter_id);
+        request.input('photo_dog_encontrado', sql.VarChar, report.photo_dog_encontrado); // OJO: obligatorio añadir foto del perro encontrado
         await request.query(query);
-        console.log('Reporte creado exitosamente');
+        console.log('Reporte creado exitosamente en la base de datos');
     } catch (error) {
-        console.error('Error al crear el reporte', error);
+        console.error('Error al crear el reporte en la base de datos:', error);
+        throw error;
     } finally {
         await sql.close();
     }
 }
+
 
 // Obtener un reporte por su ID
 async function getReportById(reportId) {
