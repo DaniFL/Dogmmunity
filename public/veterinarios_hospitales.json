@@ -1,0 +1,37 @@
+[
+    {
+        "nombre": "Hospital Veterinario Puchol",
+        "lat": 40.438220,
+        "lng": -3.711420,
+        "direccion": "Calle de Cea Bermúdez, 67, 28003 Madrid",
+        "descripcion": "Ofrece atención especializada y de emergencia 24 horas, con un equipo de especialistas para cuidar la salud de tus mascotas."
+    },
+    {
+        "nombre": "Hospital Veterinario de Referencia Veterios",
+        "lat": 40.447530,
+        "lng": -3.612870,
+        "direccion": "Calle de Arrastaria, 23, 28022 Madrid",
+        "descripcion": "Hospital veterinario de referencia que proporciona un servicio de calidad a sus pacientes."
+    },
+    {
+        "nombre": "Hospital Veterinario Madrid Centro",
+        "lat": 40.430500,
+        "lng": -3.706700,
+        "direccion": "Calle de San Bernardo, 90, 28015 Madrid",
+        "descripcion": "Equipo de profesionales con amplia experiencia en el cuidado de la salud animal, ofreciendo atención integral a las mascotas."
+    },
+    {
+        "nombre": "Hospital Veterinario UAX",
+        "lat": 40.447530,
+        "lng": -3.612870,
+        "direccion": "Campus de Villanueva de la Cañada, Av. Universidad, 1, 28691 Madrid",
+        "descripcion": "Cuenta con veterinarios especializados en el tratamiento de perros y cachorros, ofreciendo atención experta para tu mascota."
+    },
+    {
+        "nombre": "AniCura Velázquez Hospital Veterinario",
+        "lat": 40.435500,
+        "lng": -3.682800,
+        "direccion": "Calle de Velázquez, 107, 28006 Madrid",
+        "descripcion": "Ofrece urgencias 24 horas y hospitalización, siendo un hospital de referencia en diversas especialidades veterinarias."
+    }
+]

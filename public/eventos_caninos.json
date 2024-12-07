@@ -38,5 +38,125 @@
         "lat": 40.417,
         "lng": -3.69,
         "icono": "https://maps.google.com/mapfiles/ms/icons/purple-dot.png"
+    },
+    {
+        "id": 6,
+        "nombre": "Taller de Cuidados Caninos",
+        "tipo": "Evento",
+        "lat": 40.419,
+        "lng": -3.702,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/purple-dot.png"
+    },
+    {
+        "id": 7,
+        "nombre": "Adopción Masiva en Plaza España",
+        "tipo": "Evento",
+        "lat": 40.425,
+        "lng": -3.712,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/purple-dot.png"
+    },
+    {
+        "id": 8,
+        "nombre": "Carrera Canina",
+        "tipo": "Evento",
+        "lat": 40.423,
+        "lng": -3.695,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/purple-dot.png"
+    },
+    {
+        "id": 9,
+        "nombre": "Exhibición de Perros Policía",
+        "tipo": "Evento",
+        "lat": 40.412,
+        "lng": -3.68,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/purple-dot.png"
+    },
+    {
+        "id": 10,
+        "nombre": "Paseo Guiado para Mascotas",
+        "tipo": "Evento",
+        "lat": 40.418,
+        "lng": -3.715,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/purple-dot.png"
+    },
+    {
+        "id": 11,
+        "nombre": "Competencia Frisbee",
+        "tipo": "Evento",
+        "lat": 40.42,
+        "lng": -3.709,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/purple-dot.png"
+    },
+    {
+        "id": 12,
+        "nombre": "Charla sobre Nutrición Canina",
+        "tipo": "Evento",
+        "lat": 40.416,
+        "lng": -3.703,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/purple-dot.png"
+    },
+    {
+        "id": 13,
+        "nombre": "Fotografía con Mascotas",
+        "tipo": "Evento",
+        "lat": 40.422,
+        "lng": -3.692,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/purple-dot.png"
+    },
+    {
+        "id": 14,
+        "nombre": "Torneo de Agilidad Avanzado",
+        "tipo": "Evento",
+        "lat": 40.4155,
+        "lng": -3.685,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/purple-dot.png"
+    },
+    {
+        "id": 15,
+        "nombre": "Encuentro de Criadores",
+        "tipo": "Evento",
+        "lat": 40.4188,
+        "lng": -3.71,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/purple-dot.png"
+    },
+    {
+        "id": 16,
+        "nombre": "Demostración de Entrenamiento",
+        "tipo": "Evento",
+        "lat": 40.4172,
+        "lng": -3.701,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/purple-dot.png"
+    },
+    {
+        "id": 17,
+        "nombre": "Curso de Primeros Auxilios Caninos",
+        "tipo": "Evento",
+        "lat": 40.4195,
+        "lng": -3.687,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/purple-dot.png"
+    },
+    {
+        "id": 18,
+        "nombre": "Reunión Canina en Casa de Campo",
+        "tipo": "Evento",
+        "lat": 40.408,
+        "lng": -3.737,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/purple-dot.png"
+    },
+    {
+        "id": 19,
+        "nombre": "Clínica Gratuita de Vacunación",
+        "tipo": "Evento",
+        "lat": 40.414,
+        "lng": -3.689,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/purple-dot.png"
+    },
+    {
+        "id": 20,
+        "nombre": "Picnic Familiar con Mascotas",
+        "tipo": "Evento",
+        "lat": 40.421,
+        "lng": -3.693,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/purple-dot.png"
     }
 ]

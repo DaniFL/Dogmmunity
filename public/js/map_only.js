@@ -30,61 +30,65 @@ function initMap() {
     });
   }
 
-  // Cargar puntos de interés
-  fetch("/map_only/puntos-de-interes")
+  // Cargar parques
+  fetch("/map_only/parques.json")
     .then((response) => {
       if (!response.ok) throw new Error("Error en la respuesta del servidor.");
       return response.json();
     })
-    .then((data) => {
-      data.forEach((punto) => {
-        let iconUrl;
-        if (punto.tipo === "Veterinario") {
-          iconUrl = "https://maps.google.com/mapfiles/ms/icons/blue-dot.png"; // Azul para veterinarios
-        } else if (punto.tipo === "Parque") {
-          iconUrl = "https://maps.google.com/mapfiles/ms/icons/green-dot.png"; // Verde para parques
-        }
-
-        agregarMarcadores(
-          [{ ...punto, icono: iconUrl }],
-          null,
-          `Tipo: ${punto.tipo}`
-        );
-      });
-    })
-    .catch((error) =>
-      console.error("Error al cargar los puntos de interés:", error)
-    );
-
-  // Cargar usuarios cercanos
-  fetch("/map_only/usuarios-cercanos")
-    .then((response) => {
-      if (!response.ok) throw new Error("Error en la respuesta del servidor.");
-      return response.json();
-    })
-    .then((usuarios) => {
+    .then((parques) => {
       agregarMarcadores(
-        usuarios,
-        "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png",
-        "Usuario cercano con su perro"
+        parques.map((p) => ({ ...p, icono: "https://maps.google.com/mapfiles/ms/icons/green-dot.png" })),
+        null,
+        "Parque para perros"
       );
     })
-    .catch((error) => console.error("Error al cargar usuarios cercanos:", error));
+    .catch((error) => console.error("Error al cargar los parques:", error));
+
+  // Cargar veterinarios/hospitales
+  fetch("/map_only/veterinarios_hospitales.json")
+    .then((response) => {
+      if (!response.ok) throw new Error("Error en la respuesta del servidor.");
+      return response.json();
+    })
+    .then((veterinarios) => {
+      agregarMarcadores(
+        veterinarios.map((v) => ({ ...v, icono: "https://maps.google.com/mapfiles/ms/icons/blue-dot.png" })),
+        null,
+        "Veterinario u hospital"
+      );
+    })
+    .catch((error) => console.error("Error al cargar veterinarios:", error));
 
   // Cargar eventos caninos
-  fetch("/map_only/eventos-caninos")
+  fetch("/map_only/eventos_caninos.json")
     .then((response) => {
       if (!response.ok) throw new Error("Error en la respuesta del servidor.");
       return response.json();
     })
     .then((eventos) => {
       agregarMarcadores(
-        eventos,
-        "https://maps.google.com/mapfiles/ms/icons/purple-dot.png",
+        eventos.map((e) => ({ ...e, icono: "https://maps.google.com/mapfiles/ms/icons/orange-dot.png" })),
+        null,
         "Evento canino"
       );
     })
     .catch((error) => console.error("Error al cargar eventos caninos:", error));
+
+  // Cargar usuarios cercanos
+  fetch("/map_only/usuarios_cercanos.json")
+    .then((response) => {
+      if (!response.ok) throw new Error("Error en la respuesta del servidor.");
+      return response.json();
+    })
+    .then((usuarios) => {
+      agregarMarcadores(
+        usuarios.map((u) => ({ ...u, icono: "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png" })),
+        null,
+        "Usuario cercano con su perro"
+      );
+    })
+    .catch((error) => console.error("Error al cargar usuarios cercanos:", error));
 }
 
 // Ejecutar el script al cargar la página

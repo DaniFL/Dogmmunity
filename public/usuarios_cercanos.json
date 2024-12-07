@@ -33,5 +33,110 @@
         "lat": 40.4155,
         "lng": -3.709,
         "icono": "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+    },
+    {
+        "id": 6,
+        "nombre": "Lucía y Bruno",
+        "lat": 40.4162,
+        "lng": -3.702,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+    },
+    {
+        "id": 7,
+        "nombre": "José y Coco",
+        "lat": 40.418,
+        "lng": -3.705,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+    },
+    {
+        "id": 8,
+        "nombre": "Sofía y Bella",
+        "lat": 40.4195,
+        "lng": -3.707,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+    },
+    {
+        "id": 9,
+        "nombre": "Alberto y Simba",
+        "lat": 40.4201,
+        "lng": -3.704,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+    },
+    {
+        "id": 10,
+        "nombre": "Carla y Lucky",
+        "lat": 40.4178,
+        "lng": -3.698,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+    },
+    {
+        "id": 11,
+        "nombre": "Daniel y Nala",
+        "lat": 40.412,
+        "lng": -3.703,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+    },
+    {
+        "id": 12,
+        "nombre": "Paula y Rocky",
+        "lat": 40.4147,
+        "lng": -3.701,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+    },
+    {
+        "id": 13,
+        "nombre": "Raúl y Max",
+        "lat": 40.4169,
+        "lng": -3.699,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+    },
+    {
+        "id": 14,
+        "nombre": "Carmen y Duke",
+        "lat": 40.4153,
+        "lng": -3.705,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+    },
+    {
+        "id": 15,
+        "nombre": "Andrés y Toby",
+        "lat": 40.4185,
+        "lng": -3.7095,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+    },
+    {
+        "id": 16,
+        "nombre": "Elena y Luna",
+        "lat": 40.4163,
+        "lng": -3.708,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+    },
+    {
+        "id": 17,
+        "nombre": "Gabriel y Balto",
+        "lat": 40.4148,
+        "lng": -3.7,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+    },
+    {
+        "id": 18,
+        "nombre": "Rosa y Thor",
+        "lat": 40.4199,
+        "lng": -3.696,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+    },
+    {
+        "id": 19,
+        "nombre": "Luis y Lola",
+        "lat": 40.417,
+        "lng": -3.711,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+    },
+    {
+        "id": 20,
+        "nombre": "Isabel y Toby",
+        "lat": 40.4182,
+        "lng": -3.7085,
+        "icono": "https://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
     }
 ]

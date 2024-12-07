@@ -1,0 +1,37 @@
+[
+    {
+        "nombre": "Parque del Retiro",
+        "lat": 40.415363,
+        "lng": -3.684187,
+        "direccion": "Plaza de la Independencia, 7, 28001 Madrid",
+        "descripcion": "Este parque de 118 hectáreas cuenta con una de las mejores áreas para perros de Madrid, cerca de la entrada de la Puerta de Mariano de Cavia, con bebederos, bolsas para excrementos y un recorrido de 'agility'."
+    },
+    {
+        "nombre": "Parque Juan Carlos I",
+        "lat": 40.462845,
+        "lng": -3.612375,
+        "direccion": "Glorieta de Don Juan de Borbón y Battemberg, s/n, 28042 Madrid",
+        "descripcion": "Este extenso parque ofrece una gran área vallada para perros con obstáculos 'agility'."
+    },
+    {
+        "nombre": "Parque de Enrique Tierno Galván",
+        "lat": 40.391090,
+        "lng": -3.683620,
+        "direccion": "Calle Meneses, 4, 28045 Madrid",
+        "descripcion": "Ubicado en el barrio de Legazpi, este parque de 45 hectáreas cuenta con zonas específicas para perros."
+    },
+    {
+        "nombre": "Parque del Oeste",
+        "lat": 40.428510,
+        "lng": -3.721950,
+        "direccion": "Paseo de Moret, 2, 28008 Madrid",
+        "descripcion": "Situado en la zona de Moncloa, este parque es perfecto para que tu perro pueda jugar y correr sobre sus colinas."
+    },
+    {
+        "nombre": "Parque de la Cuña Verde de Latina",
+        "lat": 40.398800,
+        "lng": -3.745600,
+        "direccion": "Calle Concejal Francisco José Jiménez Martín, 11, 28047 Madrid",
+        "descripcion": "Este parque ofrece 1.000 metros cuadrados para que los perros corran y socialicen, además de vistas únicas de la capital."
+    }
+]
