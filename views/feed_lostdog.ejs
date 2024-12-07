@@ -15,7 +15,8 @@
                     <% lost_dogs.forEach(dog => { %>
                         <div class="col-md-6">
                             <div class="card">
-                                <img src="<%= dog.photo_dog_perdido || '/img/ej_perro_perdido.jpg' %>" class="card-img-top img-fluid" alt="Imagen del perro perdido">
+                                <!--<img src="<%= dog.photo_dog_perdido || '/img/ej_perro_perdido.jpg' %>" class="card-img-top img-fluid" alt="Imagen del perro perdido"> -->
+                                <img src="<%= dog.photo_dog_perdido ? '/uploads/' + dog.photo_dog_perdido : '/img/ej_perro_perdido.jpg' %>" class="card-img-top img-fluid" alt="Imagen del perro perdido">
                                 <div class="card-body">
                                     <h5 class="card-title"><%= dog.name %></h5>
                                     <p class="card-text"><strong>Raza:</strong> <%= dog.breed %></p>
@@ -144,6 +145,7 @@
                             </select>
                             <div class="invalid-feedback">Por favor, selecciona una raza de perro.</div>
                         </div>
+                        
                     </div>
 
                     <!-- Selección de perro ya registrado -->

@@ -226,6 +226,7 @@ async function deleteDogsByOwnerId(ownerId) {
         await sql.close();
     }
 }
+/*
 async function declareLostDog(dogId, isLost) {
     try {
         await connectToDb();
@@ -241,6 +242,36 @@ async function declareLostDog(dogId, isLost) {
         await sql.close();
     }
 }
+*/
+async function declareLostDog(dogId, isLost, photoFileName = null) {
+    try {
+        await connectToDb(); // Asegúrate de que esta función conecte a la base de datos
+        const query = `
+        UPDATE Dogs 
+        SET is_lost = @isLost, 
+            photo_dog_perdido = COALESCE(@photoFileName, photo_dog_perdido)
+        WHERE id = @dogId`;
+        
+        const request = new sql.Request();
+        request.input('dogId', sql.UniqueIdentifier, dogId);
+        request.input('isLost', sql.TinyInt, isLost ? 1 : 0);
+        request.input('photoFileName', sql.VarChar, photoFileName); // Añadir el valor de la nueva foto
+
+        await request.query(query);
+        console.log('Perro marcado como perdido exitosamente');
+    } catch (error) {
+        console.error('Error al marcar el perro como perdido', error);
+    } finally {
+        await sql.close();
+    }
+}
+
+
+
+
+
+
+
 async function getUserDogs(owner_id) {
     try {
         await connectToDb(); // Asegúrate de que la conexión a la base de datos esté establecida
