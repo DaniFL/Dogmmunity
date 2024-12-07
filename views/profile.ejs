@@ -25,6 +25,27 @@
 </form>
 </div>
 
+<h3>Reportes Recibidos</h3>
+<div>
+    <% if (reports && reports.length > 0) { %>
+        <ul class="list-group">
+            <% reports.forEach(report => { %>
+                <li class="list-group-item">
+                    <strong>Perro:</strong> <%= report.dog_name %><br>
+                    <strong>Mensaje:</strong> <%= report.message %><br>
+                    <strong>Contacto:</strong> <%= report.contact_info %><br>
+                    <strong>Foto:</strong><br>
+                    <img src="/uploads/<%= report.photo_dog_encontrado %>" alt="Foto del perro encontrado" class="img-fluid" style="max-width: 200px;"><br>
+                    <small class="text-muted">Enviado el: <%= new Date(report.created_at).toLocaleString() %></small>
+                </li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p>No has recibido reportes relacionados con tus perros perdidos.</p>
+    <% } %>
+</div>
+
+
 <script>
     // Capturar el evento del botón
     document.getElementById("deleteAccountButton").addEventListener("click", function () {

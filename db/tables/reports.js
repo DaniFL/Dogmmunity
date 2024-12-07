@@ -169,6 +169,36 @@ async function deleteReportsByUserId(userId) {
     }
 }
 
+// Obtener todos los reportes para los perros de un usuario
+async function getReportsForUserDogs(userId) {
+    try {
+        await connectToDb();
+        const query = `
+            SELECT 
+                Reports.id AS report_id,
+                Reports.message,
+                Reports.contact_info,
+                Reports.created_at,
+                Reports.photo_dog_encontrado,
+                Dogs.name AS dog_name
+            FROM Reports
+            INNER JOIN Dogs ON Reports.dog_id = Dogs.id
+            WHERE Dogs.owner_id = @user_id
+            ORDER BY Reports.created_at DESC
+        `;
+        const request = new sql.Request();
+        request.input('user_id', sql.UniqueIdentifier, userId);
+        const result = await request.query(query);
+        return result.recordset;
+    } catch (error) {
+        console.error('Error al obtener los reportes para los perros del usuario:', error);
+        throw error;
+    } finally {
+        await sql.close();
+    }
+}
+
+
 module.exports = {
     createReport,
     getReportById,
@@ -177,5 +207,6 @@ module.exports = {
     updateReport,
     deleteReport,
     deleteReportsByDogId,
-    deleteReportsByUserId
+    deleteReportsByUserId,
+    getReportsForUserDogs
 };

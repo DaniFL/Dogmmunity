@@ -2,6 +2,10 @@ var express = require("express");
 var router = express.Router();
 const { getUserById, deleteUser } = require("../db/tables/users");
 const { deleteDogsByOwnerId } = require("../db/tables/dogs");
+const { getReportsForUserDogs } = require('../db/tables/reports');
+
+
+
 /* GET profile page. */
 router.get("/", async function(req, res, next) {
 
@@ -10,6 +14,9 @@ router.get("/", async function(req, res, next) {
      if (!user) {
       return res.status(404).json({ error: 'Usuario no encontrado' });
     }
+
+    // Obtener los reportes relacionados con los perros del usuario
+    const reports = await getReportsForUserDogs(req.session.user.id);
 
     res.render("profile", {
       title: "Perfil",
@@ -47,12 +54,15 @@ router.get("/", async function(req, res, next) {
 
       profile_photo: user.photo_path ,
       script: "",
-      user: req.session.user });
+      user: req.session.user,
+      reports: reports,
+     });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Error al obtener el usuario' });
   }
   });
+
 
 /* Ruta para eliminar cuenta */
 router.post('/', async (req, res) => {
