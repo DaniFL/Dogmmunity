@@ -38,7 +38,7 @@
         <div class="col-lg-4">
             <% if (user) { %>
                 <h3>Añadir un perro perdido</h3>
-                <form action="/feed_lostdog" method="POST" enctype="multipart/form-data">
+                <form class="needs-validation" action="/feed_lostdog" method="post" novalidate>
                     <!-- Opción para declarar perro perdido -->
                     <div class="mb-3">
                         <label class="form-label">¿Deseas declarar un perro como perdido?</label>
@@ -82,7 +82,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="sexoPerro">¿De qué sexo es tu perro?</label>
-                            <input class="form-control" type="text" list="sexo" id="sexoPerro" name="sexo"
+                            <input class="form-control" type="text" list="sexo" id="sexoPerro" name="sexoPerro"
                                 placeholder="Escribe o selecciona el sexo" required>
                             <datalist id="sexo">
                                 <option value="Macho">
@@ -92,7 +92,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="razaPerro">¿Qué raza de perro tienes?</label>
-                            <select class="form-control" id="razaPerro" name="raza" required>
+                            <select class="form-control" id="razaPerro" name="razaPerro" required>
                                 <option value="" disabled selected>Selecciona una raza</option>
                                 <option value="Labrador Retriever">Labrador Retriever</option>
                                 <option value="Golden Retriever">Golden Retriever</option>

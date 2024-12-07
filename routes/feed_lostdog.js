@@ -14,7 +14,9 @@ function isAuthenticated(req, res, next) {
 router.get("/", async function (req, res, next) {
   try {
     const lostDogs = await getLostDogs(); // Obtener los perros perdidos
+    console.log(`Perros perdidos obtenidos: ${lostDogs}`);
     const userDogs = req.session.user ? await getUserDogs(req.session.user.id) : []; // Obtener todos los datos de todos los perros del usuario logueado
+    console.log(`Perros del usuario obtenidos: ${userDogs}`);
     const renderData = {
       title: "Perros perdidos",
       user: req.session.user,
@@ -95,40 +97,59 @@ router.get("/", async function (req, res, next) {
 });
 
 // Ruta POST para añadir un perro perdido
-router.post("/", async function (req, res, next) {
-  const { nombrePerro, edadPerro, pesoPerro, sexoPerro, razaPerro, perroId } = req.body;
-  const userId = req.session.user ? req.session.user.id : null; // Obtener ID del usuario logueado
-  
-  if (!userId) {
-      return res.status(403).send("Debes estar logueado para declarar un perro perdido.");
-  }
+router.post("/", isAuthenticated, async function (req, res, next) {
+  const { nombrePerro, edadPerro, pesoPerro, sexoPerro, razaPerro, perroId, perroOpciones } = req.body;
+  console.log(req.body); // Depuración
 
-  // Validación de los campos obligatorios
-  if (!nombrePerro || !edadPerro || !pesoPerro || !sexoPerro || !razaPerro) {
-    return res.status(400).send("Todos los campos son obligatorios.");
-  }
+  const userId = req.session.user.id;
 
-  try {
-      if (perroId) {
-          // Si se seleccionó un perro ya registrado
-          await declareLostDog(perroId, true); // Llamamos a la función que actualiza el estado del perro como perdido
-          return res.redirect("/feed_lostdog"); // Redirigimos al feed de perros perdidos
-      } else {
-          // Si no se seleccionó un perro registrado, lo añadimos como nuevo perro perdido
-          await createDog({
-              name: nombrePerro,
-              age: edadPerro,
-              weight: pesoPerro,
-              sex: sexoPerro,
-              breed: razaPerro,
-              is_lost: 1, // Marcamos este perro como perdido
-              owner_id: userId, // Asociamos el perro con el usuario logueado
-          });
-          return res.redirect("/feed_lostdog"); // Redirigimos al feed de perros perdidos
-      }
-  } catch (error) {
-      console.error("Error al declarar perro perdido:", error);
-      res.status(500).send("Error en el servidor al declarar perro perdido");
+  // Validar según la opción seleccionada
+  if (perroOpciones === "nuevo") {
+    // Validación para un nuevo perro
+    if (!nombrePerro || !edadPerro || !pesoPerro || !sexoPerro || !razaPerro) {
+      console.log("Faltan campos obligatorios para un nuevo perro");
+      return res.status(400).send("Todos los campos son obligatorios para registrar un nuevo perro.");
+    }
+
+    try {
+      // Crear un nuevo perro
+      await createDog({
+        name: nombrePerro,
+        age: new Date().getFullYear() - new Date(edadPerro).getFullYear(), // Calculate age from birth date
+        weight: pesoPerro,
+        sex: sexoPerro,
+        breed: razaPerro,
+        is_lost: 1, // Marcamos como perdido
+        owner_id: userId, // Asociamos al usuario logueado
+        photo_dog_perdido: "", // Assuming photo is not provided in the form
+        colour: "" // Assuming colour is not provided in the form
+      });
+      console.log("Nuevo perro perdido registrado exitosamente.");
+      return res.redirect("/feed_lostdog");
+    } catch (error) {
+      console.error("Error al registrar un nuevo perro perdido:", error);
+      res.status(500).send("Error al registrar un nuevo perro perdido.");
+    }
+  } else if (perroOpciones === "registrado") {
+    // Validación para un perro registrado
+    if (!perroId) {
+      console.log("No se seleccionó un perro registrado.");
+      return res.status(400).send("Debe seleccionar un perro registrado.");
+    }
+
+    try {
+      // Declarar perro registrado como perdido
+      const dog = await declareLostDog(perroId, true);
+      console.log(`Perro registrado marcado como perdido: ${dog}`);
+      return res.redirect("/feed_lostdog");
+    } catch (error) {
+      console.error("Error al marcar perro registrado como perdido:", error);
+      res.status(500).send("Error al marcar perro registrado como perdido.");
+    }
+  } else {
+    console.log("Opción inválida en el formulario.");
+    res.status(400).send("Opción no válida.");
   }
 });
+
 module.exports = router;
