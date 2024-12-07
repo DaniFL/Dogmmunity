@@ -4,8 +4,8 @@ const path = require("path");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-    res.render("map_only", {
-      title: "Mapa",
+    res.render("publicaciones", {
+      title: "Publicaciones",
       navbar_addr1: "/profile",
       navbar_addr2: "/profile", 
       navbar_addr3: "/adiestradores",
