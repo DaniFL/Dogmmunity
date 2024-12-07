@@ -226,6 +226,8 @@ router.post("/", isAuthenticated, upload.single("fotoPerroPerdido"), async funct
 // Ruta para manejar la creación de reportes
 router.post('/report_dog', isAuthenticated, async (req, res) => {
     const { dogId, message, contactInfo } = req.body;
+    console.log(req.body);
+
 
     // Validar que los campos requeridos estén presentes
     if (!dogId || !message || !contactInfo) {
