@@ -31,7 +31,7 @@ function initMap() {
   }
 
   // Cargar puntos de interés
-  fetch("/contact_us/puntos-de-interes")
+  fetch("/map_only/puntos-de-interes")
     .then((response) => {
       if (!response.ok) throw new Error("Error en la respuesta del servidor.");
       return response.json();
@@ -57,7 +57,7 @@ function initMap() {
     );
 
   // Cargar usuarios cercanos
-  fetch("/contact_us/usuarios-cercanos")
+  fetch("/map_only/usuarios-cercanos")
     .then((response) => {
       if (!response.ok) throw new Error("Error en la respuesta del servidor.");
       return response.json();
@@ -72,7 +72,7 @@ function initMap() {
     .catch((error) => console.error("Error al cargar usuarios cercanos:", error));
 
   // Cargar eventos caninos
-  fetch("/contact_us/eventos-caninos")
+  fetch("/map_only/eventos-caninos")
     .then((response) => {
       if (!response.ok) throw new Error("Error en la respuesta del servidor.");
       return response.json();

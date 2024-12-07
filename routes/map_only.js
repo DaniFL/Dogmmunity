@@ -5,7 +5,7 @@ const router = express.Router();
 
 // Ruta para puntos de interés
 router.get("/puntos-de-interes", (req, res) => {
-  const filePath = path.join(__dirname, "../js/puntos_interes.json");
+  const filePath = path.join(__dirname, "../public/puntos_interes.json");
   fs.readFile(filePath, "utf8", (err, data) => {
     if (err) {
       console.error("Error al leer puntos de interés:", err);
@@ -16,9 +16,22 @@ router.get("/puntos-de-interes", (req, res) => {
   });
 });
 
+// Ruta para puntos de interés
+router.get("/eventos-caninos", (req, res) => {
+  const filePath = path.join(__dirname, "../public/eventos_caninos.json");
+  fs.readFile(filePath, "utf8", (err, data) => {
+    if (err) {
+      console.error("Error al leer puntos caninos:", err);
+      res.status(500).send("Error al cargar puntos caninos");
+      return;
+    }
+    res.json(JSON.parse(data));
+  });
+});
+
 // Ruta para usuarios cercanos
 router.get("/usuarios-cercanos", (req, res) => {
-  const filePath = path.join(__dirname, "../js/usuarios_cercanos.json");
+  const filePath = path.join(__dirname, "../public/usuarios_cercanos.json");
   fs.readFile(filePath, "utf8", (err, data) => {
     if (err) {
       console.error("Error al leer usuarios cercanos:", err);

@@ -2105,15 +2105,20 @@ section,
 
 /*Estilos mapa*/
 #legend {
-    font-size: 14px;
-    font-family: Arial, sans-serif;
-    background: #fff;
+    background: white;
     padding: 10px;
+    margin: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    display: inline-block;
-    margin-top: 10px;
-  }
-  #legend p {
-    margin: 5px 0;
-  }
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+}
+
+#legend h3 {
+    margin: 0;
+    margin-right: 10px;
+}
+
+#legend span {
+    margin-right: 5px;
+}
