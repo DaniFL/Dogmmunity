@@ -1,8 +1,8 @@
 var express = require("express");
 var router = express.Router();
 const { getUserById, deleteUser } = require("../db/tables/users");
-const { deleteDogsByOwnerId } = require("../db/tables/dogs");
-const { getReportsForUserDogs } = require('../db/tables/reports');
+const { deleteDogsByOwnerId, markDogAsFound } = require("../db/tables/dogs");
+const { getReportsForUserDogs, getReportById, updateReportStatus } = require('../db/tables/reports');
 
 
 
@@ -86,6 +86,41 @@ router.post('/', async (req, res) => {
   } catch (error) {
       console.error('Error al eliminar la cuenta: ', error);
       res.status(500).json({ error: 'Error al eliminar la cuenta' });
+  }
+});
+
+
+/* Ruta para manejar la respuesta del dueño */
+router.post('/respond_to_report', async (req, res) => {
+  const { reportId, isConfirmed } = req.body;
+  console.log('Datos recibidos en el backend:', { reportId, isConfirmed });
+  
+  if (!reportId || !isConfirmed) {
+    return res.status(400).json({ error: 'Faltan parámetros' });
+  }
+
+  if (!req.session.user || !req.session.user.id) {
+    return res.status(403).json({ error: 'No autorizado' });
+  }
+
+  try {
+    // Obtener los detalles del reporte para identificar el perro
+    const report = await getReportById(reportId);
+    if (!report) {
+      return res.status(404).json({ error: 'Reporte no encontrado' });
+    }
+    // Actualizar el estado del reporte según la respuesta del usuario
+    await updateReportStatus(reportId, isConfirmed === 'true');
+
+    // Si el reporte es confirmado, actualizar el estado del perro
+    if (isConfirmed === 'true') {
+      await markDogAsFound(report.dog_id); // Establecer is_lost a 0
+    }
+
+    res.redirect('/profile'); // Redirigir de nuevo al perfil
+  } catch (error) {
+    console.error('Error al actualizar el estado del reporte:', error);
+    res.status(500).json({ error: 'Error al procesar la respuesta del reporte' });
   }
 });
 

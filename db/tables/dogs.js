@@ -289,6 +289,28 @@ async function getUserDogs(owner_id) {
 }
 
 
+// Actualizar el estado de un perro (is_lost a 0)
+async function markDogAsFound(dogId) {
+    try {
+        await connectToDb();
+        const query = `
+            UPDATE Dogs
+            SET is_lost = 0
+            WHERE id = @dogId
+        `;
+        const request = new sql.Request();
+        request.input('dogId', sql.UniqueIdentifier, dogId);
+        await request.query(query);
+        console.log('El estado del perro ha sido actualizado a encontrado');
+    } catch (error) {
+        console.error('Error al actualizar el estado del perro', error);
+        throw error;
+    } finally {
+        await sql.close();
+    }
+}
+
+
 module.exports = {
     createDog,
     updateDog,
@@ -301,5 +323,6 @@ module.exports = {
     getBreeds,
     deleteDogsByOwnerId,
     declareLostDog,
-    getUserDogs
+    getUserDogs,
+    markDogAsFound
 };

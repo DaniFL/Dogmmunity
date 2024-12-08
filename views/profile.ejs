@@ -25,7 +25,7 @@
 </form>
 </div>
 
-<h3>Reportes Recibidos</h3>
+<h3>Buzón de reportes de perros encontrados</h3>
 <div>
     <% if (reports && reports.length > 0) { %>
         <ul class="list-group">
@@ -37,6 +37,15 @@
                     <strong>Foto:</strong><br>
                     <img src="/uploads/<%= report.photo_dog_encontrado %>" alt="Foto del perro encontrado" class="img-fluid" style="max-width: 200px;"><br>
                     <small class="text-muted">Enviado el: <%= new Date(report.created_at).toLocaleString() %></small>
+                    <% if (!report.confirmed_by_owner) { %>
+                        <form action="/profile/respond_to_report" method="post" class="mt-2">
+                            <input type="hidden" name="reportId" value="<%= report.id %>">
+                            <button type="submit" name="isConfirmed" value="true" class="btn btn-success btn-sm">Sí, es mi perro</button>
+                            <button type="submit" name="isConfirmed" value="false" class="btn btn-danger btn-sm">No, no es mi perro</button>
+                        </form>
+                    <% } else { %>
+                        <span class="text-success">Reporte confirmado como válido.</span>
+                    <% } %>
                 </li>
             <% }) %>
         </ul>

@@ -169,13 +169,13 @@ async function deleteReportsByUserId(userId) {
     }
 }
 
-// Obtener todos los reportes para los perros de un usuario
+// Obtener todos los reportes para los perros de un usuario que no están marcados como encontrados
 async function getReportsForUserDogs(userId) {
     try {
         await connectToDb();
         const query = `
             SELECT 
-                Reports.id AS report_id,
+                Reports.id,
                 Reports.message,
                 Reports.contact_info,
                 Reports.created_at,
@@ -183,11 +183,11 @@ async function getReportsForUserDogs(userId) {
                 Dogs.name AS dog_name
             FROM Reports
             INNER JOIN Dogs ON Reports.dog_id = Dogs.id
-            WHERE Dogs.owner_id = @user_id
+            WHERE Dogs.owner_id = @userId AND (Reports.confirmed_by_owner IS NULL OR Reports.confirmed_by_owner = 0)
             ORDER BY Reports.created_at DESC
         `;
         const request = new sql.Request();
-        request.input('user_id', sql.UniqueIdentifier, userId);
+        request.input('userId', sql.UniqueIdentifier, userId);
         const result = await request.query(query);
         return result.recordset;
     } catch (error) {
@@ -195,6 +195,28 @@ async function getReportsForUserDogs(userId) {
         throw error;
     } finally {
         await sql.close();
+    }
+}
+
+// Actualizar el estado de un reporte (confirmado o no confirmado por el usuario dueño del perro)
+async function updateReportStatus(reportId, isConfirmed) {
+    try {
+      await connectToDb();
+      const query = `
+        UPDATE Reports
+        SET confirmed_by_owner = @isConfirmed
+        WHERE id = @reportId
+      `;
+      const request = new sql.Request();
+      request.input('reportId', sql.UniqueIdentifier, reportId);
+      request.input('isConfirmed', sql.Bit, isConfirmed); // true o false
+      await request.query(query);
+      console.log('Estado del reporte actualizado exitosamente');
+    } catch (error) {
+      console.error('Error al actualizar el estado del reporte:', error);
+      throw error;
+    } finally {
+      await sql.close();
     }
 }
 
@@ -208,5 +230,6 @@ module.exports = {
     deleteReport,
     deleteReportsByDogId,
     deleteReportsByUserId,
-    getReportsForUserDogs
+    getReportsForUserDogs,
+    updateReportStatus
 };
