@@ -1,38 +1,109 @@
 <%- include("header", {}) %>
-<div class="container mt-4">
-    <div class="text-center mb-4">
-        <header>
-            <h2>¡Aquí te mostramos todos los datos de tus perros!</h2>
-        </header>
-    </div>
-
-    <% if (dogs && dogs.length > 0) { %>
-        <% dogs.forEach(dog => { %>
-            <div class="card p-4 mb-4">
-                <div class="infoPerro">
-                    <p><strong>Nombre:</strong> <%= dog.name %></p>
-                    <p><strong>Edad:</strong> <%= dog.age %> años</p>
-                    <p><strong>Peso:</strong> <%= dog.weight %> kg</p>
-                    <p><strong>Sexo:</strong> <%= dog.sex %></p>
-                    <p><strong>Raza:</strong> <%= dog.breed %></p>
-                    <!-- <p><strong>Dueño ID:</strong> <%= dog.owner_id %></p> -->
-                    <% if (dog.photo_dog_perdido) { %>
-                        <div class="text-center">
-                            <img src="<%= dog.photo_dog_perdido %>" alt="Foto de <%= dog.name %>" class="img-fluid rounded" style="max-width: 300px;">
-                        </div>
-                    <% } %>
-                </div>
-            </div>
-        <% }); %>
-    <% } else { %>
-        <div class="text-center">
-            <p>No se encontraron perros registrados para este usuario.</p>
+    <div class="container mt-4">
+        <div class="text-center mb-4">
+            <header>
+                <h2>¡Aquí te mostramos todos los datos de tus perros!</h2>
+            </header>
         </div>
-    <% } %>
+        <!-- Own Dog Section -->
+        <section id="team" class="team section">
+            <!-- Section Title -->
+            <div class="container section-title" data-aos="fade-up">
+                <div class="section-title-container d-flex align-items-center justify-content-between">
+                    <h2>Mis perros</h2>
+                </div>
+            </div><!-- End Section Title -->
+            <% if (dogs && dogs.length> 0) { %>
+                <% dogs.forEach(dog=> { %>
+                    <div class="container">
+                        <div class="row gy-4">
+                            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                                <div class="team-member d-flex align-items-start">
+                                    <% if (dog.photo_dog_perdido) { %>
+                                        <div class="pic"><img src="<%= dog.photo_dog_perdido %>" class="img-fluid"
+                                                alt=""></div>
+                                        <% } %>
+                                            <div class="member-info">
+                                                <h4>
+                                                    <%= dog.name %>
+                                                </h4>
+                                                <span>Chief Data Officer</span>
+                                                <p><strong>Edad:</strong>
+                                                    <%= dog.age %> años
+                                                </p>
+                                                <p><strong>Peso:</strong>
+                                                    <%= dog.weight %> kg
+                                                </p>
+                                                <p><strong>Sexo:</strong>
+                                                    <%= dog.sex %>
+                                                </p>
+                                                <p><strong>Raza:</strong>
+                                                    <%= dog.breed %>
+                                                </p>
+                                            </div>
+                                </div>
+                            </div><!-- End Team Member -->
+                        </div>
+                    </div>
+                    <% }) %>
+                        <% } else { %>
+                            <div class="text-center">
+                                <p>No se encontraron perros registrados para este usuario.</p>
+                            </div>
+                            <% } %>
+        </section>
 
-    <div class="text-center mt-4">
-        <p>¿Deseas añadir o editar la información de tus perros?</p>
-        <a href="/edit_dog_profile" class="btn btn-primary">Añadir o Editar Perro</a>
+        <!-- Lost Dog Section -->
+        <section id="team" class="team section">
+            <!-- Section Title -->
+            <div class="container section-title" data-aos="fade-up">
+                <div class="section-title-container d-flex align-items-center justify-content-between">
+                    <h2>Mis perros perdidos</h2>
+                </div>
+            </div><!-- End Section Title -->
+            <% const lostDogs=dogs.filter(dog=> dog.is_lost === 1);
+                if (lostDogs.length > 0) {
+                %>
+                <% lostDogs.forEach(dog=> { %>
+                    <div class="container">
+                        <div class="row gy-4">
+                            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                                <div class="team-member d-flex align-items-start">
+                                    <% if (dog.photo_dog_perdido) { %>
+                                        <div class="pic"><img src="<%= dog.photo_dog_perdido %>" class="img-fluid" alt=""></div>
+                                        <% } %>
+                                            <div class="member-info">
+                                                <h4>
+                                                    <%= dog.name %>
+                                                </h4>
+                                                <span>Chief Data Officer</span>
+                                                <p><strong>Edad:</strong>
+                                                    <%= dog.age %> años
+                                                </p>
+                                                <p><strong>Peso:</strong>
+                                                    <%= dog.weight %> kg
+                                                </p>
+                                                <p><strong>Sexo:</strong>
+                                                    <%= dog.sex %>
+                                                </p>
+                                                <p><strong>Raza:</strong>
+                                                    <%= dog.breed %>
+                                                </p>
+                                            </div>
+                                </div>
+                            </div><!-- End Team Member -->
+                        </div>
+                    </div>
+                    <% }) %>
+                        <% } else { %>
+                            <div class="text-center">
+                                <p>No se encontraron perros perdidos registrados para este usuario.</p>
+                            </div>
+                            <% } %>
+        </section>
+        <div class="text-center mt-4">
+            <p>¿Deseas añadir o editar la información de tus perros?</p>
+            <a href="/edit_dog_profile" class="btn btn-primary">Añadir o Editar Perro</a>
+        </div>
     </div>
-</div>
-<%- include("footer", {}) %>
+    <%- include("footer", {}) %>
