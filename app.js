@@ -35,7 +35,7 @@ let adiestradoresRouter = require("./routes/adiestradores");
 let chatRouter = require('./routes/chat');
 let forgotPasswordRouter = require("./routes/forgot_password.js");
 let resetPasswrodRouter = require("./routes/reset_password.js");
-let publicacionesRouter = require('./routes/publicaciones');
+let publicacionesRouter = require('./routes/publicaciones'); //mi prima la coja
 
 
 // Conexión a SQL
