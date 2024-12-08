@@ -62,7 +62,7 @@ router.post('/', async (req, res, next) => {
       service: "Gmail",
       auth:{
         user:"dogmmunityapp@gmail.com",
-        pass:"getk mqrs nwfz jecv",
+        pass:"stka kufu ntbc onkc",
       },
     });
     const verificationLink = `http://localhost:3000/verify/${verificationToken}`;

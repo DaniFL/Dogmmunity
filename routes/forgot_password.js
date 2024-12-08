@@ -66,7 +66,7 @@ router.post("/", async (req, res) => {
       service: "Gmail",
       auth: {
         user:"dogmmunityapp@gmail.com",
-        pass:"getk mqrs nwfz jecv",
+        pass:"stka kufu ntbc onkc",
       },
     });
 
