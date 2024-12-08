@@ -261,7 +261,7 @@ router.post('/report_dog', isAuthenticated, upload.single('fotoReporte'), async 
           service: "Gmail",
           auth: {
             user:"dogmmunityapp@gmail.com",
-            pass:"getk mqrs nwfz jecv",
+            pass:"stka kufu ntbc onkc",
           },
         });
 
@@ -271,7 +271,7 @@ router.post('/report_dog', isAuthenticated, upload.single('fotoReporte'), async 
           to: email_owner,
           subject: "¡Tienes un nuevo reporte sobre tu perro perdido!",
           html: `
-            <p>Hola ${user.username},</p>
+            <p>Hola ${req.session.user.username},</p>
             <p>¡Buenas noticias! Alguien ha creado un nuevo reporte sobre uno de tus perros reportados como perdidos en Dogmmunity.</p>
             <p>Te invitamos a revisar los detalles en tu buzón de reportes:</p>
             <a href="${reportInboxLink}">Ir a mi buzón de reportes</a>
@@ -282,7 +282,7 @@ router.post('/report_dog', isAuthenticated, upload.single('fotoReporte'), async 
         };
     
         await transporter.sendMail(mailOptions);
-        console.log(`Mensaje de nuevo reporte enviado a: ${user.username}`);
+        console.log(`Mensaje de nuevo reporte enviado a: ${req.session.user.username}`);
 
         // Redirigir de nuevo al feed después del envío exitoso
         res.redirect('/feed_lostdog');
