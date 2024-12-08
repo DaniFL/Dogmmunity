@@ -41,6 +41,29 @@ router.get("/", (req, res) => {
       user: req.session.user,
     });
   });
+
+  // Datos de ejemplo para los videos
+  const videos = [
+      {
+          id: 1,
+          url: '/placeholder.svg?height=720&width=405',
+          caption: 'Video description here',
+      },
+      {
+          id: 2,
+          url: '/placeholder.svg?height=720&width=405',
+          caption: 'Another video description',
+      },
+  ];
   
+  // Ruta para renderizar el feed de videos
+  //app.get('/', (req, res) => {
+    //  res.render('video-feed', { videos: videos });
+  //});
+  
+  // Iniciar el servidor
+  /*app.listen(port, () => {
+      console.log(`Servidor corriendo en http://localhost:${port}`);
+  });*/
 
 module.exports = router;
