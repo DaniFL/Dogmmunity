@@ -310,13 +310,14 @@ async function markDogAsFound(dogId) {
     }
 }
 
+
 async function getEmailByDogId(dogId) {
     try {
         await connectToDb();
         const query = `
             SELECT Usuarios.email
             FROM Dogs
-            INNER JOIN Users ON Dogs.owner_id = Usuarios.id
+            INNER JOIN Usuarios ON Dogs.owner_id = Usuarios.id
             WHERE Dogs.id = @dogId
         `;
         const request = new sql.Request();
