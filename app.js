@@ -64,7 +64,7 @@ app.use(
     resave: true,
     saveUninitialized: true,
     cookie: {
-        maxAge: 600000, // 10 minutos
+        maxAge: 600000000, // 10 minutos
         secure: false,
         httpOnly: true,
     }, // Indica si la 
