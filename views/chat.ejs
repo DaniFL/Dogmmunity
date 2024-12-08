@@ -1,82 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dogbot</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-</head>
+    <style>
+        .chat-message {
+            word-break: break-word; /* Permitir dividir palabras largas */
+            white-space: pre-wrap;  /* Conservar saltos de línea y ajustar texto */
+        }
 
-<body class="bg-gray-100 min-h-screen flex items-center justify-center">
-    <div class="w-full h-full bg-white shadow-md rounded-none overflow-hidden">
-        <div class="flex flex-col h-full">
-            <div class="px-4 py-3 border-b border-gray-300">
-                <div class="flex justify-between items-center">
-                    <h1 class="text-lg font-semibold text-gray-800">
-                        Dogbot
-                    </h1>
-                    <div class="bg-green-500 text-white text-xs px-2 py-1 rounded-full">
-                        Online
-                    </div>
-                </div>
+        #messages {
+            padding: 10px; /* Espacio interno para que los mensajes no queden pegados a los bordes */
+        }
+
+        #messages::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #messages::-webkit-scrollbar-thumb {
+            background-color: rgba(107, 114, 128, 0.5);
+            border-radius: 4px;
+        }
+
+        #messages::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(107, 114, 128, 0.7);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-gray-100 to-gray-200 min-h-screen">
+    <div class="w-full max-w-3xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden h-[850px] flex flex-col mt-8">
+        <div class="px-4 py-3 border-b bg-gradient-to-r from-blue-500 to-blue-700 text-white flex-shrink-0">
+            <div class="flex justify-between items-center">
+                <h1 class="text-lg font-semibold">Dogbot</h1>
+                <div class="bg-green-400 text-white text-xs px-2 py-1 rounded-full shadow-md">Online</div>
             </div>
-            <div id="messages" class="flex-1 p-3 overflow-y-auto flex flex-col space-y-2">
-                <!-- Los mensajes se agregarán dinámicamente aquí -->
-            </div>
-            <form id="chat-form" class="px-3 py-2 border-t border-gray-300">
-                <div class="flex gap-2">
-                    <textarea id="message" name="message" rows="1" placeholder="Escribe tu mensaje..."
-                        class="flex-1 p-2 border rounded-lg bg-gray-100 text-gray-800 border-gray-300 text-sm resize-none"></textarea>
-                    <button
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1.5 px-3 rounded-lg transition duration-300 ease-in-out text-sm">
-                        Enviar
-                    </button>
-                </div>
-            </form>
         </div>
+
+        <div class="relative flex-1 overflow-y-auto" id="messages-container">
+            <div id="messages" class="flex flex-col space-y-4"></div>
+        </div>
+
+        <form id="chat-form" class="px-3 py-2 border-t border-gray-300 flex-shrink-0">
+            <div class="flex flex-col gap-2">
+                <textarea id="message" name="message" rows="1" maxlength="200" placeholder="Escribe tu mensaje..."
+                    class="flex-1 p-2 border rounded-md bg-gray-100 text-gray-800 border-gray-300 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+                <div id="status-message" class="text-gray-500 text-sm py-1"></div>
+                <button id="send-btn" disabled
+                    class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md text-base w-full">
+                    Enviar
+                </button>
+            </div>
+        </form>
     </div>
+
     <script>
         const chatForm = document.getElementById('chat-form');
         const messagesDiv = document.getElementById('messages');
+        const messagesContainer = document.getElementById('messages-container');
+        const messageInput = document.getElementById('message');
+        const sendButton = document.getElementById('send-btn');
+        const statusMessage = document.getElementById('status-message');
+
+        const formatTextToHTML = (text) => {
+            return text
+                .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
+                .replace(/\*(.*?)\*/g, '<i>$1</i>')
+                .replace(/(?:\r\n|\r|\n)/g, '<br>');
+        };
+
+        const appendMessage = (text, sender) => {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-message ${sender === 'user' ? 'self-end bg-blue-500 text-white' : 'self-start bg-gray-300 text-gray-800'} w-auto rounded-lg px-3 py-1.5 text-sm`;
+            messageDiv.innerHTML = sender === 'bot' ? text : text;
+
+            messagesDiv.appendChild(messageDiv);
+
+            requestAnimationFrame(() => {
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            });
+        };
+
+        messageInput.addEventListener('input', () => {
+            sendButton.disabled = !messageInput.value.trim();
+        });
+
+        messageInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                chatForm.requestSubmit();
+            }
+        });
 
         chatForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const message = document.getElementById('message').value;
+            const message = messageInput.value.trim();
 
-            if (!message.trim()) return;
+            if (!message) return alert('Por favor, escribe un mensaje válido.');
 
-            // Mostrar el mensaje del usuario
-            const userMessage = document.createElement('div');
-            userMessage.className = 'chat-message self-end bg-blue-500 text-white max-w-xs rounded-lg px-3 py-1.5 text-sm';
-            userMessage.textContent = message;
-            messagesDiv.appendChild(userMessage);
-
-            document.getElementById('message').value = '';
+            appendMessage(message, 'user');
+            messageInput.value = '';
+            sendButton.disabled = true;
 
             try {
+                statusMessage.textContent = 'Dogbot está respondiendo...';
+
                 const response = await fetch('/chat/send', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ message }),
                 });
-                const data = await response.json();
 
-                if (data.reply) {
-                    const botMessage = document.createElement('div');
-                    botMessage.className = 'chat-message self-start bg-gray-300 text-gray-800 max-w-xs rounded-lg px-3 py-1.5 text-sm';
-                    botMessage.textContent = data.reply;
-                    messagesDiv.appendChild(botMessage);
-                } else {
-                    alert('Error al obtener respuesta del modelo');
-                }
+                if (!response.ok) throw new Error('Error en el servidor');
+
+                const data = await response.json();
+                const formattedReply = formatTextToHTML(data.reply);
+                appendMessage(formattedReply, 'bot');
             } catch (err) {
-                console.error('Error al enviar mensaje:', err);
-                alert('Error al enviar el mensaje');
+                console.error('Error:', err);
+                appendMessage('Error al enviar el mensaje.', 'bot');
+            } finally {
+                statusMessage.textContent = '';
+                sendButton.disabled = false;
             }
         });
     </script>
 </body>
-
 </html>

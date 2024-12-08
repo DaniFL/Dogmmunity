@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
     if (!req.session.user) {
         return res.redirect('/login'); // Redirige al login si no hay sesión
     }
-    res.render('chat', { title: 'Dogbot', user: req.session.user, messages: [] });
+    res.render('chat', { user: req.session.user, messages: [] });
 });
 
 router.post('/send', async (req, res) => {
@@ -20,7 +20,13 @@ router.post('/send', async (req, res) => {
 
     try {
         const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
-        const result = await model.generateContent([`Actúa como un adiestrador de perros. ${message}`]);
+
+        // Prompt ajustado para respuestas moderadamente largas
+        const prompt = `
+            Actúa como un experto adiestrador de perros. Responde de manera clara, detallada y útil, pero evita ser excesivamente extenso. Proporciona respuestas que resuelvan directamente la consulta del usuario y, si es necesario, invita al usuario a preguntar más detalles si lo desea. Mensaje del usuario: "${message}"
+        `;
+
+        const result = await model.generateContent([prompt]);
 
         res.json({ reply: result.response.text() });
     } catch (error) {
