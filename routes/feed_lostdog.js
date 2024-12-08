@@ -1,12 +1,14 @@
 var express = require("express");
 var router = express.Router();
-const { createDog, getLostDogs, declareLostDog, getUserDogs } = require("../db/tables/dogs");
+const { createDog, getLostDogs, declareLostDog, getUserDogs, getEmailByDogId } = require("../db/tables/dogs");
 const { createReport } = require('../db/tables/reports'); // Importa la función para crear reportes
-
 
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
+
+const nodemailer = require("nodemailer"); // Importa el módulo nodemailer para enviar correos electrónicos
+
 
 // Middleware para verificar si el usuario ha iniciado sesión
 function isAuthenticated(req, res, next) {
@@ -248,6 +250,39 @@ router.post('/report_dog', isAuthenticated, upload.single('fotoReporte'), async 
         // Llamar a la función para insertar el reporte en la base de datos
         await createReport(report);
         console.log('Reporte creado exitosamente');
+
+
+        // Obtener el correo del dueño del perro
+        const email_owner = await getEmailByDogId(dogId);
+
+        //Mandar correo avisando al dueño del perro de que alguien ha encontrado a su perro posiblemente
+        // Configuración y envío del correo
+        const transporter = nodemailer.createTransport({
+          service: "Gmail",
+          auth: {
+            user:"dogmmunityapp@gmail.com",
+            pass:"getk mqrs nwfz jecv",
+          },
+        });
+
+        const reportInboxLink = "http://localhost:3000/login"; // Enlace a inicio de sesión para poder acceder al buzón de reportes del usuario
+        const mailOptions = {
+          from: '"Dogmmunity" <dogmmunityapp@gmail.com>',
+          to: email_owner,
+          subject: "¡Tienes un nuevo reporte sobre tu perro perdido!",
+          html: `
+            <p>Hola ${user.username},</p>
+            <p>¡Buenas noticias! Alguien ha creado un nuevo reporte sobre uno de tus perros reportados como perdidos en Dogmmunity.</p>
+            <p>Te invitamos a revisar los detalles en tu buzón de reportes:</p>
+            <a href="${reportInboxLink}">Ir a mi buzón de reportes</a>
+            <p>Esperamos que este reporte sea un paso más cerca de reencontrarte con tu peludo amigo.</p>
+            <p>¡Estamos contigo! 🐾</p>
+            <p>El equipo de Dogmmunity</p>
+          `,
+        };
+    
+        await transporter.sendMail(mailOptions);
+        console.log(`Mensaje de nuevo reporte enviado a: ${user.username}`);
 
         // Redirigir de nuevo al feed después del envío exitoso
         res.redirect('/feed_lostdog');

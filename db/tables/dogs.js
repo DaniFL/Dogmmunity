@@ -310,6 +310,27 @@ async function markDogAsFound(dogId) {
     }
 }
 
+async function getEmailByDogId(dogId) {
+    try {
+        await connectToDb();
+        const query = `
+            SELECT Users.email
+            FROM Dogs
+            INNER JOIN Users ON Dogs.owner_id = Users.id
+            WHERE Dogs.id = @dogId
+        `;
+        const request = new sql.Request();
+        request.input('dogId', sql.UniqueIdentifier, dogId);
+        const result = await request.query(query);
+        return result.recordset[0].email;
+    } catch (error) {
+        console.error('Error al obtener el correo del dueño del perro', error);
+        throw error;
+    } finally {
+        await sql.close();
+    }
+}
+
 
 module.exports = {
     createDog,
@@ -324,5 +345,6 @@ module.exports = {
     deleteDogsByOwnerId,
     declareLostDog,
     getUserDogs,
-    markDogAsFound
+    markDogAsFound,
+    getEmailByDogId
 };
