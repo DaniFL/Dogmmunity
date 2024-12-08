@@ -1,0 +1,20 @@
+#video-container {
+    scroll-snap-type: y mandatory;
+}
+
+.video {
+    scroll-snap-align: start;
+    height: 100vh;
+    position: relative;
+}
+
+video {
+    max-width: 70%;
+    max-height: 70%;
+    border-radius: 10px;
+}
+
+.video-details {
+    width: 60%;
+    max-width: 500px;
+}

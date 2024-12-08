@@ -35,7 +35,8 @@ let adiestradoresRouter = require("./routes/adiestradores");
 let chatRouter = require('./routes/chat');
 let forgotPasswordRouter = require("./routes/forgot_password.js");
 let resetPasswrodRouter = require("./routes/reset_password.js");
-let publicacionesRouter = require('./routes/publicaciones'); //mi prima la coja
+let publicacionesRouter = require('./routes/publicaciones'); 
+let pruebaRouter = require('./routes/prueba');
 
 
 // Conexión a SQL
@@ -60,9 +61,13 @@ app.use(express.static(__dirname + '/public'));
 app.use(
   session({
     secret: "dogmmunity-session",
-    resave: false,
+    resave: true,
     saveUninitialized: true,
-    cookie: { secure: false }, // Indica si la cookie debe ser enviada solo a través de conexiones HTTPS.
+    cookie: {
+        maxAge: 600000, // 10 minutos
+        secure: false,
+        httpOnly: true,
+    }, // Indica si la 
   })
 );
 app.use('/uploads', express.static('uploads')); // Ruta para acceder a las imágenes subidas
@@ -109,6 +114,7 @@ app.use('/chat', chatRouter);
 app.use("/forgot_password", forgotPasswordRouter);
 app.use("/reset_password", resetPasswrodRouter);
 app.use('/publicaciones', publicacionesRouter);
+app.use('/prueba', pruebaRouter);
 
 
 // 404 error
