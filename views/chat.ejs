@@ -4,18 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat - Adiestrador de Perros</title>
-    <link rel="stylesheet" href="/styles/chat.css">
+    <title>Dogbot</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
-    <h1>Chat con tu Adiestrador de Perros</h1>
-    <div id="chat-container">
-        <div id="messages"></div>
-        <form id="chat-form">
-            <textarea name="message" id="message" rows="3" placeholder="Escribe tu mensaje..."></textarea>
-            <button type="submit">Enviar</button>
-        </form>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="w-full h-full bg-white shadow-md rounded-none overflow-hidden">
+        <div class="flex flex-col h-full">
+            <div class="px-4 py-3 border-b border-gray-300">
+                <div class="flex justify-between items-center">
+                    <h1 class="text-lg font-semibold text-gray-800">
+                        Dogbot
+                    </h1>
+                    <div class="bg-green-500 text-white text-xs px-2 py-1 rounded-full">
+                        Online
+                    </div>
+                </div>
+            </div>
+            <div id="messages" class="flex-1 p-3 overflow-y-auto flex flex-col space-y-2">
+                <!-- Los mensajes se agregarán dinámicamente aquí -->
+            </div>
+            <form id="chat-form" class="px-3 py-2 border-t border-gray-300">
+                <div class="flex gap-2">
+                    <textarea id="message" name="message" rows="1" placeholder="Escribe tu mensaje..."
+                        class="flex-1 p-2 border rounded-lg bg-gray-100 text-gray-800 border-gray-300 text-sm resize-none"></textarea>
+                    <button
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1.5 px-3 rounded-lg transition duration-300 ease-in-out text-sm">
+                        Enviar
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
     <script>
         const chatForm = document.getElementById('chat-form');
@@ -29,8 +49,8 @@
 
             // Mostrar el mensaje del usuario
             const userMessage = document.createElement('div');
-            userMessage.className = 'user-message';
-            userMessage.innerHTML = `<p>${message}</p>`;
+            userMessage.className = 'chat-message self-end bg-blue-500 text-white max-w-xs rounded-lg px-3 py-1.5 text-sm';
+            userMessage.textContent = message;
             messagesDiv.appendChild(userMessage);
 
             document.getElementById('message').value = '';
@@ -45,8 +65,8 @@
 
                 if (data.reply) {
                     const botMessage = document.createElement('div');
-                    botMessage.className = 'bot-message';
-                    botMessage.innerHTML = `<p>${data.reply}</p>`;
+                    botMessage.className = 'chat-message self-start bg-gray-300 text-gray-800 max-w-xs rounded-lg px-3 py-1.5 text-sm';
+                    botMessage.textContent = data.reply;
                     messagesDiv.appendChild(botMessage);
                 } else {
                     alert('Error al obtener respuesta del modelo');
@@ -58,4 +78,5 @@
         });
     </script>
 </body>
+
 </html>

@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
     if (!req.session.user) {
         return res.redirect('/login'); // Redirige al login si no hay sesión
     }
-    res.render('chat', { user: req.session.user, messages: [] });
+    res.render('chat', { title: 'Dogbot', user: req.session.user, messages: [] });
 });
 
 router.post('/send', async (req, res) => {
