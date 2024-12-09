@@ -38,6 +38,7 @@ let resetPasswrodRouter = require("./routes/reset_password.js");
 let publicacionesRouter = require('./routes/publicaciones'); 
 let pruebaRouter = require('./routes/prueba');
 let inbox_profileRouter = require('./routes/inbox_profile');
+let edit_existing_dog = require('./routes/edit_existing_dog.js');
 
 
 // Conexión a SQL
@@ -117,6 +118,7 @@ app.use("/reset_password", resetPasswrodRouter);
 app.use('/publicaciones', publicacionesRouter);
 app.use('/prueba', pruebaRouter);
 app.use('/inbox_profile', inbox_profileRouter);
+app.use('/edit_existing_dog', edit_existing_dog);
 
 
 // 404 error

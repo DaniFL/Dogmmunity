@@ -49,18 +49,28 @@ async function createDog(dog) {
 
 async function updateDog(id, updates) {
     try {
-        await dbConnect();
+        await connectToDb();
         const fields = Object.keys(updates).map(key => `${key} = @${key}`).join(', ');
         const query = `UPDATE Dogs SET ${fields} WHERE id = @id`;
         const request = new sql.Request();
+
+        // Agregar el ID del perro
         request.input('id', sql.UniqueIdentifier, id);
-        Object.keys(updates).forEach(key => {
-            request.input(key, sql.VarChar, updates[key]);
+
+        // Mapear los tipos correctamente
+        Object.entries(updates).forEach(([key, value]) => {
+            if (key === 'age' || key === 'weight') {
+                request.input(key, sql.Int, value); // Tipos numéricos
+            } else {
+                request.input(key, sql.VarChar, value); // Strings y otros
+            }
         });
+
         await request.query(query);
         console.log('Perro actualizado exitosamente');
     } catch (error) {
         console.error('Error al actualizar el perro', error);
+        throw error;
     } finally {
         await sql.close();
     }
