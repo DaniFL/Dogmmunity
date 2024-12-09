@@ -1,28 +1,203 @@
-<%- include("header", {}) %>
+<!DOCTYPE html>
+<html lang="es">
 
-<div class="page-title">
-    <div class="container d-lg-flex justify-content-between align-items-center">
-        <h1 class="mb-2 mb-lg-0">Publicaciones</h1>
-    </div>
-</div><!-- End Page Title -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulación TikTok</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background: black;
+        }
+
+        .container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        .video-container {
+            height: 100vh;
+            width: 100%;
+            scroll-snap-align: start;
+            position: relative;
+            background: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        video {
+            height: 100vh;
+            width: auto;
+            object-fit: cover;
+        }
+
+        .controls {
+            position: absolute;
+            right: 20px;
+            bottom: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .control-button {
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 15px;
+            margin: 10px 0;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: background 0.3s;
+        }
+
+        .control-button:hover {
+            background: rgba(255, 255, 255, 0.8);
+            color: black;
+        }
+
+        .description {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            z-index: 10;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
 
 <body>
-    <div class="container-fluid p-0">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-4 p-0">
-                <div class="position-relative" style="height: 100vh;">
-                    <!--<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@otis_thelab/video/7079513184146607365" data-video-id="7079513184146607365" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@otis_thelab" href="https://www.tiktok.com/@otis_thelab?refer=embed">@otis_thelab</a> Getting more sassy by the day <a title="dogs" target="_blank" href="https://www.tiktok.com/tag/dogs?refer=embed">#dogs</a> <a title="dogsofttiktok" target="_blank" href="https://www.tiktok.com/tag/dogsofttiktok?refer=embed">#dogsofttiktok</a> <a title="justababy" target="_blank" href="https://www.tiktok.com/tag/justababy?refer=embed">#justababy</a> <a title="puppiesoftiktok" target="_blank" href="https://www.tiktok.com/tag/puppiesoftiktok?refer=embed">#puppiesoftiktok</a> <a title="labradorpuppy" target="_blank" href="https://www.tiktok.com/tag/labradorpuppy?refer=embed">#labradorpuppy</a> <a title="labrador" target="_blank" href="https://www.tiktok.com/tag/labrador?refer=embed">#labrador</a> <a title="dog" target="_blank" href="https://www.tiktok.com/tag/dog?refer=embed">#dog</a> <a title="puppytiktok" target="_blank" href="https://www.tiktok.com/tag/puppytiktok?refer=embed">#puppytiktok</a> <a title="puppies" target="_blank" href="https://www.tiktok.com/tag/puppies?refer=embed">#puppies</a> <a title="puppy" target="_blank" href="https://www.tiktok.com/tag/puppy?refer=embed">#puppy</a> <a title="chomp" target="_blank" href="https://www.tiktok.com/tag/chomp?refer=embed">#chomp</a> <a title="chomper" target="_blank" href="https://www.tiktok.com/tag/chomper?refer=embed">#chomper</a> <a title="sassy" target="_blank" href="https://www.tiktok.com/tag/sassy?refer=embed">#sassy</a> <a title="sassydog" target="_blank" href="https://www.tiktok.com/tag/sassydog?refer=embed">#sassydog</a> <a title="chomping" target="_blank" href="https://www.tiktok.com/tag/chomping?refer=embed">#chomping</a> <a target="_blank" title="♬ original sound - Otis" href="https://www.tiktok.com/music/original-sound-7079513174609480454?refer=embed">♬ original sound - Otis</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
-                    <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@atoom_21/video/7399005342698327302" data-video-id="7399005342698327302" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@atoom_21" href="https://www.tiktok.com/@atoom_21?refer=embed">@atoom_21</a> No lo dejan jugar con otros perritos 😔😣 <a title="triste" target="_blank" href="https://www.tiktok.com/tag/triste?refer=embed">#triste</a> <a title="malo" target="_blank" href="https://www.tiktok.com/tag/malo?refer=embed">#malo</a> <a title="perromalo" target="_blank" href="https://www.tiktok.com/tag/perromalo?refer=embed">#perromalo</a> <a title="perrotriste" target="_blank" href="https://www.tiktok.com/tag/perrotriste?refer=embed">#perrotriste</a> <a title="perroviral" target="_blank" href="https://www.tiktok.com/tag/perroviral?refer=embed">#perroviral</a> <a title="viral" target="_blank" href="https://www.tiktok.com/tag/viral?refer=embed">#viral</a> <a title="pyf" target="_blank" href="https://www.tiktok.com/tag/pyf?refer=embed">#pyf</a> <a title="tiktok" target="_blank" href="https://www.tiktok.com/tag/tiktok?refer=embed">#tiktok</a> <a title="videos" target="_blank" href="https://www.tiktok.com/tag/videos?refer=embed">#videos</a> <a title="viralvideo" target="_blank" href="https://www.tiktok.com/tag/viralvideo?refer=embed">#viralvideo</a> <a title="atoom" target="_blank" href="https://www.tiktok.com/tag/atoom?refer=embed">#atoom</a> <a title="pitbullsoftiktokviral" target="_blank" href="https://www.tiktok.com/tag/pitbullsoftiktokviral?refer=embed">#pitbullsoftiktokviral</a>  @Khamba y Flor <a target="_blank" title="♬ sonido original - Khamba y Flor" href="https://www.tiktok.com/music/sonido-original-7113327183422638853?refer=embed">♬ sonido original - Khamba y Flor</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
-                    <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@serenovive/video/7414702124338007312" data-video-id="7414702124338007312" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@serenovive" href="https://www.tiktok.com/@serenovive?refer=embed">@serenovive</a> Cute little dog <a title="cute" target="_blank" href="https://www.tiktok.com/tag/cute?refer=embed">#cute</a> <a title="mini" target="_blank" href="https://www.tiktok.com/tag/mini?refer=embed">#mini</a> <a title="dog" target="_blank" href="https://www.tiktok.com/tag/dog?refer=embed">#dog</a> <a title="pet" target="_blank" href="https://www.tiktok.com/tag/pet?refer=embed">#pet</a> <a title="foryou" target="_blank" href="https://www.tiktok.com/tag/foryou?refer=embed">#foryou</a> <a target="_blank" title="♬ 티라미수 케익 - 위아더나잇" href="https://www.tiktok.com/music/티라미수-케익-7239336977304455169?refer=embed">♬ 티라미수 케익 - 위아더나잇</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>
-                -->´
-                <video controls class="w-100 h-100" src="/public/img/videos_feed/Download.mp4" type="video/mp4"></video>
-                </div>
-                </div>
-            </div>
-        </div>
+    <div class="container">
     </div>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const container = document.querySelector(".container");
+
+            fetch("/publicaciones/api/videos")
+                .then(response => response.json())
+                .then(videoList => {
+                    videoList.forEach((src, index) => {
+                        const videoContainer = document.createElement("div");
+                        videoContainer.className = "video-container";
+
+                        videoContainer.innerHTML = `
+                            <video src="${src}"></video>
+                            <div class="controls">
+                                <button class="control-button">❤️</button>
+                                <button class="control-button">💬</button>
+                                <button class="control-button">🔄</button>
+                            </div>
+                            
+                        `;
+
+                        container.appendChild(videoContainer);
+                    });
+
+                    const videoContainers = document.querySelectorAll(".video-container");
+                    const totalVideos = videoContainers.length;
+                    let currentIndex = 0;
+                    let isScrolling = false;
+                    let scrollTimeout;
+
+                    let accumulatedDeltaY = 0;
+                    const deltaThreshold = 100;
+
+                    const scrollToVideo = (index) => {
+                        if (index < 0 || index >= totalVideos) return;
+                        currentIndex = index;
+                        videoContainers[index].scrollIntoView({ behavior: 'smooth' });
+
+                        if (scrollTimeout) clearTimeout(scrollTimeout);
+
+                        scrollTimeout = setTimeout(() => {
+                            isScrolling = false;
+                            playVisibleVideo();
+                        }, 700);
+                    };
+
+                    window.addEventListener("wheel", (e) => {
+                        e.preventDefault();
+
+                        if (isScrolling) return;
+
+                        accumulatedDeltaY += e.deltaY;
+
+                        if (accumulatedDeltaY > deltaThreshold) {
+                            if (currentIndex < totalVideos - 1) {
+                                isScrolling = true;
+                                scrollToVideo(currentIndex + 1);
+                                accumulatedDeltaY = 0;
+                            }
+                        } else if (accumulatedDeltaY < -deltaThreshold) {
+                            if (currentIndex > 0) {
+                                isScrolling = true;
+                                scrollToVideo(currentIndex - 1);
+                                accumulatedDeltaY = 0;
+                            }
+                        }
+                    }, { passive: false });
+
+                    let touchStartY = 0;
+                    let touchEndY = 0;
+
+                    window.addEventListener('touchstart', (e) => {
+                        touchStartY = e.changedTouches[0].screenY;
+                    }, { passive: true });
+
+                    window.addEventListener('touchend', (e) => {
+                        touchEndY = e.changedTouches[0].screenY;
+                        handleGesture();
+                    }, { passive: true });
+
+                    const handleGesture = () => {
+                        if (isScrolling) return;
+                        const deltaY = touchStartY - touchEndY;
+                        if (deltaY > 50) {
+                            if (currentIndex < totalVideos - 1) {
+                                isScrolling = true;
+                                scrollToVideo(currentIndex + 1);
+                            }
+                        } else if (deltaY < -50) {
+                            if (currentIndex > 0) {
+                                isScrolling = true;
+                                scrollToVideo(currentIndex - 1);
+                            }
+                        }
+                    };
+
+                    const playVisibleVideo = () => {
+                        videoContainers.forEach((container, index) => {
+                            const video = container.querySelector("video");
+                            if (index === currentIndex) {
+                                video.currentTime = 0;
+                                video.play();
+                            } else {
+                                if (!video.paused) {
+                                    video.pause();
+                                    video.currentTime = 0;
+                                }
+                            }
+                        });
+                    };
+
+                    playVisibleVideo();
+                })
+                .catch(error => console.error("Error cargando videos:", error));
+        });
+    </script>
 </body>
-<%- include("footer", {}) %>
 
-
+</html>

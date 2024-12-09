@@ -3,11 +3,11 @@ const fs = require("fs");
 const path = require("path");
 const router = express.Router();
 
-router.get("/", (req, res) => {
+  router.get("/", function (req, res, next) {
     res.render("publicaciones", {
       title: "Publicaciones",
       navbar_addr1: "/profile",
-      navbar_addr2: "/profile", 
+      navbar_addr2: "/profile",
       navbar_addr3: "/adiestradores",
       navbar_addr4: "/profile",
       navbar_addr5: "/profile",
@@ -42,28 +42,22 @@ router.get("/", (req, res) => {
     });
   });
 
-  // Datos de ejemplo para los videos
-  const videos = [
-      {
-          id: 1,
-          url: '/placeholder.svg?height=720&width=405',
-          caption: 'Video description here',
-      },
-      {
-          id: 2,
-          url: '/placeholder.svg?height=720&width=405',
-          caption: 'Another video description',
-      },
-  ];
-  
-  // Ruta para renderizar el feed de videos
-  //app.get('/', (req, res) => {
-    //  res.render('video-feed', { videos: videos });
-  //});
-  
-  // Iniciar el servidor
-  /*app.listen(port, () => {
-      console.log(`Servidor corriendo en http://localhost:${port}`);
-  });*/
+  router.get("/api/videos", (req, res) => {
+    const mediaPath = path.join(__dirname, "../public/media");
 
-module.exports = router;
+    fs.readdir(mediaPath, (err, files) => {
+      if (err) {
+        console.error("Error leyendo la carpeta:", err);
+        res.status(500).send("Error al cargar los videos.");
+        return;
+      }
+
+      const videoFiles = files.filter((file) =>
+        /\.(mp4|webm|mov|avi)$/i.test(file)
+      );
+
+      res.json(videoFiles.map((file) => `/media/${file}`));
+    });
+  });
+
+  module.exports = router;
