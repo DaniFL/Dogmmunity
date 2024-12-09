@@ -49,7 +49,6 @@ let app = express();
 //app.set("port", 3000); 
 // app.listen(app.get("port"));
 //console.log("Servidor corriendo en el puerto", app.get("port"));
-
 // View engine setup (EJS)
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -83,7 +82,7 @@ app.use((req,res,next) => {
   res.locals.message = "";
   res.locals.error = "";
   if(message){res.locals.message = "<p>${message}</p>"};
-  if(error){res.locals.error = "<p>${error}</p>"};
+  if(error){res.locals.error = "Error vuelva a intentarlo"};
   next();
 });
 
