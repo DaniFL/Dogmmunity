@@ -17,16 +17,17 @@
                     <% } %>
                 </select>
                 <div class="invalid-feedback">Por favor, selecciona un perro registrado.</div>
+            </div>
 
             <div class="mb-3">
-                <label class="form-label" for="nombrePerro">¿Cómo se llama tu perro?</label>
+                <label class="form-label" for="nombrePerro">Indica su nuevo nombre</label>
                 <input class="form-control" type="text" id="nombrePerro" name="nombrePerro"
                     placeholder="Indica el nombre de tu perro" required>
                 <div class="invalid-feedback">Por favor, indica el nombre de tu perro.</div>
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="edadPerro">Edad de tu perro</label>
+                <label class="form-label" for="edadPerro">Modifica su fecha de nacimiento</label>
                 <input class="form-control" type="date" id="edadPerro" name="edadPerro" min="1994-01-01"
                     placeholder="Ingresa la fecha de nacimiento de tu perro" required>
                 <div class="invalid-feedback">Por favor, ingresa la fecha de nacimiento de tu perro.</div>
@@ -37,14 +38,14 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="pesoPerro">¿Cuánto pesa tu perro?</label>
+                <label class="form-label" for="pesoPerro">Actualiza su peso</label>
                 <input class="form-control" type="number" id="pesoPerro" name="pesoPerro" min="1" max="162"
                     placeholder="Ingresa el peso en kg" required>
                 <div class="invalid-feedback">Por favor, ingresa el peso de tu perro.</div>
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="sexoPerro">¿De qué sexo es tu perro?</label>
+                <label class="form-label" for="sexoPerro">Modifica su sexo</label>
                 <select class="form-control" type="text" list="sexo" id="sexoPerro" name="sexo" placeholder="Selecciona el sexo de tu perro">
                     <option value="" disabled selected>Selecciona un sexo</option> 
                     <option value="Macho"> Macho </option>
@@ -54,7 +55,7 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="razaPerro">¿Qué raza de perro tienes?</label>
+                <label class="form-label" for="razaPerro">Actualiza su raza</label>
                 <select class="form-control" id="razaPerro" name="raza" required>
                     <option value="" disabled selected>Selecciona una raza</option>
                     <option value="Labrador Retriever">Labrador Retriever</option>
@@ -111,7 +112,7 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="fotoPerroPerdido">Adjunta una foto de tu perro</label>
+                <label class="form-label" for="fotoPerroPerdido">Adjunta una nueva foto de tu perro</label>
                 <input class="form-control" type="file" id="fotoPerroPerdido" name="fotoPerroPerdido" accept="image/*" required>
                 <div class="invalid-feedback">Por favor, adjunta una foto de tu perro.</div>
             </div>
@@ -120,5 +121,7 @@
         </form>
         <br>
     </div>
+</div>
+
 
     <%- include("footer", {}) %>

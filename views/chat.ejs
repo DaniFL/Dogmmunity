@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,33 +8,184 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .chat-message {
-            word-break: break-word; /* Permitir dividir palabras largas */
-            white-space: pre-wrap;  /* Conservar saltos de línea y ajustar texto */
+            word-break: break-word;
+            /* Permitir dividir palabras largas */
+            white-space: pre-wrap;
+            /* Conservar saltos de línea y ajustar texto */
         }
-
+    
         #messages {
-            padding: 10px; /* Espacio interno para que los mensajes no queden pegados a los bordes */
+            padding: 10px;
+            /* Espacio interno para que los mensajes no queden pegados a los bordes */
         }
-
+    
         #messages::-webkit-scrollbar {
             width: 8px;
         }
-
+    
         #messages::-webkit-scrollbar-thumb {
             background-color: rgba(107, 114, 128, 0.5);
             border-radius: 4px;
         }
-
+    
         #messages::-webkit-scrollbar-thumb:hover {
             background-color: rgba(107, 114, 128, 0.7);
         }
     </style>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="icon" type="img/jpeg" href="../img/logo_1.jpeg">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="../vendor/aos/aos.css" rel="stylesheet">
+    <link href="../vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Main CSS File -->
+    <link href="../css/main.css" rel="stylesheet">
+
+
 </head>
-<button onclick="window.location.href='/adiestradores'" 
-    class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md text-sm">
-    Atrás
-</button>
-<body class="bg-gradient-to-b from-gray-100 to-gray-200 min-h-screen">
+
+<body class="about-page">
+
+    <header id="header" class="header d-flex align-items-center sticky-top">
+        <div class="container position-relative d-flex align-items-center justify-content-between">
+
+            <!-- IMG -->
+            <a href="/" class="logo d-flex align-items-center me-auto me-xl-0">
+                <!-- Uncomment the line below if you also wish to use an image logo -->
+                <!-- <img src="assets/img/logo.png" alt=""> -->
+                <h1 class="sitename">Dogmmunity</h1>
+            </a>
+
+            <nav id="navmenu" class="navmenu">
+                <% if (user) { %>
+                    <ul>
+                        <li><a href="<%= navbar_addr1 %>">
+                                <%= navbar_item1 %>
+                            </a></li>
+                        <!-- Desplegable 1  -->
+                        <li class="dropdown"><a href="<%= navbar_addr2 %>"><span>
+                                    <%= navbar_item2 %>
+                                </span><i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                            <ul>
+                                <li><a href="<%= sub_navbar_add1 %>">
+                                        <%= sub_navbar_item1 %>
+                                    </a></li>
+                                <li><a href="<%= sub_navbar_add2 %>">
+                                        <%= sub_navbar_item2 %>
+                                    </a></li>
+                                <li><a href="<%= sub_navbar_add3 %>">
+                                        <%= sub_navbar_item3 %>
+                                    </a></li>
+                                <!-- <li><a href="category.html">Historias Inspiradoras</a></li> -->
+                            </ul>
+                        </li>
+                        <li><a href="<%= navbar_addr3 %>">
+                                <%= navbar_item3 %>
+                            </a></li>
+                        <!-- Desplegable 2  -->
+                        <li class="dropdown"><a href="<%= navbar_addr4 %>"><span>
+                                    <%= navbar_item4 %>
+                                </span><i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                            <ul>
+                                <li><a href="<%= sub_navbar_add4 %>">
+                                        <%= sub_navbar_item4 %>
+                                    </a></li>
+                                <li><a href="<%= sub_navbar_add5 %>">
+                                        <%= sub_navbar_item5 %>
+                                    </a></li>
+                            </ul>
+                        </li>
+                        <!-- Desplegable 3  -->
+                        <li class="dropdown"><a href="<%= navbar_addr5 %>"><span>
+                                    <%= navbar_item5 %>
+                                </span><i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                            <ul>
+                                <li><a href="<%= sub_navbar_add6 %>">
+                                        <%= sub_navbar_item6 %>
+                                    </a></li>
+                                <li><a href="<%= sub_navbar_add7 %>">
+                                        <%= sub_navbar_item7 %>
+                                    </a></li>
+                                <li><a href="<%= sub_navbar_add8 %>">
+                                        <%= sub_navbar_item8 %>
+                                    </a></li>
+                            </ul>
+                        </li>
+                        <li><a href="<%= navbar_addr6 %>">
+                                <%= navbar_item6 %>
+                            </a></li>
+                    </ul>
+                    <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+
+            <div class="header-social-links">
+                <a href="/inbox_profile" class="twitter"><i class="bi bi-inbox-fill"></i></a>
+            </div>
+            <% } else { %>
+                <ul>
+                    <li><a href="<%= navbar_addr1 %>">
+                            <%= navbar_item1 %>
+                        </a></li>
+                    <!-- Desplegable 1  -->
+                    <li class="dropdown"><a href="<%= navbar_addr2 %>"><span>
+                                <%= navbar_item2 %>
+                            </span><i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                        <ul>
+                            <li><a href="<%= sub_navbar_add1 %>">
+                                    <%= sub_navbar_item1 %>
+                                </a></li>
+                            <li><a href="<%= sub_navbar_add2 %>">
+                                    <%= sub_navbar_item2 %>
+                                </a></li>
+                            <li><a href="<%= sub_navbar_add3 %>">
+                                    <%= sub_navbar_item3 %>
+                                </a></li>
+                            <li><a href="<%= sub_navbar_add4 %>">
+                                    <%= sub_navbar_item4 %>
+                                </a></li>
+                            <li><a href="<%= sub_navbar_add5 %>">
+                                    <%= sub_navbar_item5 %>
+                                </a></li>
+                        </ul>
+                    </li>
+                    <li><a href="<%= navbar_addr3 %>">
+                            <%= navbar_item3 %>
+                        </a></li>
+                    <li><a href="<%= navbar_addr4 %>">
+                            <%= navbar_item4 %>
+                        </a></li>
+                    <li><a href="<%= navbar_addr5 %>">
+                            <%= navbar_item5 %>
+                        </a></li>
+                    <li><a href="<%= navbar_addr6 %>">
+                            <%= navbar_item6 %>
+                        </a></li>
+                </ul>
+
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+                </nav>
+
+                <div class="header-social-links">
+                    <a href="https://x.com/dogmmunity" target="_blank" class="twitter"><i
+                            class="bi bi-twitter-x"></i></a>
+                    <a href="https://www.instagram.com/dogmmunity.app/" target="_blank" class="instagram"><i
+                            class="bi bi-instagram"></i></a>
+                </div>
+                <% } %>
+        </div>
+    </header>
+
     <div class="w-full max-w-3xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden h-[850px] flex flex-col mt-8">
         <div class="px-4 py-3 border-b bg-gradient-to-r from-blue-500 to-blue-700 text-white flex-shrink-0">
             <div class="flex justify-between items-center">
